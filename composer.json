@@ -1,0 +1,25 @@
+{
+    "name": "pixnet/php-sdk",
+    "description": "PIXNET PHP SDK",
+    "keywords": ["PIXNET", "sdk"],
+    "type": "library",
+    "homepage": "http://developer.pixnet.pro/",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "PIXNET Digital Media Corporation",
+            "homepage": "http://www.pixnet.net/"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "classmap": ["src"]
+    }
+}
