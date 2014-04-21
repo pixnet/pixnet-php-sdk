@@ -22,7 +22,7 @@ Learn More detail at [http://developer.pixnet.pro/](http://developer.pixnet.pro/
 請使用以下的 code 把東西丟進 SDK 中就可以開始使用了
 
 ####詳細說明文件
-請參考 [CocoaDocs PIXNET-PHP-SDK](http://cocoadocs.org/docsets/PIXNET-PHP-SDK/0.2/index.html) 說明文件
+說明文件
 
 ## License
 PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
