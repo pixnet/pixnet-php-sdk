@@ -8,7 +8,9 @@ This open-source library allows you to integrate PIXNET into your PHP APP.
 Learn More detail at [http://developer.pixnet.pro/](http://developer.pixnet.pro/)
 
 ##安裝 - Installation#
-
+### 使用 Composer ###
+- 增加`"pixnet/php-sdk": "@stable"`到您的`composer.json`的`require`部分.
+- 執行`composer install`.
 
 ##使用 - Usage#
 ###在使用之前，請先至 PIXNET Developer 註冊新的 APP。
@@ -19,10 +21,24 @@ Learn More detail at [http://developer.pixnet.pro/](http://developer.pixnet.pro/
  1. Consumer Key(client_id)
  2. Consumer Secret
 
-請使用以下的 code 把東西丟進 SDK 中就可以開始使用了
+### 使用 Composer ###
+參考以下的 code 把必要參數丟進 SDK 中就可以開始使用了
+```php
+require_once(__DIR__ . '/vendor/autoload.php');
 
-####詳細說明文件
-說明文件
+$pixapi = new PixAPI(array(
+  'key'  => '',
+  'secret' => '',
+  'callback' => ''
+));
+```
+
+### 未使用 Composer ###
+```php
+require_once(__DIR__ . '/src/PIXNET/Loader.php');
+```
+
+更多完整的範例在examples
 
 ## License
 PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
