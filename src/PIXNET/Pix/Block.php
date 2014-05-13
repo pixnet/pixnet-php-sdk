@@ -10,4 +10,31 @@ class Pix_Block extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search()
+    {
+        $response = $this->query('blocks');
+        return $this->getResult($response, 'blocks');
+
+    }
+
+    public function create($user)
+    {
+        if ('' == $user) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = array('user' => $user);
+        $response = $this->query('blocks', $parameters, 'POST');
+        return $response;
+    }
+
+    public function delete($user)
+    {
+        if ('' == $user) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = array('user' => $user);
+        $response = $this->query('blocks/delete', $parameters, 'DELETE');
+        return $response;
+    }
 }
