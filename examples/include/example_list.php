@@ -91,6 +91,10 @@ $examples_list = array(
         array(
             'name' => '群組',
             'examples' => array(
+                '列出好友群組' => '511_friend_groups_search.php',
+                '新增好友群組' => '512_friend_groups_create.php',
+                '修改好友群組' => '513_friend_groups_update.php',
+                '刪除好友群組' => '514_friend_groups_delete.php',
             )
         ),
         array(
