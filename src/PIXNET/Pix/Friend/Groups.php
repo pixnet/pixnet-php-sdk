@@ -13,6 +13,16 @@ class Pix_Friend_Groups extends PixAPI
 
     public function search($options = array())
     {
+        if (!is_array($options)) {
+            $parameters = $this->mergeParameters(
+                array(),
+                $options,
+                array('page', 'per_page'),
+                array()
+            );
+            $response = $this->query('friend/groups/' . $options, $parameters, 'GET');
+            return $response;
+        }
         $parameters = $this->mergeParameters(
             array(),
             $options,
