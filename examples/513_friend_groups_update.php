@@ -66,7 +66,7 @@ if ($query2 != '') {
             if ('' != $query2) {
         ?>
         <h3>執行</h3>
-        <pre>$pixapi->friend->groups->update('<?= $query; ?>','<?= $query2; ?>');</pre>
+        <pre>$pixapi->friend->groups->update('<?= htmlspecialchars($query) ?>','<?= htmlspecialchars($query2) ?>');</pre>
         <h3>執行結果</h3>
         <pre><?php print_r($response); ?></pre>
         <?php

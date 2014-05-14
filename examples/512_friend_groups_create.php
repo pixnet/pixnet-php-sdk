@@ -26,7 +26,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
         if ('' != $query) {
     ?>
     <h3>執行</h3>
-    <pre>$pixapi->friend->groups->create(<?= $query; ?>);</pre>
+    <pre>$pixapi->friend->groups->create(<?= htmlspecialchars($query) ?>);</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->friend->groups->create($query)); ?></pre>
     <?php
