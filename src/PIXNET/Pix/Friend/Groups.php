@@ -10,4 +10,17 @@ class Pix_Friend_Groups extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search($options = array())
+    {
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array('page', 'per_page'),
+            array()
+        );
+
+        $response = $this->query('friend/groups', $parameters, 'GET');
+        return $response;
+    }
 }
