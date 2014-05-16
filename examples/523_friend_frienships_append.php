@@ -6,7 +6,7 @@ $query = $_POST['query'];
 $query2 = $_POST['query2'];
 
 if ('' != $query and '' != $query2 ) {
-    $response = $pixapi->friend->friendships->append($query, $query2);
+    $response = $pixapi->friend->friendships->appendGroup($query, $query2);
 }
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ if ('' != $query and '' != $query2 ) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">將好友加入群組</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->friend->friendships->append($name, $id);</pre>
+    <pre>$pixapi->friend->friendships->appendGroup($name, $id);</pre>
     <div class="panel panel-primary">
       <div class="panel-heading">實際測試</div>
       <div class="alert alert-info">非VIP只能將使用者加入一個群組</div>
@@ -69,7 +69,7 @@ if ('' != $query and '' != $query2 ) {
         </form>
         <?php if ('' != $query and '' != $query2) { ?>
         <h3>執行</h3>
-        <pre>$pixapi->friend->friendships->append('<?= htmlspecialchars($query) ?>','<?= htmlspecialchars($query2) ?>');</pre>
+        <pre>$pixapi->friend->friendships->appendGroup('<?= htmlspecialchars($query) ?>','<?= htmlspecialchars($query2) ?>');</pre>
         <h3>執行結果</h3>
         <pre><?php print_r($response); ?></pre>
         <?php } ?>

@@ -39,7 +39,7 @@ class Pix_Friend_Friendships extends PixAPI
         return $response;
     }
 
-    public function append($name, $group_id)
+    public function appendGroup($name, $group_id)
     {
         if ('' == $name or '' == $group_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
@@ -54,7 +54,7 @@ class Pix_Friend_Friendships extends PixAPI
         return $response;
     }
 
-    public function remove($group_id, $name)
+    public function removeGroup($group_id, $name)
     {
         if ('' == $group_id or '' == $name) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
