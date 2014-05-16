@@ -26,4 +26,18 @@ class Pix_Friend extends PixAPI
         }
         throw new Exception('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
+
+    public function news($options = array())
+    {
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array('group_id', 'before_time'),
+            array('group_type')
+        );
+
+        $response = $this->query('friend/news', $parameters, 'GET');
+        return $response;
+    }
+
 }
