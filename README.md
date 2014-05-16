@@ -21,24 +21,32 @@ Learn More detail at [http://developer.pixnet.pro/](http://developer.pixnet.pro/
  1. Consumer Key(client_id)
  2. Consumer Secret
 
+並且你需要設定一個Registered Callback URL網址
+
 ### 使用 Composer ###
 參考以下的 code 把必要參數丟進 SDK 中就可以開始使用了
 ```php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $pixapi = new PixAPI(array(
-  'key'  => '',
-  'secret' => '',
-  'callback' => ''
+  'key'  => 'your consumer key',
+  'secret' => 'your consumer secret',
+  'callback' => 'your registered callback url'
 ));
 ```
 
 ### 未使用 Composer ###
 ```php
 require_once(__DIR__ . '/src/PIXNET/Loader.php');
+
+$pixapi = new PixAPI(array(
+  'key'  => 'your consumer key',
+  'secret' => 'your consumer secret',
+  'callback' => 'your registered callback url'
+));
 ```
 
-更多完整的範例在examples
+更多完整的範例在examples資料夾，請執行examples/index.php，依據步驟設定
 
 ## License
 PIXNET SDK is BSD-licensed. We also provide an additional patent grant.
