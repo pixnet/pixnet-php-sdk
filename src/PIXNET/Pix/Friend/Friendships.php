@@ -68,4 +68,19 @@ class Pix_Friend_Friendships extends PixAPI
         $response = $this->query('friendships/remove_group', $parameters, 'DELETE');
         return $response;
     }
+
+    public function delete($name)
+    {
+        if ('' == $name) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user_name' => $name),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('friendships/delete', $parameters, 'DELETE');
+        return $response;
+    }
 }
