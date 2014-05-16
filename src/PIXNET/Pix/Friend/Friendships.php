@@ -38,4 +38,19 @@ class Pix_Friend_Friendships extends PixAPI
         $response = $this->query('friendships', $parameters, 'POST');
         return $response;
     }
+
+    public function append($name, $group_id)
+    {
+        if ('' == $name or '' == $group_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user_name' => $name, 'group_id' => $group_id),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('friendships/append_group', $parameters, 'POST');
+        return $response;
+    }
 }
