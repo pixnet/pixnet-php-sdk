@@ -10,4 +10,17 @@ class Pix_Friend_Friendships extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search($options = array())
+    {
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array('cursor', 'cursor_name', 'bidirectional'),
+            array()
+        );
+
+        $response = $this->query('friendships', $parameters, 'GET');
+        return $response;
+    }
 }
