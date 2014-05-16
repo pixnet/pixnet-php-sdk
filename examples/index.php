@@ -1,5 +1,7 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
+if (file_exists(__DIR__ . '/init.inc.php')) {
+    require_once(__DIR__ . '/bootstrap.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
