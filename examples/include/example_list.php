@@ -85,7 +85,7 @@ $examples_list = array(
         array(
             'name' => '好友互動',
             'examples' => array(
-                '最新動態' => ''
+                '好友動態' => '501_friend_news.php'
             )
         ),
         array(
@@ -100,16 +100,31 @@ $examples_list = array(
         array(
             'name' => '好友名單',
             'examples' => array(
+                '列出好友名單' => '521_friend_frienships_search.php',
+                '新增好友'     => '522_friend_frienships_create.php',
+                '加入群組'     => '523_friend_frienships_append.php',
+                '移除群組'     => '524_friend_frienships_remove.php',
+                '刪除好友'     => '525_friend_frienships_delete.php',
             )
         ),
         array(
             'name' => '訂閱',
             'examples' => array(
+                'X列出訂閱名單' => '531_friend_subscriptions_search.php',
+                'X新增訂閱'     => '532_friend_subscriptions_create.php',
+                'X加入訂閱群組' => '533_friend_subscriptions_join.php',
+                'X離開訂閱群組' => '534_friend_subscriptions_leave.php',
+                'X刪除訂閱'     => '535_friend_subscriptions_delete.php',
             )
         ),
         array(
             'name' => '訂閱群組',
             'examples' => array(
+                'X列出訂閱群組'     => '541_friend_subscriptions_groups_search.php',
+                'X新增訂閱群組'     => '542_friend_subcriptions_groups_create.php',
+                'X修改訂閱群組'     => '543_friend_subcriptions_groups_update.php',
+                'X刪除訂閱群組'     => '544_friend_subcriptions_groups_delete.php',
+                'X修改訂閱群組排序' => '545_friend_subcriptions_groups_position.php',
             )
         )
     ),
