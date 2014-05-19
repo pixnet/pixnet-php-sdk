@@ -13,7 +13,6 @@ class Pix_Friend extends PixAPI
 
     public function __get($class_name)
     {
-        $class_name = strtolower($class_name);
         $class_list = array(
                 'groups' => 'Pix_Friend_Groups',
                 'friendships' => 'Pix_Friend_Friendships',
