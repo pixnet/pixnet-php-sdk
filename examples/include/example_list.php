@@ -110,20 +110,20 @@ $examples_list = array(
         array(
             'name' => '訂閱',
             'examples' => array(
-                'X列出訂閱名單' => '531_friend_subscriptions_search.php',
+                '列出訂閱名單' => '531_friend_subscriptions_search.php',
                 'X新增訂閱'     => '532_friend_subscriptions_create.php',
                 'X加入訂閱群組' => '533_friend_subscriptions_join.php',
                 'X離開訂閱群組' => '534_friend_subscriptions_leave.php',
-                'X刪除訂閱'     => '535_friend_subscriptions_delete.php',
+                '刪除訂閱'     => '535_friend_subscriptions_delete.php',
             )
         ),
         array(
             'name' => '訂閱群組',
             'examples' => array(
-                'X列出訂閱群組'     => '541_friend_subscriptions_groups_search.php',
-                'X新增訂閱群組'     => '542_friend_subcriptions_groups_create.php',
-                'X修改訂閱群組'     => '543_friend_subcriptions_groups_update.php',
-                'X刪除訂閱群組'     => '544_friend_subcriptions_groups_delete.php',
+                '列出訂閱群組'     => '541_friend_subscriptions_groups_search.php',
+                '新增訂閱群組'     => '542_friend_subcriptions_groups_create.php',
+                '修改訂閱群組'     => '543_friend_subcriptions_groups_update.php',
+                '刪除訂閱群組'     => '544_friend_subcriptions_groups_delete.php',
                 'X修改訂閱群組排序' => '545_friend_subcriptions_groups_position.php',
             )
         )
