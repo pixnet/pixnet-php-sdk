@@ -111,9 +111,9 @@ $examples_list = array(
             'name' => '訂閱',
             'examples' => array(
                 '列出訂閱名單' => '531_friend_subscriptions_search.php',
-                'X新增訂閱'     => '532_friend_subscriptions_create.php',
-                'X加入訂閱群組' => '533_friend_subscriptions_join.php',
-                'X離開訂閱群組' => '534_friend_subscriptions_leave.php',
+                '新增訂閱'     => '532_friend_subscriptions_create.php',
+                '加入訂閱群組' => '533_friend_subscriptions_join.php',
+                '離開訂閱群組' => '534_friend_subscriptions_leave.php',
                 '刪除訂閱'     => '535_friend_subscriptions_delete.php',
             )
         ),
@@ -124,7 +124,7 @@ $examples_list = array(
                 '新增訂閱群組'     => '542_friend_subcriptions_groups_create.php',
                 '修改訂閱群組'     => '543_friend_subcriptions_groups_update.php',
                 '刪除訂閱群組'     => '544_friend_subcriptions_groups_delete.php',
-                'X修改訂閱群組排序' => '545_friend_subcriptions_groups_position.php',
+                '修改訂閱群組排序' => '545_friend_subcriptions_groups_position.php',
             )
         )
     ),
