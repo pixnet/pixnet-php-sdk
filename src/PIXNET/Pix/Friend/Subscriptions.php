@@ -34,6 +34,21 @@ class Pix_Friend_Subscriptions extends PixAPI
         return $response;
     }
 
+    public function create($name, $options = array())
+    {
+        if ('' == $name) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name),
+            $options,
+            array(),
+            array('group_ids')
+        );
+        $response = $this->query('friend/subscriptions', $parameters, 'POST');
+        return $response;
+    }
+
     public function delete($name)
     {
         if ('' == $name) {
