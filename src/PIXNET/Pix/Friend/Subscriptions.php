@@ -64,6 +64,21 @@ class Pix_Friend_Subscriptions extends PixAPI
         return $response;
     }
 
+    public function leave_subscription_group($name, $group_id)
+    {
+        if ('' == $name or '' == $group_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('name' => $name),
+            $group_id,
+            array(),
+            array('group_ids')
+        );
+        $response = $this->query('friend/subscriptions/' . $name . '/leave_subscription_group', $parameters, 'POST');
+        return $response;
+    }
+
     public function delete($name)
     {
         if ('' == $name) {
