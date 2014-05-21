@@ -128,7 +128,7 @@ class PixClient
     public function query($api_url, $parameters = array(), $method = 'GET', array $http_headers = array(), $form_multipart = true)
     {
         if ('URI' == $method) {
-            if (!is_array($parameters)) {
+            if (is_array($parameters)) {
                 $api_url .= '/' . implode($parameters, '/');
                 $parameters = array();
                 $method = 'GET';
