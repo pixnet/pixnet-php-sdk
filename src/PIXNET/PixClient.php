@@ -127,18 +127,19 @@ class PixClient
      */
     public function query($api_url, $parameters = array(), $method = 'GET', array $http_headers = array(), $form_multipart = true)
     {
-        if ('URI' == $method) {
-            if (is_array($parameters)) {
+        if (is_array($parameters)) {
+            if ('URI' == $method) {
                 $api_url .= '/' . implode($parameters, '/');
                 $parameters = array();
                 $method = 'GET';
-            } else {
-                throw new PixAPIException(
-                    'You need to give parameters as array',
-                    PixAPIException::REQUIRE_PARAMS_AS_ARRAY
-                );
             }
+        } else {
+            throw new PixAPIException(
+                'You need to give parameters as array',
+                PixAPIException::REQUIRE_PARAMS_AS_ARRAY
+            );
         }
+
         if ($this->access_token) {
             $parameters['access_token'] = $this->access_token;
         }
