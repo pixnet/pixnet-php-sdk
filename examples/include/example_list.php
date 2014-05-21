@@ -36,16 +36,16 @@ $examples_list = array(
             )
         ),
         array(
-            'name' => '留言',
+            'name' => '文章留言',
             'examples' => array(
-                '列出部落格留言' => '331_blog_comments.php',
+                '列出文章留言' => '331_blog_comments.php',
                 'X讀取單一留言' => '332_blog_comments.php',
-                'X新增部落格留言' => '333_blog_comments.php',
-                'X回覆部落格留言' => '334_blog_comments.php',
+                'X新增文章留言' => '333_blog_comments.php',
+                'X回覆文章留言' => '334_blog_comments.php',
                 'X將留言設為公開/悄悄話' => '335_blog_comments.php',
                 'X將留言設為廣告留言/非廣告留言' => '336_blog_comments.php',
-                'X刪除部落格留言' => '337_blog_comments.php',
-                'X列出部落格最新留言' => '338_blog_comments.php'
+                'X刪除文章留言' => '337_blog_comments.php',
+                'X列出文章最新留言' => '338_blog_comments.php'
             )
         )
     ),
