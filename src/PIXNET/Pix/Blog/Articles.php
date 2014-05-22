@@ -73,13 +73,13 @@ class Pix_Blog_Articles extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $parameters = $this->mergeParameters(
-            array('name' => $name, 'type' => ($is_folder) ? 'folder' : 'category'),
+            array('title' => $title, 'body' => $body),
             $options,
-            array('show_index', 'site_category_id', 'site_category_done'),
-            array('description')
+            array('status','public_at','category_id','site_category_id','use_nl2br','comment_perm','comment_hidden'),
+            array('tags','thumb','trackback','password','password_hint','friend_group_ids','notify_twitter','notify_facebook')
         );
         $response = $this->query('blog/articles', $parameters, 'POST');
-        return $this->getResult($response, 'category');
+        return $response;
     }
 
     public function update($article_id, $title, $body, $options = array())
@@ -88,13 +88,13 @@ class Pix_Blog_Articles extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $parameters = $this->mergeParameters(
-            array('name' => $name, 'type' => ($is_folder) ? 'folder' : 'category'),
+            array('title' => $title, 'body' => $body),
             $options,
-            array('show_index', 'site_category_id', 'site_category_done'),
-            array('description')
+            array('status','public_at','category_id','site_category_id','use_nl2br','comment_perm','comment_hidden'),
+            array('tags','thumb','trackback','password','password_hint','friend_group_ids','notify_twitter','notify_facebook')
         );
         $response = $this->query('blog/articles/' . $article_id, $parameters, 'POST');
-        return $this->getResult($response, 'category');
+        return $response;
     }
 
     public function delete($article_id, $is_folder = false)
