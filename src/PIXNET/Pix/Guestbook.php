@@ -58,4 +58,40 @@ class Pix_Guestbook extends PixAPI
         $response = $this->query('guestbook/' . $guestbook_id . '/reply', $parameters, 'POST');
         return $response;
     }
+
+    public function open($guestbook_id)
+    {
+        if ('' == $guestbook_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('guestbook/' . $guestbook_id . '/open', array(), 'POST');
+        return $response;
+    }
+
+    public function close($guestbook_id)
+    {
+        if ('' == $guestbook_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('guestbook/' . $guestbook_id . '/close', array(), 'POST');
+        return $response;
+    }
+
+    public function markSpam($guestbook_id)
+    {
+        if ('' == $guestbook_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('guestbook/' . $guestbook_id . '/mark_spam', array(), 'POST');
+        return $response;
+    }
+
+    public function markHam($guestbook_id)
+    {
+        if ('' == $guestbook_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('guestbook/' . $guestbook_id . '/mark_ham', array(), 'POST');
+        return $response;
+    }
 }

@@ -146,8 +146,10 @@ $examples_list = array(
                 '讀取單一留言' => '702_guestbook_search.php',
                 '新增留言版留言' => '703_guestbook_create.php',
                 '回覆留言版留言' => '704_guestbook_reply.php',
-                'X將留言設為公開/悄悄話' => '',
-                'X將留言設為廣告/非廣告' => '',
+                '將留言設為公開' => '705_guestbook_open.php',
+                '將留言設為悄悄話' => '706_guestbook_close.php',
+                '將留言設為廣告' => '707_guestbook_mark_spam.php',
+                '將留言設為非廣告' => '708_guestbook_mark_ham.php',
                 'X刪除留言版留言' => '',
             )
         )
