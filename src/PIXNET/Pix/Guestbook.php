@@ -94,4 +94,13 @@ class Pix_Guestbook extends PixAPI
         $response = $this->query('guestbook/' . $guestbook_id . '/mark_ham', array(), 'POST');
         return $response;
     }
+
+    public function delete($guestbook_id)
+    {
+        if ('' == $guestbook_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('guestbook/' . $guestbook_id, array(), 'DELETE');
+        return $response;
+    }
 }

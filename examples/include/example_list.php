@@ -150,7 +150,7 @@ $examples_list = array(
                 '將留言設為悄悄話' => '706_guestbook_close.php',
                 '將留言設為廣告' => '707_guestbook_mark_spam.php',
                 '將留言設為非廣告' => '708_guestbook_mark_ham.php',
-                'X刪除留言版留言' => '',
+                '刪除留言版留言' => '709_guestbook_delete.php',
             )
         )
     ),
