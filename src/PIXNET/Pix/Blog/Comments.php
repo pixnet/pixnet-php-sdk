@@ -14,7 +14,9 @@ class Pix_Blog_Comments extends PixAPI
     public function search($options = array())
     {
         if (!is_array($options)) {
-            $options = array('article_id' => $options);
+            $parameters = array($options);
+            $response = $this->query('blog/comments', $parameters, 'URI');
+            return $response;
         }
         $parameters = $this->mergeParameters(
             array(),
