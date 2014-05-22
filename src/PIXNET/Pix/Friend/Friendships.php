@@ -16,8 +16,8 @@ class Pix_Friend_Friendships extends PixAPI
         $parameters = $this->mergeParameters(
             array(),
             $options,
-            array('cursor', 'cursor_name', 'bidirectional'),
-            array()
+            array(),
+            array('cursor', 'cursor_name', 'bidirectional')
         );
 
         $response = $this->query('friendships', $parameters, 'GET');
