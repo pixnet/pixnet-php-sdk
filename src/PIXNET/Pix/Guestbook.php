@@ -13,6 +13,11 @@ class Pix_Guestbook extends PixAPI
 
     public function search($options = array())
     {
+       if (!is_array($options)) {
+            $parameters = array($options);
+            $response = $this->query('guestbook', $parameters, 'URI');
+            return $response;
+        }
         $parameters = $this->mergeParameters(
             array(),
             $options,
