@@ -10,13 +10,13 @@ require_once(__DIR__ . '/include/checkAuth.php');
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">新增留言版留言</h1>
+    <h1 class="page-header">回覆留言版留言</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->guestbook->reply($id, $body);</pre>
     <h3>實際測試</h3>
     <form class="form-horizontal" role="form" method="POST">
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query">回覆留言：</label>
+        <label class="col-sm-2 control-label" for="query">留言：</label>
         <div class="col-sm-10">
             <select class="form-control" id="query" name="query">
           <?php
