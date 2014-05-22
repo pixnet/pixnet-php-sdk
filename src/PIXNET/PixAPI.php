@@ -258,7 +258,8 @@ class PixAPI
         if (count($apis) > 2) {
             $api = $apis[0] . '/' . $apis[1];
         }
-        if (in_array($api, $apilist)) {
+        // guestbook 為例外
+        if (in_array($api, $apilist) or 'guestbook' == $apis[0]) {
             return true;
         }
         return false;
