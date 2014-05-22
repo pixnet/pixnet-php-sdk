@@ -4,35 +4,35 @@ $examples_list = array(
         array(
             'name' => '資訊',
             'examples' => array(
-                '取得部落格資訊' => '301_blog.php',
-                '查詢其他部落格公開資訊' => '302_blog.php',
-                '取得部落格全站分類' => '303_blog.php',
+                '取得部落格資訊' => '301_blog_info.php',
+                '查詢其他部落格公開資訊' => '302_blog_info.php',
+                '取得部落格全站分類' => '303_blog_site_categories.php',
             )
         ),
         array(
             'name' => '文章分類',
             'examples' => array(
-                '取得部落格所有分類/資料夾' => '311_blog_categories.php',
-                '取得部落格單一分類/資料夾' => '312_blog_categories.php',
-                '新增部落格分類/資料夾-簡易' => '313_blog_categories.php',
-                '新增部落格分類/資料夾-進階' => '314_blog_categories.php',
-                '修改分類/資料夾' => '315_blog_categories.php',
-                '刪除分類/資料夾' => '316_blog_categories.php',
-                '修改部落格分類排序' => '317_blog_categories.php'
+                '取得部落格所有分類/資料夾' => '311_blog_categories_search.php',
+                '取得部落格單一分類/資料夾' => '312_blog_categories_search.php',
+                '新增部落格分類/資料夾-簡易' => '313_blog_categories_create.php',
+                '新增部落格分類/資料夾-進階' => '314_blog_categories_create.php',
+                '修改分類/資料夾' => '315_blog_categories_update.php',
+                '刪除分類/資料夾' => '316_blog_categories_delete.php',
+                '修改部落格分類排序' => '317_blog_categories_position.php'
             )
         ),
         array(
             'name' => '文章',
             'examples' => array(
-                '取得部落格個人所有文章' => '321_blog_articles.php',
-                '取得部落格個人單一文章' => '322_blog_articles.php',
-                '取得指定文章之相關文章' => '323_blog_articles.php',
-                '取得指定文章之留言' => '324_blog_articles.php',
+                '取得部落格個人所有文章' => '321_blog_articles_search.php',
+                '取得部落格個人單一文章' => '322_blog_articles_search.php',
+                '取得指定文章之相關文章' => '323_blog_articles_related.php',
+                '取得指定文章之留言' => '324_blog_articles_comments.php',
                 '新增個人文章' => '325_blog_articles_create.php',
                 '修改個人文章' => '326_blog_articles_update.php',
-                '刪除個人文章' => '327_blog_articles.php',
-                '取得部落格最新文章' => '328_blog_articles.php',
-                '取得部落格熱門文章' => '329_blog_articles.php'
+                '刪除個人文章' => '327_blog_articles_delete.php',
+                '取得部落格最新文章' => '328_blog_articles_latest.php',
+                '取得部落格熱門文章' => '329_blog_articles_hot.php'
             )
         ),
         array(
@@ -134,9 +134,9 @@ $examples_list = array(
         array(
             'name' => '黑名單',
             'examples' => array(
-                '列出黑名單' => '601_block.php',
-                '新增黑名單' => '602_block.php',
-                '刪除黑名單' => '603_block.php',
+                '列出黑名單' => '601_block_search.php',
+                '新增黑名單' => '602_block_create.php',
+                '刪除黑名單' => '603_block_delete.php',
             )
         )
     ),
@@ -160,21 +160,21 @@ $examples_list = array(
         array(
             'name' => '文章',
             'examples' => array(
-                '列出文章專欄' => '801_mainpage.php',
-                '列出全站熱門、最新、近期文章' => '802_mainpage.php',
+                '列出文章專欄' => '801_mainpage_blog_olumns.php',
+                '列出全站熱門、最新、近期文章' => '802_mainpage_blog_hot.php',
             )
         ),
         array(
             'name' => '相簿',
             'examples' => array(
-                '列出相簿專欄' => '811_mainpage.php',
-                '列出全站熱門、最新、近期相簿' => '812_mainpage.php',
+                '列出相簿專欄' => '811_mainpage_album_columns.php',
+                '列出全站熱門、最新、近期相簿' => '812_mainpage_album_hot.php',
             )
         ),
         array(
             'name' => '影片',
             'examples' => array(
-                '列出全站熱門、最新、近期影片' => '821_mainpage.php',
+                '列出全站熱門、最新、近期影片' => '821_mainpage_video_hot.php',
             )
         )
     ),
@@ -182,8 +182,8 @@ $examples_list = array(
         array(
             'name' => '資訊',
             'examples' => array(
-                '取得使用者資訊' => '201_user.php',
-                '查詢其他使用者公開資訊' => '202_user.php'
+                '取得使用者資訊' => '201_user_info.php',
+                '查詢其他使用者公開資訊' => '202_user_info.php'
             )
         )
     ),
@@ -191,8 +191,8 @@ $examples_list = array(
         array(
             'name' => '資訊',
             'examples' => array(
-                '取得API使用次數資訊' => '101_index.php',
-                '取得API Server時間資訊' => '102_index.php'
+                '取得API使用次數資訊' => '101_index_rate.php',
+                '取得API Server時間資訊' => '102_index_now.php'
             )
         )
     )
