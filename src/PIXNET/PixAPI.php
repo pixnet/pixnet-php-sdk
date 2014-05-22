@@ -56,6 +56,7 @@ class PixAPI
                 'site' => 'Pix_Site',
                 'album' => 'Pix_Album ',
                 'friend' => 'Pix_Friend',
+                'guestbook' => 'Pix_Guestbook',
                 'block' => 'Pix_Block',
                 'mainpage' => 'Pix_Mainpage'
             );
