@@ -10,4 +10,17 @@ class Pix_Guestbook extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search($options = array())
+    {
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array('filter', 'cursor'),
+            array('per_page')
+        );
+
+        $response = $this->query('guestbook', $parameters, 'GET');
+        return $response;
+    }
 }

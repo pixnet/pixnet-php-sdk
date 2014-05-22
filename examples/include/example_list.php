@@ -142,7 +142,7 @@ $examples_list = array(
         array(
             'name' => '留言板',
             'examples' => array(
-                'X列出留言版留言' => '',
+                '列出留言版留言' => '701_guestbook_search.php',
                 'X新增留言版留言' => '',
                 'X讀取單一留言' => '',
                 'X回覆留言版留言' => '',
