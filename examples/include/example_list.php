@@ -38,14 +38,16 @@ $examples_list = array(
         array(
             'name' => '文章留言',
             'examples' => array(
-                '列出文章留言' => '331_blog_comments.php',
-                'X讀取單一留言' => '332_blog_comments.php',
-                'X新增文章留言' => '333_blog_comments.php',
-                'X回覆文章留言' => '334_blog_comments.php',
-                'X將留言設為公開/悄悄話' => '335_blog_comments.php',
-                'X將留言設為廣告留言/非廣告留言' => '336_blog_comments.php',
-                'X刪除文章留言' => '337_blog_comments.php',
-                'X列出文章最新留言' => '338_blog_comments.php'
+                '列出文章留言' => '330_blog_comments_search.php',
+                '讀取單一留言' => '331_blog_comments_search.php',
+                '新增文章留言' => '332_blog_comments_create.php',
+                '回覆文章留言' => '333_blog_comments_reply.php',
+                '將留言設為公開' => '334_blog_comments_open.php',
+                '將留言設為悄悄話' => '335_blog_comments_close.php',
+                '將留言設為廣告留言' => '336_blog_comments_mark_spam.php',
+                '將留言設為非廣告留言' => '337_blog_comments_mark_ham.php',
+                '刪除文章留言' => '338_blog_comments_delete.php',
+                '列出文章最新留言' => '339_blog_comments_latest.php'
             )
         )
     ),
