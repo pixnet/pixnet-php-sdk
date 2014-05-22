@@ -36,7 +36,8 @@ class Pix_Friend extends PixAPI
         );
 
         $response = $this->query('friend/news', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'news');
+
     }
 
 }
