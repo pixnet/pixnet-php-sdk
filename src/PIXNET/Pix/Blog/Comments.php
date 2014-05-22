@@ -29,7 +29,7 @@ class Pix_Blog_Comments extends PixAPI
         return $this->getResult($response, 'comments');
     }
 
-    public function create($article_id, $body, $user, $options = array())
+    public function create($user, $article_id, $body, $options = array())
     {
         if ('' == $article_id or '' == $body or '' == $user) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
