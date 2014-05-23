@@ -94,7 +94,7 @@ foreach ($subscriptions['subscriptions'] as $subscription) {
         </form>
         <?php if ($query and $query2) { ?>
         <h3>執行</h3>
-        <pre>$pixapi->friend->subscriptions->join_subscription_group('<?= htmlspecialchars($query) ?>', array('group_ids' => '<?= htmlspecialchars($query2) ?>');</pre>
+        <pre>$pixapi->friend->subscriptions->joinSubscriptionGroup('<?= htmlspecialchars($query) ?>', array('group_ids' => '<?= htmlspecialchars($query2) ?>');</pre>
         <h3>執行結果</h3>
         <pre><?php print_r($response); ?></pre>
         <?php }

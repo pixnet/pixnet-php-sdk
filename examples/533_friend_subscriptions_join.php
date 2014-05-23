@@ -30,7 +30,7 @@ foreach ($post as $result) {
 }
 
 if ($query and $query2) {
-    $response = $pixapi->friend->subscriptions->join_subscription_group($query, ['group_ids' => $query2]);
+    $response = $pixapi->friend->subscriptions->joinSubscriptionGroup($query, ['group_ids' => $query2]);
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if ($query and $query2) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">加入訂閱群組</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->friend->subscriptions->join_subscription_group($name, $group_ids = array());</pre>
+    <pre>$pixapi->friend->subscriptions->joinSubscriptionGroup($name, $group_ids = array());</pre>
     <div class="panel panel-primary">
       <div class="panel-heading">實際測試</div>
       <div class="alert alert-info">非VIP只能將使用者加入一個訂閱群組</div>
@@ -114,7 +114,7 @@ foreach ($groups['subscription_groups'] as $group) {
         </form>
         <?php if ($query and $query2) { ?>
         <h3>執行</h3>
-        <pre>$pixapi->friend->subscriptions->join_subscription_group('<?= htmlspecialchars($query) ?>', array('group_ids' => '<?= htmlspecialchars($query2) ?>');</pre>
+        <pre>$pixapi->friend->subscriptions->joinSubscriptionGroup('<?= htmlspecialchars($query) ?>', array('group_ids' => '<?= htmlspecialchars($query2) ?>');</pre>
         <h3>執行結果</h3>
         <pre><?php print_r($response); ?></pre>
         <?php }

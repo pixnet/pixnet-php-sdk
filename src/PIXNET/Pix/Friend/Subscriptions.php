@@ -49,7 +49,7 @@ class Pix_Friend_Subscriptions extends PixAPI
         return $response;
     }
 
-    public function join_subscription_group($name, $group_id)
+    public function joinSubscriptionGroup($name, $group_id)
     {
         if ('' == $name or '' == $group_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
@@ -60,7 +60,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array(),
             array('group_ids')
         );
-        $response = $this->query('friend/subscriptions/' . $name . '/join_subscription_group', $parameters, 'POST');
+        $response = $this->query('friend/subscriptions/' . $name . '/joinSubscriptionGroup', $parameters, 'POST');
         return $response;
     }
 
