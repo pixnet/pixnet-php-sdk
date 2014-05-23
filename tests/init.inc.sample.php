@@ -1,2 +1,2 @@
 <?php
-define('REFRESH_TOKEN','');
+define('REFRESH_TOKEN', '');
