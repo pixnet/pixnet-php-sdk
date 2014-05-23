@@ -30,7 +30,7 @@ foreach ($post as $result) {
 }
 
 if ($query and $query2) {
-    $response = $pixapi->friend->subscriptions->leave_subscription_group($query, ['group_ids' => $query2]);
+    $response = $pixapi->friend->subscriptions->leaveSubscriptionGroup($query, ['group_ids' => $query2]);
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if ($query and $query2) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">離開訂閱群組</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->friend->subscriptions->leave_subscription_group($name, $group_ids = array());</pre>
+    <pre>$pixapi->friend->subscriptions->leaveSubscriptionGroup($name, $group_ids = array());</pre>
     <div class="panel panel-primary">
       <div class="panel-heading">實際測試</div>
       <div class="panel-body">
