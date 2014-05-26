@@ -47,6 +47,7 @@
             <arg path="build/logs/clover.xml" />
             <arg value="--coverage-html" />
             <arg path="build/coverage" />
+            <arg value="tests/" />
         </exec>
     </target>
 
