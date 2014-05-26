@@ -5,3 +5,4 @@ composer.phar
 .idea/
 examples/init.inc.php
 tests/Authentication.php
+tests/init.inc.php
