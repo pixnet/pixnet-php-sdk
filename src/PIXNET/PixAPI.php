@@ -54,7 +54,7 @@ class PixAPI
                 'user' => 'Pix_User',
                 'blog' => 'Pix_Blog',
                 'site' => 'Pix_Site',
-                'album' => 'Pix_Album ',
+                'album' => 'Pix_Album',
                 'friend' => 'Pix_Friend',
                 'guestbook' => 'Pix_Guestbook',
                 'block' => 'Pix_Block',
