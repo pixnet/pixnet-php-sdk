@@ -36,8 +36,6 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
         }
         $actual = self::$pixapi->index->now();
 
-        var_dump(time());
-        var_dump($actual);
         $expected = (5 >= abs($actual - time())) ? true : false;
 
         $this->assertEquals(time(), $actual);
