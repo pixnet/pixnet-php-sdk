@@ -21,6 +21,7 @@
 
             <fileset dir="${basedir}">
                 <include name="**/*.php" />
+                <exclude name="**/vendor/phpunit/php-token-stream/Tests/*.php" />
                 <modified />
             </fileset>
 
@@ -32,6 +33,7 @@
             <arg value="--report=checkstyle" />
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
             <arg value="--extensions=php" />
+            <arg value="--ignore=vendor" />
             <arg path="${basedir}/" />
         </exec>
     </target>
