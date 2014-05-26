@@ -6,13 +6,16 @@ class Authentication
     public static function setUpBeforeClass()
     {
         @session_start();
+        // Set Your APP key, secret and callback
         self::$pixapi = $api = new PixAPI(array(
             'key' => '',
             'secret' => '',
             'callback' => ''
         ));
 
-        $api->setToken('', '');
+        // Set Your refresh token for APP
+        // you can get it in PIXNET API Explode http://devtool.pixnet.pro/#/
+        $api->setRefreshToken('');
         $api->refreshAuth();
     }
 
