@@ -28,16 +28,4 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
-
-    public function testNow()
-    {
-        if (function_exists("date_default_timezone_set")) {
-            date_default_timezone_set("Asia/Taipei");
-        }
-        $actual = self::$pixapi->index->now();
-
-        $expected = (5 >= abs($actual - time())) ? true : false;
-
-        $this->assertEquals(time(), $actual);
-    }
 }
