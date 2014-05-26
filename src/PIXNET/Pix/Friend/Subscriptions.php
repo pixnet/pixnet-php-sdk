@@ -87,5 +87,4 @@ class Pix_Friend_Subscriptions extends PixAPI
         $response = $this->query('friend/subscriptions/' . $name, $parameters = '', 'DELETE');
         return $response;
     }
-
 }

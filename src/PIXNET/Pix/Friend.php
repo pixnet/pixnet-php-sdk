@@ -39,5 +39,4 @@ class Pix_Friend extends PixAPI
         return $this->getResult($response, 'news');
 
     }
-
 }

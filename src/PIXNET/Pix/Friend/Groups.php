@@ -78,5 +78,4 @@ class Pix_Friend_Groups extends PixAPI
         $response = $this->query('friend/groups/' . $group_id, $parameters, 'DELETE');
         return $response;
     }
-
 }
