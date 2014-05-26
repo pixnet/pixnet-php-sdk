@@ -184,6 +184,22 @@ class PixAPI
     }
 
     /**
+     * setRefreshToken
+     *
+     * @param string $token Set the refresh_token
+     * @return void
+     */
+    public function setRefreshToken($refresh_token)
+    {
+        $this->debug(__METHOD__);
+        if ('' == $refresh_token) {
+            return false;
+        }
+        $this->refresh_token = $refresh_token;
+        $this->setSession('refresh_token', $refresh_token);
+    }
+
+    /**
      * getRefreshToken
      *
      * @return string refresh token
