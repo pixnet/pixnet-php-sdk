@@ -10,7 +10,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">列出好友群組</h1>
+    <h1 class="page-header">列出好友名單</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->friendships->search($option = array());</pre>
     <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/friendships" target="blank">Options說明</a></div>
