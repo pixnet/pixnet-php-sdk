@@ -53,6 +53,12 @@ $examples_list = array(
     ),
     '相簿' => array(
         array(
+            'name' => '資訊',
+            'examples' => array(
+                '取得相簿全站分類' => '401_album_site_categories.php',
+            )
+        ),
+        array(
             'name' => '相簿',
             'examples' => array(
             )

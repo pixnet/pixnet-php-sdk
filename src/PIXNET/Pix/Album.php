@@ -25,4 +25,10 @@ class Pix_Album extends PixAPI
         }
         throw new Exception('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
+
+    public function site_categories()
+    {
+        $response = $this->query('album/site_categories');
+        return $this->getResult($response, 'categories');
+    }
 }
