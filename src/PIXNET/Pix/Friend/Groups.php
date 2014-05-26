@@ -69,7 +69,13 @@ class Pix_Friend_Groups extends PixAPI
         if ('' == $group_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
-        $response = $this->query('friend/groups/' . $group_id, $parameters = '', 'DELETE');
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('friend/groups/' . $group_id, $parameters, 'DELETE');
         return $response;
     }
 
