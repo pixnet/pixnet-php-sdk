@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="pixnet-php-sdk" default="build">
+
+    <target name="build"
+        depends="prepare,lint,phpcs-ci,phpunit" />
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/logs" />
+        <delete dir="${basedir}/build/coverage" />
+    </target>
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/logs" />
+        <mkdir dir="${basedir}/build/coverage" />
+    </target>
+
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+
+        </apply>
+    </target>
+
+    <target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+        <exec executable="phpcs">
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+            <arg value="--extensions=php" />
+            <arg path="${basedir}/" />
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true">
+            <arg value="-v" />
+            <arg value="--debug" />
+            <arg value="--stop-on-failure" />
+            <arg value="--log-junit" />
+            <arg path="build/logs/junit.xml" />
+            <arg value="--coverage-clover" />
+            <arg path="build/logs/clover.xml" />
+            <arg value="--coverage-html" />
+            <arg path="build/coverage" />
+        </exec>
+    </target>
+
+</project>
