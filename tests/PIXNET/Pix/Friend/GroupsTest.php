@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__ . '/../../../Authentication.php';
-
 class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
