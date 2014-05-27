@@ -22,19 +22,19 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
 
     public function testHot()
     {
-        $actual = self::$pixapi->mainpage->album->hot(0);
-        $this->assertCount(10, $actual);
+        $actual = self::$pixapi->mainpage->album->hot(0, array('api_version' => 2, 'count' => 10));
+        $this->assertCount(10, $actual['sets']);
     }
 
     public function testLatest()
     {
-        $actual = self::$pixapi->mainpage->album->latest(0);
-        $this->assertCount(10, $actual);
+        $actual = self::$pixapi->mainpage->album->latest(0, array('api_version' => 2, 'count' => 10));
+        $this->assertCount(10, $actual['sets']);
     }
 
     public function testHotWeekly()
     {
-        $actual = self::$pixapi->mainpage->album->hot_weekly(0);
-        $this->assertCount(10, $actual);
+        $actual = self::$pixapi->mainpage->album->hot_weekly(0, array('api_version' => 2, 'count' => 10));
+        $this->assertCount(10, $actual['sets']);
     }
 }
