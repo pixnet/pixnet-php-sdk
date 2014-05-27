@@ -1,4 +1,4 @@
-<phpunit bootstrap="bootstrap.php" stopOnFailure="true">
+<phpunit bootstrap="bootstrap.php" colors="true" stopOnFailure="true">
     <testsuites>
         <testsuite name="php-sdk">
             <directory>.</directory>
