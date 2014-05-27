@@ -28,4 +28,18 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    public function testNow()
+    {
+        if (function_exists("date_default_timezone_set")) {
+            date_default_timezone_set("Asia/Taipei");
+        }
+        $actual = self::$pixapi->index->now();
+
+        $this->assertEquals(time(), $actual);
+
+        // 誤差在10秒內都算可接受的範圍
+        $expected = (10 >= abs($actual - time())) ? true : false;
+        // $this->assertTrue($expected);
+    }
 }
