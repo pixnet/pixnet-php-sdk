@@ -26,7 +26,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function hot($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 
@@ -42,7 +42,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function latest($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 
@@ -58,7 +58,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function hot_weekly($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 

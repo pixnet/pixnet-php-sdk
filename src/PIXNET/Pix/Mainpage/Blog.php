@@ -14,7 +14,7 @@ class Pix_Mainpage_Blog extends PixAPI
 
     public function columns($category_id = '', $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             $response = $this->query('mainpage/blog/columns');
             return $response;
         }
@@ -37,7 +37,7 @@ class Pix_Mainpage_Blog extends PixAPI
 
     public function hot($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 
@@ -53,7 +53,7 @@ class Pix_Mainpage_Blog extends PixAPI
 
     public function latest($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 
