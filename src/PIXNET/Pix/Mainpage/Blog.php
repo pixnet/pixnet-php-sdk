@@ -69,7 +69,7 @@ class Pix_Mainpage_Blog extends PixAPI
 
     public function hot_weekly($category_id, $options = array())
     {
-        if ('' == $category_id) {
+        if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
 
