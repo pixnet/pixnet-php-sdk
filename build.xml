@@ -40,10 +40,11 @@
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
         <exec executable="phpunit" failonerror="true">
-            <arg value="-c" />
-            <arg path="tests/phpunit.xml" />
             <arg value="-v" />
             <arg value="--debug" />
+            <arg value="--bootstrap" />
+            <arg path="bootstrap.php" />
+            <arg value="--stop-on-failure" />
             <arg value="--log-junit" />
             <arg path="build/logs/junit.xml" />
             <arg value="--coverage-clover" />
