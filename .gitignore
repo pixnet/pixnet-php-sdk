@@ -1,9 +1,9 @@
-vendor/
-composer.lock
-composer.phar
 .DS_Store
 .idea/
-examples/init.inc.php
-tests/Authentication.php
 build/
 cache.properties
+composer.lock
+composer.phar
+examples/init.inc.php
+tests/Authentication.php
+vendor/
