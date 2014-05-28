@@ -5,3 +5,5 @@ composer.phar
 .idea/
 examples/init.inc.php
 tests/Authentication.php
+build/
+cache.properties
