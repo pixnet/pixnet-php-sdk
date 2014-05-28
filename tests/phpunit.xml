@@ -4,4 +4,9 @@
             <directory>.</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <blacklist>
+            <file>Authentication.php</file>
+        </blacklist>
+    </filter>
 </phpunit>
