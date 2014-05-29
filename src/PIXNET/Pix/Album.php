@@ -15,9 +15,9 @@ class Pix_Album extends PixAPI
     {
         $class_name = strtolower($class_name);
         $class_list = array(
-                'categories' => 'Pix_Blog_Categories',
-                'articles' => 'Pix_Blog_Articles',
-                'comments' => 'Pix_Blog_Comments'
+                'sets' => 'Pix_Album_Sets',
+                'articles' => 'Pix_Album_Articles',
+                'comments' => 'Pix_Album_Comments'
             );
         $class = $class_list[$class_name];
         if ('' != $class) {
