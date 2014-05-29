@@ -12,7 +12,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得相簿列表</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets($user_name, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSets" target="blank">$options</a>);</pre>
+    <pre>$pixapi->album->sets($user_name, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSets" target="blank">$options</a> = array());</pre>
     <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSets" target="blank">Options說明</a></div>
     <h3>實際測試</h3>
     <form class="form-inline" role="form" method="POST">
