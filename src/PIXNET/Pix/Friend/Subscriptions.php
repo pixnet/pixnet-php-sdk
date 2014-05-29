@@ -60,7 +60,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array(),
             array('group_ids')
         );
-        $response = $this->query('friend/subscriptions/' . $name . '/joinSubscriptionGroup', $parameters, 'POST');
+        $response = $this->query('friend/subscriptions/' . $name . '/join_subscription_group', $parameters, 'POST');
         return $response;
     }
 
@@ -75,7 +75,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array(),
             array('group_ids')
         );
-        $response = $this->query('friend/subscriptions/' . $name . '/leaveSubscriptionGroup', $parameters, 'POST');
+        $response = $this->query('friend/subscriptions/' . $name . '/leave_subscription_group', $parameters, 'POST');
         return $response;
     }
 
