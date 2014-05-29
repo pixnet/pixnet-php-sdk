@@ -307,7 +307,7 @@ class PixAPI
         $user = $this->getResult($this->query('account'), 'account');
         $username = $user['name'];
         $this->setSession('username', $username);
-        return $uusername;
+        return $username;
     }
 
     public function mergeParameters($parameters, $options, $int_fileds = array(), $str_fileds = array())
