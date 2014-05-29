@@ -23,6 +23,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
       <button type="submit" class="btn btn-primary">取得相簿列表</button>
     </form>
     <?php if (!empty($_POST['query'])) {?>
+    <h3>實際執行</h3>
+    <pre>$pixapi->album->sets(<?= htmlspecialchars($_POST['query']) ?>, $options)</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->getUserSets($_POST['query'])); ?></pre>
     <?php }?>
