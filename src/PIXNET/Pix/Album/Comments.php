@@ -4,7 +4,6 @@
  * All rights reserved.
  */
 
-
 class Pix_Album_Comments extends PixAPI
 {
     public function __construct($client)
