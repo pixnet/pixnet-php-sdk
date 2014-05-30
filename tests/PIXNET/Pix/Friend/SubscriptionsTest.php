@@ -31,6 +31,20 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testSearchSpecifiedUser()
+    {
+        $subscriptions = self::$pixapi->friend->subscriptions->search();
+        $user_name = $subscriptions['subscriptions'][0]['user']['name'];
+
+        $actual_all = self::$pixapi->friend->subscriptions->search($user_name);
+
+        $actual = $actual_all['subscription']['user']['name'];
+
+        $expected = $user_name;
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testCreateHasGroup()
     {
         $ids = self::$pixapi->friend->subscriptionGroups->search();
