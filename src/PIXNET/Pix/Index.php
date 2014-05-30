@@ -11,6 +11,11 @@ class Pix_Index extends PixAPI
         $this->client = $client;
     }
 
+    public function __get($class_name)
+    {
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+    }
+
     public function rate()
     {
         return $this->query('index/rate');
