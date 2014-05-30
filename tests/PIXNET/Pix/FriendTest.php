@@ -16,7 +16,7 @@ class Pix_FriendTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException PixAPIException
      */
     public function testGetException()
     {
