@@ -60,7 +60,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array(),
             array('group_ids')
         );
-        $response = $this->query('friend/subscriptions/' . $name . '/joinSubscriptionGroup', $parameters, 'POST');
+        $response = $this->query('friend/subscriptions/' . $name . '/join_subscription_group', $parameters, 'POST');
         return $response;
     }
 
@@ -75,7 +75,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array(),
             array('group_ids')
         );
-        $response = $this->query('friend/subscriptions/' . $name . '/leaveSubscriptionGroup', $parameters, 'POST');
+        $response = $this->query('friend/subscriptions/' . $name . '/leave_subscription_group', $parameters, 'POST');
         return $response;
     }
 
@@ -84,7 +84,13 @@ class Pix_Friend_Subscriptions extends PixAPI
         if ('' == $name) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
-        $response = $this->query('friend/subscriptions/' . $name, $parameters = '', 'DELETE');
+        $parameters = $this->mergeParameters(
+            array(),
+            $group_id,
+            array(),
+            array()
+        );
+        $response = $this->query('friend/subscriptions/' . $name, $parameters, 'DELETE');
         return $response;
     }
 }
