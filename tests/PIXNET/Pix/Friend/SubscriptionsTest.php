@@ -24,7 +24,6 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         }
 
         $expected = array(
-            'admin',
             'emmatest2'
         );
 
@@ -129,8 +128,8 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
     public function testLeaveSubscriptionGroup()
     {
         $subscriptions = self::$pixapi->friend->subscriptions->search();
-        $name = $subscriptions['subscriptions'][3]['user']['name'];
-        $group_id = $subscriptions['subscriptions'][3]['groups'][0]['id'];
+        $name = $subscriptions['subscriptions'][2]['user']['name'];
+        $group_id = $subscriptions['subscriptions'][2]['groups'][0]['id'];
 
         $actual_all = self::$pixapi->friend->subscriptions->leaveSubscriptionGroup($name, array('group_ids' => $group_id));
         $actual = array(
@@ -175,7 +174,6 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         }
 
         $expected = array(
-            'admin',
             'emmatest2'
         );
 
