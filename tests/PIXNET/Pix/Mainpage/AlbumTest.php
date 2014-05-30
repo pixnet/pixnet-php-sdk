@@ -48,7 +48,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
      */
     public function testLatestException()
     {
-        $actual = self::$pixapi->mainpage->album->hot('');
+        $actual = self::$pixapi->mainpage->album->latest('');
         $this->assertCount(10, $actual);
     }
 
@@ -64,7 +64,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
      */
     public function testHotWeeklyException()
     {
-        $actual = self::$pixapi->mainpage->album->hot('');
+        $actual = self::$pixapi->mainpage->album->hot_weekly('');
         $this->assertCount(10, $actual);
     }
 }
