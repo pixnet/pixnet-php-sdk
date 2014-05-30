@@ -20,6 +20,12 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
         $this->assertCount(6, $actual);
     }
 
+    public function testColumnsCategory()
+    {
+        $actual = self::$pixapi->mainpage->blog->columnsCategory();
+        $this->assertCount(7, $actual);
+    }
+
     public function testHot()
     {
         $actual = self::$pixapi->mainpage->blog->hot(0);
