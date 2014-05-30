@@ -61,12 +61,12 @@ $examples_list = array(
         array(
             'name' => '相簿',
             'examples' => array(
-                '取得相簿列表' => '402_album_sets.php',
             )
         ),
         array(
             'name' => '相簿列表',
             'examples' => array(
+                '取得相簿列表' => '411_album_sets.php',
             )
         ),
         array(
