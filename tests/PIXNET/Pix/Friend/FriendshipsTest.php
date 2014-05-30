@@ -70,6 +70,83 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->friend->friendships->create('');
     }
 
+    public function testAppendGroup()
+    {
+        $friendships = self::$pixapi->friend->friendships->search();
+        $name = $friendships['friend_pairs'][2]['user_name'];
+        $groups = self::$pixapi->friend->groups->search();
+        $group_id = $groups['friend_groups'][0]['id'];
+
+        $actual_all = self::$pixapi->friend->friendships->appendGroup($name, $group_id);
+        $actual = array(
+            'name'     => $actual_all['friend_pair']['user_name'],
+            'group_id' => $actual_all['friend_pair']['groups'][0]['id']
+        );
+
+        $expected = array(
+            'name'     => $name,
+            'group_id' => $group_id
+        );
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     * @dataProvider dataAppendGroupException
+     */
+    public function testAppendGroupException($name, $group_id)
+    {
+        $actual = self::$pixapi->friend->friendships->appendGroup($name, $group_id);
+    }
+
+    public function dataAppendGroupException()
+    {
+        return array(
+            array('', 362624),
+            array('emmatest4', ''),
+            array('', '')
+        );
+    }
+
+    public function testRemoveGroup()
+    {
+        $friendships = self::$pixapi->friend->friendships->search();
+        $name = $friendships['friend_pairs'][2]['user_name'];
+        $group_id = $friendships['friend_pairs'][2]['groups'][0]['id'];
+
+        $actual_all = self::$pixapi->friend->friendships->removeGroup($group_id, $name);
+        $actual = array(
+            'name'     => $actual_all['friend_pair']['user_name'],
+            'group_id' => $actual_all['friend_pair']['groups'][0]['id']
+        );
+
+        $expected = array(
+            'name'     => $name,
+            'group_id' => null
+        );
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     * @dataProvider dataRemoveGroupException
+     */
+    public function testRemoveGroupException($group_id, $name)
+    {
+        $actual = self::$pixapi->friend->friendships->removeGroup($group_id, $name);
+    }
+
+    public function dataRemoveGroupException()
+    {
+        return array(
+            array(362624, ''),
+            array('', 'emmatest4'),
+            array('', '')
+        );
+    }
+
     public function testDelete()
     {
         $delete = self::$pixapi->friend->friendships->delete('emmatest4');
