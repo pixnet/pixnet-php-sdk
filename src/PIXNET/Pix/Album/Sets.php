@@ -47,8 +47,8 @@ class Pix_Album_Sets extends PixAPI
         $parameters = $this->mergeParameters(
             array('user' => $name, 'set_id' => $set_id),
             $options,
-            array(),
-            array()
+            array('page', 'per_page', 'with_detail', 'trim_user', 'iframe_width', 'iframe_height'),
+            array('type', 'password', 'format', 'use_iframe')
         );
         $response = $this->query('album/elements', $parameters, 'GET');
         return $this->getResult($response, 'elements');
