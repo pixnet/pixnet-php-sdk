@@ -23,7 +23,7 @@ class Pix_Friend extends PixAPI
         if ('' != $class) {
             return new $class($this->client);
         }
-        throw new Exception('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
     public function news($options = array())

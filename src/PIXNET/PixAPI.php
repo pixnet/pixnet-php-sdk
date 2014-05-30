@@ -28,16 +28,16 @@ class PixAPI
     public function __construct($config)
     {
         if (!function_exists('curl_init')) {
-            throw new Exception('PIXNET SDK needs the CURL PHP extension.', PixAPIException::CURL_NOT_FOUND);
+            throw new PixAPIException('PIXNET SDK needs the CURL PHP extension.', PixAPIException::CURL_NOT_FOUND);
         }
         if (!function_exists('json_decode')) {
-            throw new Exception('PIXNET SDK needs the JSON PHP extension.', PixAPIException::JSON_NOT_FOUND);
+            throw new PixAPIException('PIXNET SDK needs the JSON PHP extension.', PixAPIException::JSON_NOT_FOUND);
         }
         if ((function_exists('session_status') && PHP_SESSION_ACTIVE !== session_status()) || '' == strval(session_id())) {
-            throw new Exception('run session_start() first', PixAPIException::SESSION_MISSING);
+            throw new PixAPIException('run session_start() first', PixAPIException::SESSION_MISSING);
         }
         if ('' == $config['key'] || '' == $config['secret'] || '' == $config['callback']) {
-            throw new Exception('key, secret and callback is need', PixAPIException::CONFIG_MISSING);
+            throw new PixAPIException('key, secret and callback is need', PixAPIException::CONFIG_MISSING);
         }
         ob_start();
         $this->consumer_key = $config['key'];
@@ -63,7 +63,7 @@ class PixAPI
         if ('' != $class) {
             return new $class($this->client);
         }
-        throw new Exception('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
     public function getAuth()
@@ -89,7 +89,7 @@ class PixAPI
             );
         $response = $this->client->getAccessToken($params);
         if (!$response['result'] or 200 != $response['code']) {
-            throw new Exception($response['result']['error_description'], PixAPIException::AUTH_ERROR);
+            throw new PixAPIException($response['result']['error_description'], PixAPIException::AUTH_ERROR);
         }
         $this->setTokenExpires();
         $this->setToken($response['result']['access_token'], $response['result']['refresh_token']);
@@ -110,11 +110,11 @@ class PixAPI
     {
         $this->debug(__METHOD__);
         if ('' == $this->getRefreshToken()) {
-            throw new Exception('refresh auth fail', PixAPIException::AUTH_ERROR);
+            throw new PixAPIException('refresh auth fail', PixAPIException::AUTH_ERROR);
         }
         $response = $this->client->refreshAccessToken($this->getRefreshToken());
         if (!$response['result'] or 200 != $response['code']) {
-            throw new Exception($response['result']['error_description'], PixAPIException::AUTH_ERROR);
+            throw new PixAPIException($response['result']['error_description'], PixAPIException::AUTH_ERROR);
         }
         $this->setTokenExpires();
         $this->setToken($response['result']['access_token'], $response['result']['refresh_token']);
@@ -235,15 +235,15 @@ class PixAPI
     {
         $this->debug(__METHOD__);
         if (!$this->checkAPIMethod($api)) {
-            throw new Exception('API [' . $api . '] NOT FOUND', PixAPIException::API_NOT_FOUND);
+            throw new PixAPIException('API [' . $api . '] NOT FOUND', PixAPIException::API_NOT_FOUND);
         }
         $url = self::PIXNET_API . $api;
         $response = $this->client->query($url, $parameters, $method, $http_headers, true);
         if (!$response['result'] or 200 != $response['code'] or 0 < $response['result']['error']) {
             if (!isset($response['result']['message'])) {
-                throw new Exception(serialize($response), PixAPIException::API_ERROR);
+                throw new PixAPIException(serialize($response), PixAPIException::API_ERROR);
             }
-            throw new Exception($response['result']['message'], PixAPIException::API_ERROR);
+            throw new PixAPIException($response['result']['message'], PixAPIException::API_ERROR);
         }
         return $response['result'];
     }
