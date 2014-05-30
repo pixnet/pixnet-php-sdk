@@ -27,4 +27,13 @@ class PixAPITest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Pix_Block', get_class($actual->block));
         $this->assertEquals('Pix_Mainpage', get_class($actual->mainpage));
     }
+
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
+     */
+    public function testSubClassNotFoundException()
+    {
+        $actual = self::$pixapi->xxx;
+    }
 }

@@ -41,4 +41,13 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
 
         $this->assertLessThanOrEqual(10, $expected);
     }
+
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
+     */
+    public function testSubClassNotFoundException()
+    {
+        $actual = self::$pixapi->index->xxx;
+    }
 }
