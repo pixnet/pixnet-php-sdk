@@ -31,6 +31,26 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testSearchSpecifiedId()
+    {
+        $groups = self::$pixapi->friend->groups->search();
+        $group_id = intval($groups['friend_groups'][0]['id']);
+        $group_name = $groups['friend_groups'][0]['name'];
+        $actual_all = self::$pixapi->friend->groups->search($group_id);
+
+        $actual = array(
+            'id'   => $actual_all['friend_group']['id'],
+            'name' => $actual_all['friend_group']['name']
+        );
+
+        $expected = array(
+            'id' => $group_id,
+            'name' => $group_name
+        );
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testCreate()
     {
         $actual_all = self::$pixapi->friend->groups->create('friend');
