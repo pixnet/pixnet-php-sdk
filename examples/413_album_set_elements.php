@@ -12,7 +12,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得單一相簿內的所有照片</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->getSetElements($name, $set_id, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSets" target="blank">$options</a> = array());</pre>
+    <pre>$pixapi->album->sets->elements($name, $set_id, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSets" target="blank">$options</a> = array());</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -71,9 +71,9 @@ require_once(__DIR__ . '/include/checkAuth.php');
     </form>
     <?php if (!empty($_POST['name']) and !empty($_POST['id'])) {?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->sets->getSetElements(<?= htmlspecialchars($_POST['name'])?>, <?= $_POST['id'] ?>, $options)</pre>
+    <pre>$pixapi->album->sets->elements(<?= htmlspecialchars($_POST['name'])?>, <?= $_POST['id'] ?>, $options)</pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->sets->getSetElements($_POST['name'], $_POST['id'])); ?></pre>
+    <pre><?php print_r($pixapi->album->sets->elements($_POST['name'], $_POST['id'])); ?></pre>
     <?php }?>
 </div>
 </body>

@@ -39,7 +39,7 @@ class Pix_Album_Sets extends PixAPI
         }
     }
 
-    public function getSetElements($name, $set_id, $options = array())
+    public function elements($name, $set_id, $options = array())
     {
         if (empty($set_id) or empty($name)) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
