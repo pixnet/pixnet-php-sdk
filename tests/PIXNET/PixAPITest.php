@@ -15,6 +15,25 @@ class PixAPITest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::CONFIG_MISSING
+     */
+    public function testConfigMissingException()
+    {
+        $pixapi = new PixAPI(array());
+    }
+
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::API_NOT_FOUND
+     */
+    public function testApiNotFoundException()
+    {
+        $pixapi = self::$pixapi;
+        $actual = $pixapi->query('xxx');
+    }
+
     public function testSubClassIsExist()
     {
         $actual = self::$pixapi;
