@@ -32,4 +32,19 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/sets', $parameters, 'GET');
         return $this->getResult($response, 'sets');
     }
+
+    public function getUserSingleSet($name, $set_id, $options = array())
+    {
+        if (empty($set_id) or empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('album/sets/' . $set_id, $parameters, 'GET');
+        return $this->getResult($response, 'set');
+    }
 }
