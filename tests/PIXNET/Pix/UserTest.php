@@ -17,6 +17,12 @@ class Pix_UserTest extends PHPUnit_Framework_TestCase
 
     public function testInfo()
     {
+        $actual = self::$pixapi->user->info();
+        $this->assertTrue('' != $actual['name']);
+    }
+
+    public function testInfoQuery()
+    {
         $actual = self::$pixapi->user->info('emmatest');
         $this->assertEquals('emmatest', $actual['name']);
     }
