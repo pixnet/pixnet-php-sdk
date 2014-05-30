@@ -12,6 +12,7 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass()
     {
+        $delete = self::$pixapi->friend->subscriptions->delete('emmatest4');
         Authentication::tearDownAfterClass();
     }
 
@@ -48,5 +49,46 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testCreate()
+    {
+        $actual_all = self::$pixapi->friend->friendships->create('emmatest4');
+
+        $actual = $actual_all['friend_pair']['user_name'];
+
+        $expected = 'emmatest4';
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        $actual = self::$pixapi->friend->friendships->create('');
+    }
+
+    public function testDelete()
+    {
+        $delete = self::$pixapi->friend->friendships->delete('emmatest4');
+
+        $actual_all = self::$pixapi->friend->friendships->search();
+        foreach ($actual_all['friend_pairs'] as $detail) {
+            $actual[] = $detail['user_name'];
+        }
+
+        $this->assertFalse(in_array('emmatest4', $actual));
+
+
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        $actual = self::$pixapi->friend->friendships->delete('');
     }
 }
