@@ -18,13 +18,13 @@ class Pix_Album_Sets extends PixAPI
      * @param array $options
      * @return void
      */
-    public function getUserSets($user, $options = array())
+    public function getUserSets($name, $options = array())
     {
-        if (empty($user)) {
+        if (empty($name)) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $parameters = $this->mergeParameters(
-            array('user' => $user),
+            array('user' => $name),
             $options,
             array(),
             array()
