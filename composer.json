@@ -1,6 +1,6 @@
 {
     "name": "pixnet/php-sdk",
-    "description": "PIXNET PHP SDK",
+    "description": "PIXNET SDK for PHP",
     "keywords": ["PIXNET", "sdk"],
     "type": "library",
     "homepage": "http://developer.pixnet.pro/",
