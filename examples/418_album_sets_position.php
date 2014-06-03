@@ -53,8 +53,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->position($_POST['parent_id'], $_POST['ids'])); ?></pre>
-    <?php } else {?>
-    <pre><?php print_r($_POST);}?></pre>
+    <?php }?>
 </div>
 </body>
 </html>
