@@ -83,4 +83,19 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/sets/nearby', $parameters, 'GET');
         return $this->getResult($response, 'sets');
     }
+
+    public function create($title, $desc, $options = array())
+    {
+        if (empty($title) or empty($desc)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('title' => $title, 'desc' => $desc),
+            $options,
+            array('permission', 'category_id', 'is_lockright', 'allow_cc', 'cancomment', 'allow_commercial_usr', 'allow_derivation', 'parent_id'),
+            array('format', 'password', 'password_hint', 'friend_group_ids')
+        );
+        $response = $this->query('album/sets', $parameters, 'POST');
+        return $this->getResult($response, 'set');
+    }
 }
