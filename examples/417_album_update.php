@@ -10,7 +10,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">建立相簿</h1>
+    <h1 class="page-header">修改相簿</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->sets->update($title, $desc, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSetComments" target="blank">$options</a> = array());</pre>
     <div class="well">
