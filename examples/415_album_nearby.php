@@ -12,7 +12,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得附近的相簿列表</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->nearby($name, $lat, $lon, <a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumSetComments" target="blank">$options</a> = array());</pre>
+    <pre>$pixapi->album->sets->nearby($name, $lat, $lon, $options = array());</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
