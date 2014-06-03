@@ -22,11 +22,11 @@ require_once(__DIR__ . '/include/checkAuth.php');
         </li>
         <li>
         <p>lat</p>
-        <p>WGS84 坐標系緯度，例如 23.973875</p>
+        <p>WGS84 坐標系緯度，例如 25.058172</p>
         </li>
         <li>
         <p>lon</p>
-        <p>WGS84 坐標系經度，例如 120.982024</p>
+        <p>WGS84 坐標系經度，例如 121.535304</p>
         </li>
         </ul>
         <p>選填參數</p>
