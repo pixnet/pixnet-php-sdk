@@ -68,4 +68,19 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/set_comments', $parameters, 'GET');
         return $this->getResult($response, 'comments');
     }
+
+    public function nearby($name, $lat, $lon, $options = array())
+    {
+        if (empty($name) or empty($lat) or empty($lon)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name, 'lat' => $lat, 'lon' => $lon),
+            $options,
+            array('page', 'per_page', 'trim_user', 'distance_max', 'distance_min'),
+            array('format')
+        );
+        $response = $this->query('album/sets/nearby', $parameters, 'GET');
+        return $this->getResult($response, 'sets');
+    }
 }
