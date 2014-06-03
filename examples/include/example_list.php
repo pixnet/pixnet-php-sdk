@@ -69,6 +69,7 @@ $examples_list = array(
                 '取得相簿列表' => '411_album_sets.php',
                 '取得個人單一相簿' => '412_album_single_set.php',
                 '取得單一相簿內的所有相片' => '413_album_set_elements.php',
+                '取得相簿內的所有留言' => '414_album_set_comments.php',
             )
         ),
         array(

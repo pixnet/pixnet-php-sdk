@@ -53,4 +53,19 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/elements', $parameters, 'GET');
         return $this->getResult($response, 'elements');
     }
+
+    public function comments($name, $set_id, $options = array())
+    {
+        if (empty($set_id) or empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name, 'set_id' => $set_id),
+            $options,
+            array('page', 'per_page'),
+            array('password', 'format')
+        );
+        $response = $this->query('album/set_comments', $parameters, 'GET');
+        return $this->getResult($response, 'comments');
+    }
 }
