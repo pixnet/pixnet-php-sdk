@@ -90,7 +90,7 @@ class Pix_Album_Sets extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $parameters = $this->mergeParameters(
-            array('title' => $title, 'desc' => $desc),
+            array('title' => $title, 'description' => $desc),
             $options,
             array('permission', 'category_id', 'is_lockright', 'allow_cc', 'cancomment', 'allow_commercial_usr', 'allow_derivation', 'parent_id'),
             array('format', 'password', 'password_hint', 'friend_group_ids')
