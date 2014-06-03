@@ -74,6 +74,7 @@ $examples_list = array(
                 '新增相簿' => '416_album_create.php',
                 '修改相簿' => '417_album_update.php',
                 '修改相簿順序' => '418_album_sets_position.php',
+                '刪除相簿' => '419_album_set_delete.php',
             )
         ),
         array(

@@ -128,4 +128,20 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/sets/position', $parameters, 'POST');
         return $this->getResult($response, 'sets');
     }
+
+    public function delete($set_id, $options = array())
+    {
+        if ('' == $set_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array(),
+            array('format')
+        );
+        $response = $this->query('album/sets/' . $set_id, $parameters, 'DELETE');
+        return $response;
+        return $this->getResult($response, 'sets');
+    }
 }
