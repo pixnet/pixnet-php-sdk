@@ -113,4 +113,19 @@ class Pix_Album_Sets extends PixAPI
         $response = $this->query('album/sets/' . $set_id, $parameters, 'POST');
         return $this->getResult($response, 'set');
     }
+
+    public function position($parent_id, $ids, $options = array())
+    {
+        if ('' == $parent_id or empty($ids)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('parent_id' => $parent_id, 'ids' => $ids),
+            $options,
+            array(),
+            array('format')
+        );
+        $response = $this->query('album/sets/position', $parameters, 'POST');
+        return $this->getResult($response, 'sets');
+    }
 }
