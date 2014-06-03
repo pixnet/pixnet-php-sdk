@@ -72,6 +72,7 @@ $examples_list = array(
                 '取得相簿內的所有留言' => '414_album_set_comments.php',
                 '取得附近的相簿列表' => '415_album_nearby.php',
                 '新增相簿' => '416_album_create.php',
+                '修改相簿' => '417_album_update.php',
             )
         ),
         array(
