@@ -434,6 +434,18 @@ class PixAPI
     }
 
     /**
+     * setDebugMode
+     *
+     * @static
+     * @param boolean $debugmode 是否進入除錯模式
+     * @return void
+     */
+    public static function setDebugMode($debugmode)
+    {
+        PixAPI::$debugmode = ($debugmode) ? true : false;
+    }
+
+    /**
      * getAPIList 傳回目前支援的API清單
      *
      * @static
