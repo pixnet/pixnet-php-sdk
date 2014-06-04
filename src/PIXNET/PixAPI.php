@@ -434,8 +434,9 @@ class PixAPI
                 if (is_array($params)) {
                     $params = json_encode($params);
                 }
-                echo ' : ' . $params . '<br>';
+                echo ' : ' . $params;
             }
+            echo '<br>';
         }
     }
 
