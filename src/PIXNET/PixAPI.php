@@ -277,7 +277,7 @@ class PixAPI
      */
     public function query($api, $parameters = array(), $method = 'GET', $http_headers = array())
     {
-        $this->debug(__METHOD__);
+        $this->debug(__METHOD__, $api . json_encode($parameters));
         if (!$this->checkAPIMethod($api)) {
             throw new PixAPIException('API [' . $api . '] NOT FOUND', PixAPIException::API_NOT_FOUND);
         }
