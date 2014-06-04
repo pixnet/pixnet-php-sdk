@@ -429,7 +429,13 @@ class PixAPI
     public function debug($method, $params = '')
     {
         if (PixAPI::$debugmode) {
-            echo $method . ' : ' . $params . '<br>';
+            echo $method ;
+            if ('' != $params) {
+                if (is_array($params)) {
+                    $params = json_encode($params);
+                }
+                echo ' : ' . $params . '<br>';
+            }
         }
     }
 
