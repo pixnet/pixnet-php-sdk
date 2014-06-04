@@ -66,6 +66,11 @@ class PixAPI
         throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
+    /**
+     * getAuth 取得授權
+     *
+     * @return void
+     */
     public function getAuth()
     {
         $this->debug(__METHOD__);
@@ -77,6 +82,11 @@ class PixAPI
         $this->setAuth();
     }
 
+    /**
+     * setAuth 設定授權 (用在API CALLBACK的頁面)
+     *
+     * @return void
+     */
     public function setAuth()
     {
         $this->debug(__METHOD__);
@@ -96,6 +106,11 @@ class PixAPI
         return $this->access_token;
     }
 
+    /**
+     * checkAuth 檢查授權
+     *
+     * @return boolean 是否已取得授權
+     */
     public function checkAuth()
     {
         $this->debug(__METHOD__);
@@ -106,6 +121,11 @@ class PixAPI
         return true;
     }
 
+    /**
+     * refreshAuth 以refresh_token重新取得授權
+     *
+     * @return string access token
+     */
     public function refreshAuth()
     {
         $this->debug(__METHOD__);
@@ -149,7 +169,7 @@ class PixAPI
     /**
      * getAccessToken
      *
-     * @return the access token
+     * @return string access token
      */
     public function getAccessToken()
     {
@@ -212,6 +232,11 @@ class PixAPI
         return $this->refresh_token;
     }
 
+    /**
+     * isTokenExpires Token 是否過期
+     *
+     * @return boolean 是否過期
+     */
     public function isTokenExpires()
     {
         $this->debug(__METHOD__);
@@ -219,18 +244,37 @@ class PixAPI
         return $this->getTokenExpires() < time();
     }
 
+    /**
+     * getTokenExpires 取得Token過期的時間
+     *
+     * @return int 取得Token過期的時間
+     */
     public function getTokenExpires()
     {
         $this->debug(__METHOD__);
         return intval($this->getSession('access_token_expires'));
     }
 
+    /**
+     * setTokenExpires 設定Token過期的時間
+     *
+     * @return void
+     */
     public function setTokenExpires()
     {
         $this->debug(__METHOD__);
         $this->setSession('access_token_expires', time() + 3500);
     }
 
+    /**
+     * query 透過API查詢
+     *
+     * @param string $api API名稱
+     * @param array $paramname 參數
+     * @param array $method 送出的method：POST、GET、DELETE
+     * @param array $http_headers http headers
+     * @return mixed 回傳的結果
+     */
     public function query($api, $parameters = array(), $method = 'GET', $http_headers = array())
     {
         $this->debug(__METHOD__);
@@ -248,6 +292,12 @@ class PixAPI
         return $response['result'];
     }
 
+    /**
+     * getSession 取得SESSION
+     *
+     * @param string $key
+     * @return string 內容
+     */
     public function getSession($key)
     {
         $this->debug(__METHOD__, $key);
@@ -257,6 +307,13 @@ class PixAPI
         return '';
     }
 
+    /**
+     * getSession 設定SESSION
+     *
+     * @param string $key
+     * @param string $value
+     * @return string 內容
+     */
     public function setSession($key, $value)
     {
         $this->debug(__METHOD__, $key);
@@ -264,6 +321,12 @@ class PixAPI
         return $this->getSession($key);
     }
 
+    /**
+     * checkAPIMethod 檢查是否有支援此API
+     *
+     * @param string $api API名稱
+     * @return boolean 是否支援
+     */
     public function checkAPIMethod($api)
     {
         $this->debug(__METHOD__);
@@ -280,6 +343,12 @@ class PixAPI
         return false;
     }
 
+    /**
+     * redirect 轉向目標網址
+     *
+     * @param stinrg $url 目標網址
+     * @return void
+     */
     public function redirect($url)
     {
         $this->debug(__METHOD__);
@@ -288,6 +357,12 @@ class PixAPI
         die('Redirect');
     }
 
+    /**
+     * getResult 取得Result
+     *
+     * @param mixed $response API回傳的結果
+     * @return key 資料的KEY名稱
+     */
     public function getResult($response, $key)
     {
         $this->debug(__METHOD__);
@@ -297,6 +372,12 @@ class PixAPI
         return false;
     }
 
+    /**
+     * getUserName 取得目前授權的使用者名稱
+     *
+     * @param boolean $cache 使用cache
+     * @return string 使用者名稱
+     */
     public function getUserName($cache = true)
     {
         $this->debug(__METHOD__);
@@ -310,6 +391,15 @@ class PixAPI
         return $username;
     }
 
+    /**
+     * mergeParameters 合併參數
+     *
+     * @param array $parameters 必填的參數
+     * @param array $options 使用者傳入選填的參數，會以int_fileds跟str_fileds取走需要的部分
+     * @param array $int_fileds 數字的欄位名稱
+     * @param array $str_fileds 文字的欄位名稱
+     * @return array 回傳parameters+options(只取有設定欄位名稱)的結果
+     */
     public function mergeParameters($parameters, $options, $int_fileds = array(), $str_fileds = array())
     {
         if (is_array($int_fileds)) {
@@ -329,6 +419,13 @@ class PixAPI
         return $parameters;
     }
 
+    /**
+     * debug 輸出DEBUG資訊，當DEBUGMODE = TRUE
+     *
+     * @param string $method 方法名稱
+     * @param string $params 參數
+     * @return void
+     */
     public function debug($method, $params = '')
     {
         if ($this->debugmode) {
@@ -336,6 +433,12 @@ class PixAPI
         }
     }
 
+    /**
+     * getAPIList 傳回目前支援的API清單
+     *
+     * @static
+     * @return array 回傳parameters+options(只取有設定欄位名稱)的結果
+     */
     public static function getAPIList()
     {
         return array(
