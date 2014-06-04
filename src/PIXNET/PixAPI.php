@@ -17,7 +17,7 @@ class PixAPI
 
     protected $client;
     protected $query_username;
-    protected $debugmode = false;
+    public static $debugmode = false;
     /**
      * __construct
      *
@@ -428,7 +428,7 @@ class PixAPI
      */
     public function debug($method, $params = '')
     {
-        if ($this->debugmode) {
+        if (PixAPI::$debugmode) {
             echo $method . ' : ' . $params . '<br>';
         }
     }
