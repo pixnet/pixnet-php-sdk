@@ -41,7 +41,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <form class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">使用者名稱(必填)</label>
-        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']? $_POST['id'] : 'emmademo' ?>">
+        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']? $_POST['name'] : 'emmademo' ?>">
         <label class="sr-only" for="query">相簿 id(必填)</label>
         <input type="text" class="form-control" id="query" name="id" placeholder="請輸入相簿id" value="<?= $_POST['id']? $_POST['id'] : '34258' ?>">
       </div>
