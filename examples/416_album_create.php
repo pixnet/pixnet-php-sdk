@@ -23,8 +23,6 @@ require_once(__DIR__ . '/include/checkAuth.php');
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>format</p>
-        <p>格式, 支援 xml 與 json. 預設為 json</p></li>
         <li><p>permission</p>
         <p>閱讀權限，0: 完全公開 / 1: 好友相簿 / 3: 密碼相簿 / 4: 隱藏相簿 / 5: 好友群組相簿</p></li>
         <li><p>category_id</p>

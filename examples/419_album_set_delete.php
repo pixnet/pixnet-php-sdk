@@ -21,8 +21,6 @@ require_once(__DIR__ . '/include/checkAuth.php');
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>format</p>
-        <p>格式, 支援 xml 與 json. 預設為 json</p></li>
         </ul>
     </div>
     <h3>實際測試</h3>

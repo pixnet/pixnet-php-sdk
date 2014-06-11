@@ -27,9 +27,6 @@ require_once(__DIR__ . '/include/checkAuth.php');
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>format</p>
-
-        <p>格式, 支援 xml 與 json. 預設為 json</p></li>
         <li><p>type</p>
 
         <p>指定要回傳的類別. pic: 只顯示圖片; video: 只顯示影片; audio: 只顯示音樂</p></li>
