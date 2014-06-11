@@ -18,23 +18,19 @@ class Pix_Album_Sets extends PixAPI
      * @param array $options
      * @return void
      */
-    public function search($name, $set_id = null, $options = array())
+    public function search($name = null, $options = array())
     {
-        if (empty($name)) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-
         $parameters = $this->mergeParameters(
             array('user' => $name),
             $options,
             array('parent_id', 'trim_user', 'page', 'per_page'),
             array()
         );
-        if (empty($set_id)) {
+        if (!isset($options['set_id'])) {
             $response = $this->query('album/sets', $parameters, 'GET');
             return $this->getResult($response, 'sets');
         } else {
-            $response = $this->query('album/sets/' . $set_id, $parameters, 'GET');
+            $response = $this->query('album/sets/' . $options['set_id'], $parameters, 'GET');
             return $this->getResult($response, 'set');
         }
     }
