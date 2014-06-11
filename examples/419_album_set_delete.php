@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+$sets = $pixapi->album->sets->search($pixapi->getUserName());
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,15 @@ require_once(__DIR__ . '/include/checkAuth.php');
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">欲刪除的相簿 id</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="set_id" placeholder="請輸入相簿 id" value="<?= $_POST['set_id']? $_POST['set_id'] : '0' ?>">
+        <select name="set_id" class="form-control">
+        <?php foreach ($sets as $set) { ?>
+            <?php if ($set['id'] == $_POST['set_id']) { ?>
+            <option selected value="<?= $set['id']?>"><?= $set['title']?></option>
+            <?php } else { ?>
+            <option value="<?= $set['id']?>"><?= $set['title']?></option>
+            <?php } ?>
+        <?php } ?>
+        </select>
         </div>
         <p class="warning">警告：這將會直接從資料庫中刪除，請謹慎操作</p>
       </div>
