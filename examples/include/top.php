@@ -1,5 +1,7 @@
-<a href="./">回範例列表</a> 快速跳至範例
-<select onchange="location.href=this.options[this.selectedIndex].value">
+<form class="form-inline">
+<div class="form-group">
+<a class="btn btn-primary" href="./">回範例列表</a>
+<select onchange="location.href=this.options[this.selectedIndex].value" class="form-control">
 <?php
 
     $script_name = end(explode('/', $_SERVER["SCRIPT_NAME"]));
@@ -21,3 +23,5 @@
     }
 ?>
 </select>
+</div>
+</form>
