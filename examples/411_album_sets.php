@@ -12,12 +12,12 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得相簿列表</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->search($user, $options = array());</pre>
+    <pre>$pixapi->album->sets->search($name, $options = array());</pre>
     <div class="well">
         <p>必傳變數</p>
         <ul>
         <li>
-        <p>user</p>
+        <p>name</p>
         </li>
         </ul>
         <p>選填參數</p>
