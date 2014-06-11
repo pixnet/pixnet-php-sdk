@@ -9,9 +9,9 @@
 ?>
     <optgroup label="<?= $group_name . '/' . $example['name']; ?>">
     <?php
-            foreach ($example['examples'] as $name =>$url ) {
+            foreach ($example['examples'] as $apiname =>$url ) {
     ?>
-    <option value="<?= $url; ?>" <?= ($script_name == $url) ? 'selected' : ''?>><?= $name; ?></option>
+    <option value="<?= $url; ?>" <?= ($script_name == $url) ? 'selected' : ''?>><?= $apiname; ?></option>
     <?php
             }
     ?>
