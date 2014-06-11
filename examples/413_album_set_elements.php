@@ -1,6 +1,8 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+$name = $pixapi->getUserName();
+$sets = $pixapi->album->sets->search($name);
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,17 +62,24 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <form class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">使用者名稱(必填)</label>
-        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']?>">
-        <label class="sr-only" for="query">相簿 id(必填)</label>
-        <input type="text" class="form-control" id="query" name="id" placeholder="請輸入相簿id" value="<?= $_POST['id']?>">
+        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $name ?>">
+        <select name="set_id" class="form-control">
+        <?php foreach ($sets as $set) { ?>
+            <?php if ($set['id'] == $_POST['set_id']) { ?>
+            <option selected value="<?= $set['id']?>"><?= $set['title']?></option>
+            <?php } else { ?>
+            <option value="<?= $set['id']?>"><?= $set['title']?></option>
+            <?php } ?>
+        <?php } ?>
+        </select>
       </div>
       <button type="submit" class="btn btn-primary">取得相簿內所有相片</button>
     </form>
-    <?php if (!empty($_POST['name']) and !empty($_POST['id'])) {?>
+    <?php if (!empty($_POST['set_id'])) {?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->sets->elements(<?= htmlspecialchars($_POST['name'])?>, <?= $_POST['id'] ?>, $options)</pre>
+    <pre>$pixapi->album->sets->elements(<?= htmlspecialchars($name)?>, <?= $_POST['set_id'] ?>, $options)</pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->sets->elements($_POST['name'], $_POST['id'])); ?></pre>
+    <pre><?php print_r($pixapi->album->sets->elements($name, $_POST['set_id'])); ?></pre>
     <?php }?>
 </div>
 </body>
