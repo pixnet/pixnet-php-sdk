@@ -13,8 +13,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">新增訂閱群組</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptionGroups->create($name);</pre>
-    <h3>實際測試</h3>
-    <form class="form-inline" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">群組名稱(必填)</label>
         <input type="text" class="form-control" id="query" name="query" placeholder="請輸入群組名稱">

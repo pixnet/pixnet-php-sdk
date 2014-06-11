@@ -14,7 +14,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->categories->create($name);</pre>
     <h3>實際測試 - 簡易</h3>
-    <form class="form-inline" role="form" method="POST">
+    <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">分類名稱(必填)</label>
         <input type="text" class="form-control" id="query" name="query" placeholder="請輸入分類名稱">

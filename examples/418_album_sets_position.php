@@ -27,8 +27,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <ul>
         </ul>
     </div>
-    <h3>實際測試</h3>
-    <form class="form-horizontal" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">欲排序的相簿資料夾 id</label>
         <div class="col-sm-5">

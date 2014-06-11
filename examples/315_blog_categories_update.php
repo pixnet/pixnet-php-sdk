@@ -33,12 +33,12 @@ if ($query2 != '') {
     <pre>$pixapi->blog->categories->update($id, $name, $is_folder = false, $options = array());</pre>
     <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/blogArticlesUpdate" target="blank">Options說明</a></div>
     <div class="panel panel-primary">
-      <div class="panel-heading">實際測試</div>
+      <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
        <?php
        $category = $pixapi->blog->categories->search($query, $isFolder);
        ?>
-        <form class="form-horizontal" role="form" method="POST">
+        <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query">準備修改的分類</label>
             <div class="col-sm-4"><select class="form-control" id="query" name="query" onchange="location.href=this.options[this.selectedIndex].value">

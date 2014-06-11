@@ -13,8 +13,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">取得部落格個人單一文章</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->articles->search($id);</pre>
-    <h3>實際測試</h3>
-    <form class="form-inline" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
 
           <select class="form-control" id="query" name="query">

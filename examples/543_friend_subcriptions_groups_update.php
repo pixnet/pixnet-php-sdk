@@ -21,12 +21,12 @@ if ($query2 != '') {
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptionGroups->update($id, $name);</pre>
     <div class="panel panel-primary">
-      <div class="panel-heading">實際測試</div>
+      <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
        <?php
        $group = $pixapi->friend->subscriptionGroups->search($query);
        ?>
-        <form class="form-horizontal" role="form" method="POST">
+        <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query">準備修改的群組</label>
             <div class="col-sm-4"><select class="form-control" id="query" name="query" onchange="location.href=this.options[this.selectedIndex].value">

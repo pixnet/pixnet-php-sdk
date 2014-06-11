@@ -13,8 +13,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">讀取單一留言</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->comments->search($id);</pre>
-    <h3>實際測試</h3>
-    <form class="form-inline" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
           <?php
           $comments = $pixapi->blog->comments->search();

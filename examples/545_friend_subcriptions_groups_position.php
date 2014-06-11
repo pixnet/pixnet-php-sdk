@@ -40,8 +40,8 @@ if ($_POST) {
     <h1 class="page-header">修改訂閱群組排序</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptionGroups->position($ids);</pre>
-    <h3>實際測試</h3>
-    <form class="form-horizontal" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-horizontal" role="form" method="POST">
 <?php
         $num = 0;
           foreach ($groups['subscription_groups'] as $group) {

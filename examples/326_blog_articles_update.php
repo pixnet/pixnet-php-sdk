@@ -18,8 +18,8 @@ if ('' != $id) {
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->articles->update($article_id, $title, $body, $options);</pre>
     <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/blogArticlesUpdate" target="blank">Options說明</a></div>
-    <h3>實際測試</h3>
-    <form class="form-horizontal" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query">準備修改的文章</label>
             <div class="col-sm-4">

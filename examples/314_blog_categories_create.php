@@ -15,9 +15,9 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <pre>$pixapi->blog->categoriescreate($name, $is_folder = false, $options = array());</pre>
     <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/blogArticlesCreate" target="blank">Options說明</a></div>
     <div class="panel panel-primary">
-      <div class="panel-heading">實際測試</div>
+      <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST">
+        <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query2">分類名稱(必填)</label>
             <div class="col-sm-10">

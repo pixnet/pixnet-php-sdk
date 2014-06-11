@@ -46,10 +46,10 @@ if ('' != $query) {
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptions->create($name, $options = array());</pre>
     <div class="panel panel-primary">
-      <div class="panel-heading">實際測試</div>
+      <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="alert alert-info">非VIP只能將使用者加入一個訂閱群組</div>
       <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST">
+        <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query">訂閱帳號(必填)</label>
             <div class="col-sm-4">
