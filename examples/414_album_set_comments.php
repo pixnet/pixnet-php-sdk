@@ -35,8 +35,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <p>相簿密碼，當使用者相簿設定為密碼相簿時使用</p></li>
         </ul>
     </div>
-    <h3>實際測試</h3>
-    <form class="form-inline" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">使用者名稱(必填)</label>
         <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']? $_POST['name'] : 'emmademo' ?>">

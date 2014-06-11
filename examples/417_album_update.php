@@ -1,6 +1,9 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+$name = $pixapi->getUserName();
+$set = array_pop($pixapi->album->sets->search($name));
+$set = $pixapi->album->sets->search($name, ['set_id' => $set['id']]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,24 +52,26 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <p>如果這個 parent_id 被指定, 則此相簿會放置在這個相簿資料夾底下(只能放在資料夾底下)</p></li>
         </ul>
     </div>
-    <h3>實際測試</h3>
-    <form class="form-horizontal" role="form" method="POST">
+    <h3><a name="execute" href="#execute">實際測試</a></h3>
+    <form class="form-horizontal" role="form" method="POST" action="#execute">
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query">相簿 id</label>
+        <label class="col-sm-2 control-label" for="query">相簿</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="set_id" placeholder="請輸入相簿 id" value="<?= $_POST['set_id']? $_POST['set_id'] : '' ?>">
+        <select id="set_id" name="set_id" class="form-control">
+            <option selected value="<?= $set['id']?>"><?= $set['title']?></option>
+        </select>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">標題</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="title" placeholder="請輸入標題" value="<?= $_POST['title']? $_POST['title'] : '' ?>">
+            <input type="text" class="form-control" id="title" name="title" placeholder="請輸入標題" value="<?= $_POST['title']? $_POST['title'] : $set['title'] ?>">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">描述</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="desc" placeholder="請輸入描述" value="<?= $_POST['desc']? $_POST['desc'] : '' ?>">
+            <input type="text" class="form-control" id="desc" name="desc" placeholder="請輸入描述" value="<?= $_POST['desc'] ? $_POST['desc'] : $set['description'] ?>">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">修改相簿</button>
@@ -74,7 +79,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php if (!empty($_POST['title']) and !empty($_POST['desc'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->sets->update(<?= htmlspecialchars($_POST['set_id'])?>, <?= htmlspecialchars($_POST['title'])?>, <?= $_POST['desc'] ?>, $options)
+        $pixapi->album->sets->update(<?= htmlspecialchars($_POST['set_id'])?>, '<?= htmlspecialchars($_POST['title'])?>', '<?= $_POST['desc'] ?>', $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->update($_POST['set_id'], $_POST['title'], $_POST['desc'])); ?></pre>

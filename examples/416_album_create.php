@@ -47,8 +47,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <p>如果這個 parent_id 被指定, 則此相簿會放置在這個相簿資料夾底下(只能放在資料夾底下)</p></li>
         </ul>
     </div>
-    <h3>實際測試</h3>
-    <form class="form-horizontal" role="form" method="POST">
+    <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">標題</label>
         <div class="col-sm-5">
