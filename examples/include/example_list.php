@@ -84,6 +84,7 @@ $examples_list = array(
                 '取得單一相簿資料夾' => '421_album_single_folder.php',
                 '建立相簿資料夾' => '422_album_folders_create.php',
                 '修改相簿資料夾' => '423_album_folder_update.php',
+                '刪除相簿資料夾' => '424_album_folders_delete.php',
             )
         ),
         array(

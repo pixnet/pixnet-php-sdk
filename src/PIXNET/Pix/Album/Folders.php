@@ -58,4 +58,20 @@ class Pix_Album_Folders extends PixAPI
         $response = $this->query('album/folders/' . $folder_id, $parameters, 'POST');
         return $this->getResult($response, 'folder');
     }
+
+    public function delete($folder_id)
+    {
+        if ('' == $folder_id) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('album/folders/' . $folder_id, $parameters, 'DELETE');
+        return $response;
+        return $this->getResult($response, 'folders');
+    }
 }
