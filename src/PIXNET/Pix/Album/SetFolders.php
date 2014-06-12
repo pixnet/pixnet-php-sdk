@@ -10,4 +10,16 @@ class Pix_Album_SetFolders extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search($name, $options = array())
+    {
+        $parameters = $this->mergeParameters(
+            array('user' => $name),
+            $options,
+            array('trim_user', 'page', 'per_page'),
+            array()
+        );
+        $response = $this->query('album/setfolders', $parameters, 'GET');
+        return $this->getResult($response, 'setfolders');
+    }
 }

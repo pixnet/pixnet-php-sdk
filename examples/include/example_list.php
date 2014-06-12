@@ -61,6 +61,7 @@ $examples_list = array(
         array(
             'name' => '相簿',
             'examples' => array(
+                '取得相簿首頁的相簿列表' => '411_album_setfolders_search.php',
             )
         ),
         array(

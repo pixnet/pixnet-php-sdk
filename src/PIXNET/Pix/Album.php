@@ -17,6 +17,7 @@ class Pix_Album extends PixAPI
         $class_list = array(
                 'folders' => 'Pix_Album_Folders',
                 'sets' => 'Pix_Album_Sets',
+                'setfolders' => 'Pix_Album_SetFolders',
                 'articles' => 'Pix_Album_Articles',
                 'comments' => 'Pix_Album_Comments'
             );
