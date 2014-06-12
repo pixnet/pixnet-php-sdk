@@ -16,7 +16,7 @@ class Pix_Album_Folders extends PixAPI
         $parameters = $this->mergeParameters(
             array('user' => $name),
             $options,
-            array('trim_user', 'page', 'per_page', 'folder_id'),
+            array('trim_user', 'page', 'per_page'),
             array()
         );
         if (isset($options['folder_id']) and is_numeric($options['folder_id'])) {

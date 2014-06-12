@@ -1,6 +1,17 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
+    $i = 0;
+    foreach ($_POST['set_id'] as $id) {
+        $series = $_POST['series'][$i++];
+        $order[$series] = $id;
+    }
+    ksort($order);
+    $order = implode('-', $order);
+    $pixapi->album->sets->position($_POST['set_folder_id'], $order);
+}
+$pixapi->setDebugMode(1);
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,26 +41,34 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query">欲排序的相簿資料夾 id</label>
+        <label class="col-sm-2 control-label" for="query">選擇相簿資料夾</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="parent_id" placeholder="請輸入相簿資料夾 id" value="<?= $_POST['parent_id']? $_POST['parent_id'] : '0' ?>">
+            <select name="set_folder_id" class="form-control">
+                <option value="0">根目錄</option>
+            </select>
         </div>
       </div>
+<?php foreach ($pixapi->album->sets->search($pixapi->getUserName(), ['parent_id' => 0]) as $set) {?>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query">相簿的排序方式</label>
+        <label class="col-sm-2 control-label" for="query"><?= $set['title']?> : <?= $set['id']?></label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="ids" placeholder="請輸入相簿順序" value="<?= $_POST['ids']? $_POST['ids'] : '' ?>">
+            <input type="text" class="form-control" name="series[]" placeholder="請輸入新順序" value="">
+            <input type="hidden" name="set_id[]" value="<?= $set['id']?>">
         </div>
+        <pre><?php var_dump($set)?></pre>
       </div>
+<?php } ?>
       <button type="submit" class="btn btn-primary">修改相簿順序</button>
     </form>
-    <?php if ('' != ($_POST['parent_id']) and !empty($_POST['ids'])) {?>
+    <pre><?php var_dump($_POST) ?></pre>
+    <?php if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
+    ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->sets->position(<?= htmlspecialchars($_POST['parent_id'])?>, <?= htmlspecialchars($_POST['ids'])?>, $options)
+        $pixapi->album->sets->position(<?= htmlspecialchars($_POST['set_folder_id'])?>, <?= htmlspecialchars($order)?>, $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->sets->position($_POST['parent_id'], $_POST['ids'])); ?></pre>
+    <pre><?php var_dump($order) ?></pre>
     <?php }?>
 </div>
 </body>
