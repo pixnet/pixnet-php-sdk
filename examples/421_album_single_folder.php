@@ -26,9 +26,6 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
         <p>相簿資料夾 id</p>
         </li>
         </ul>
-        <p>選填參數</p>
-        <ul>
-        </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-inline" role="form" method="POST">

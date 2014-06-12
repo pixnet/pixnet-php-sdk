@@ -13,15 +13,12 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName());
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">刪除相簿</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->delete($set_id, $options = array());</pre>
+    <pre>$pixapi->album->sets->delete($set_id);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
         <li><p>set_id</p>
         <p>欲刪除的相簿 id</p></li>
-        </ul>
-        <p>選填參數</p>
-        <ul>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
