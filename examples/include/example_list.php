@@ -80,6 +80,7 @@ $examples_list = array(
         array(
             'name' => '相簿資料夾',
             'examples' => array(
+                '取得相簿資料夾列表' => '420_album_folders.php',
             )
         ),
         array(

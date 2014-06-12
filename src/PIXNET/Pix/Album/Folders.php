@@ -10,4 +10,21 @@ class Pix_Album_Folders extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function search($name = null, $options = null)
+    {
+        $parameters = $this->mergeParameters(
+            array('user' => $name),
+            $options,
+            array('trim_user', 'page', 'per_page', 'folder_id'),
+            array()
+        );
+        if (isset($options['folder_id']) and is_numeric($options['folder_id'])) {
+            $response = $this->query('album/folders/' . $options['folder_id'], $parameters, 'GET');
+            return $this->getResult($response, 'folder');
+        } else {
+            $response = $this->query('album/folders', $parameters, 'GET');
+            return $this->getResult($response, 'folders');
+        }
+    }
 }
