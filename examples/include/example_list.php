@@ -82,6 +82,7 @@ $examples_list = array(
             'examples' => array(
                 '取得相簿資料夾列表' => '420_album_folders.php',
                 '取得單一相簿資料夾' => '421_album_single_folder.php',
+                '建立相簿資料夾' => '422_album_folders_create.php',
             )
         ),
         array(

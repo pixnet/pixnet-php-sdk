@@ -27,4 +27,19 @@ class Pix_Album_Folders extends PixAPI
             return $this->getResult($response, 'folders');
         }
     }
+
+    public function create($title, $desc)
+    {
+        if (empty($title) or empty($desc)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('title' => $title, 'description' => $desc),
+            array(),
+            array(),
+            array()
+        );
+        $response = $this->query('album/folders', $parameters, 'POST');
+        return $this->getResult($response, 'folder');
+    }
 }
