@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
-if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
+$name = $pixapi->getUserName();
+if (!empty($_POST['series']) and isset($_POST['folder_id'])) {
     $i = 0;
     foreach ($_POST['set_id'] as $id) {
         $series = $_POST['series'][$i++];
@@ -9,9 +10,9 @@ if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
     }
     ksort($order);
     $order = implode('-', $order);
-    $pixapi->album->sets->position($_POST['set_folder_id'], $order);
+    $pixapi->album->sets->position($_POST['folder_id'], $order);
 }
-$pixapi->setDebugMode(1);
+$folders = $pixapi->album->folders->search($name);
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,44 +24,50 @@ $pixapi->setDebugMode(1);
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">修改相簿資料夾內的相簿順序</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->position($title, $desc, $options = array());</pre>
+    <pre>$pixapi->album->sets->position($title, $desc);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>parent_id</p>
-
-        <p>欲排序的相簿資料夾(無資料夾則為 0)</p></li>
-        <li><p>ids</p>
-
-        <p>該資料夾內的相簿 id，順序以 <code>,</code> 或 <code>-</code> 為分隔，放在越前面的表示圖片的順序越優先。(EX: 12394813,12938503,12395064,12351423 or 12394813-12938503-12395064-12351423 )</p></li>
-        </ul>
-        <p>選填參數</p>
-        <ul>
+        <li>
+            <p>parent_id</p>
+            <p>欲排序的相簿資料夾</p>
+        </li>
+        <li>
+            <p>ids</p>
+            <p>該資料夾內的相簿 id，按照順序以 <code>,</code> 或 <code>-</code> 為分隔，放在越前面的表示圖片的順序越優先。(EX: 12394813,12938503,12395064,12351423 or 12394813-12938503-12395064-12351423 )</p>
+        </li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
+    <?php if ($folders) { ?>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">選擇相簿資料夾</label>
         <div class="col-sm-5">
             <select name="set_folder_id" class="form-control">
-                <option value="0">根目錄</option>
+                <?php foreach($folders as $folder) { ?>
+                <option value="?folder_id=<?= $folder['id'] ?>"><?= $folder['title']?></option>
+                <?php } ?>
             </select>
         </div>
       </div>
-<?php foreach ($pixapi->album->sets->search($pixapi->getUserName(), ['parent_id' => 0]) as $set) {?>
+    <?php if ($_GET['folder_id']) {?>
+    <?php foreach ($pixapi->album->sets->search($pixapi->getUserName(), ['parent_id' => $_GET['folder_id']]) as $set) { ?>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query"><?= $set['title']?> : <?= $set['id']?></label>
+        <label class="col-sm-2 control-label" for="query"><?= $set['title']?></label>
         <div class="col-sm-5">
             <input type="text" class="form-control" name="series[]" placeholder="請輸入新順序" value="">
             <input type="hidden" name="set_id[]" value="<?= $set['id']?>">
         </div>
-        <pre><?php var_dump($set)?></pre>
       </div>
-<?php } ?>
+    <?php } ?>
+      <input type="hidden" name="folder_id" value="<?= $_GET['folder_id']?>">
       <button type="submit" class="btn btn-primary">修改相簿順序</button>
     </form>
-    <pre><?php var_dump($_POST) ?></pre>
+    <?php } ?>
+    <?php } else {?>
+    <p class="text-left">抱歉，您的相簿內未有資料夾可供操作，請先到您的<a target="_blank" href="http://panel.pixnet.cc/album/albummanagement">管理後台</a>新增資料夾以順利使用</p>
+    <?php } ?>
     <?php if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
     ?>
     <h3>實際執行</h3>
@@ -68,7 +75,7 @@ $pixapi->setDebugMode(1);
         $pixapi->album->sets->position(<?= htmlspecialchars($_POST['set_folder_id'])?>, <?= htmlspecialchars($order)?>, $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php var_dump($order) ?></pre>
+    <pre><?php print_r($pixapi->album->sets->position($_POST['folder_id'], $order)) ?></pre>
     <?php }?>
 </div>
 </body>
