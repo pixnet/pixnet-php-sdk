@@ -62,6 +62,7 @@ $examples_list = array(
             'name' => '相簿',
             'examples' => array(
                 '取得相簿首頁的相簿列表' => '411_album_setfolders_search.php',
+                '修改相簿首頁的相簿順序' => '412_album_setfolders_position.php',
             )
         ),
         array(

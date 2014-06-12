@@ -22,4 +22,19 @@ class Pix_Album_SetFolders extends PixAPI
         $response = $this->query('album/setfolders', $parameters, 'GET');
         return $this->getResult($response, 'setfolders');
     }
+
+    public function position($ids)
+    {
+        if (empty($ids)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('parent_id' => $parent_id, 'ids' => $ids),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('album/sets/position', $parameters, 'POST');
+        return $this->getResult($response, 'sets');
+    }
 }
