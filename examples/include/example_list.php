@@ -66,24 +66,24 @@ $examples_list = array(
         array(
             'name' => '相簿列表',
             'examples' => array(
-                '取得相簿列表' => '411_album_sets.php',
-                '取得個人單一相簿' => '412_album_single_set.php',
-                '取得單一相簿內的所有相片' => '413_album_set_elements.php',
-                '取得相簿內的所有留言' => '414_album_set_comments.php',
-                '取得附近的相簿列表' => '415_album_nearby.php',
-                '新增相簿' => '416_album_create.php',
-                '修改相簿' => '417_album_update.php',
+                '取得相簿列表' => '411_album_sets_search.php',
+                '取得個人單一相簿' => '412_album_sets_search.php',
+                '取得單一相簿內的所有相片' => '413_album_sets_elements.php',
+                '取得相簿內的所有留言' => '414_album_sets_comments.php',
+                '取得附近的相簿列表' => '415_album_sets_nearby.php',
+                '新增相簿' => '416_album_sets_create.php',
+                '修改相簿' => '417_album_sets_update.php',
                 '修改相簿順序' => '418_album_sets_position.php',
-                '刪除相簿' => '419_album_set_delete.php',
+                '刪除相簿' => '419_album_sets_delete.php',
             )
         ),
         array(
             'name' => '相簿資料夾',
             'examples' => array(
-                '取得相簿資料夾列表' => '420_album_folders.php',
-                '取得單一相簿資料夾' => '421_album_single_folder.php',
+                '取得相簿資料夾列表' => '420_album_folders_search.php',
+                '取得單一相簿資料夾' => '421_album_folders_search.php',
                 '建立相簿資料夾' => '422_album_folders_create.php',
-                '修改相簿資料夾' => '423_album_folder_update.php',
+                '修改相簿資料夾' => '423_album_folders_update.php',
                 '刪除相簿資料夾' => '424_album_folders_delete.php',
             )
         ),
