@@ -12,9 +12,9 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得相簿全站分類</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->site_categories();</pre>
+    <pre>$pixapi->album->siteCategories();</pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->site_categories()); ?></pre>
+    <pre><?php print_r($pixapi->album->siteCategories()); ?></pre>
 </div>
 </body>
 </html>
