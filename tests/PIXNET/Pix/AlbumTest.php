@@ -19,9 +19,6 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
-    /**
-     * @group gulp
-     */
     public function testsiteCategories()
     {
         $actual = self::$pixapi->album->siteCategories();

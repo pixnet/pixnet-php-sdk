@@ -31,23 +31,29 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @group gulp
+     */
     public function testsearch()
     {
-        $this->markTestIncomplete('先從 create 開始測');
+        // 先產生要用來測試搜尋的相簿
+        for ($i = 0; $i < 5; $i++) {
+            $title = $expected['title'][] = "PHP-SDK-TEST-TITLE-" . sha1($i);
+            $desc = $expected['desc'][] = "PHP-SDK-TEST-DESC-" . md5($i);
+            $expected['id'][] = self::$pixapi->album->sets->create($title, $desc)['id'];
+        }
+
         $actual = self::$pixapi->Album->Sets->search('emmatest');
-        $ret = self::$pixapi->query('album/sets', ['user' => 'emmatest'], 'GET');
-        $expected = $ret['sets'];
-        var_dump($ret);
-        var_dump($actual);
-        $this->assertEquals($expected, $actual);
+        foreach ($actual as $set) {
+            $this->assertTrue(in_array($set['title'], $expected['title']));
+        }
 
-        $sets = $expected;
-        foreach ($sets as $set) {
-            $ret = self::$pixapi->query('album/sets/' . $set['id']);
-            $expected = $ret['set'];
-            $actual = self::$pixapi->Album->Sets->search('emmatest', ['set_id' => $set['id']]);
-            $this->assertEquals($expected, $actual);
+        unset($ret);
 
+        foreach ($expected['id'] as $set_id) {
+            $ret = self::$pixapi->album->sets->search('emmatest', ['set_id' => $set_id]);
+            $this->assertEquals($set_id, $ret['id']);
+            self::$pixapi->album->sets->delete($set_id);
         }
     }
 }
