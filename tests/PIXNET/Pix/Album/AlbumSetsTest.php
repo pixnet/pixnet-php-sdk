@@ -9,6 +9,29 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         self::$pixapi = Authentication::$pixapi;
     }
 
+    /**
+     * 產生測試用的相簿
+     */
+    private function createTempSets()
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $title = "PHP-SDK-TEST-TITLE-" . sha1($i);
+            $desc = "PHP-SDK-TEST-DESC-" . md5($i);
+            $expected[] = self::$pixapi->album->sets->create($title, $desc);
+        }
+        return $expected;
+    }
+
+    /**
+     * 刪除測試用的相簿
+     */
+    private function destoryTempSets($sets)
+    {
+        foreach ($sets as $set) {
+            self::$pixapi->album->sets->delete($set['id']);
+        }
+    }
+
     public function setUp()
     {
         echo "\033[1;32m" . $this->getName() . " \033[34mFinished.\033[0m" . PHP_EOL;
@@ -31,29 +54,27 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @group gulp
-     */
+    public function testposition()
+    {
+    }
     public function testsearch()
     {
-        // 先產生要用來測試搜尋的相簿
-        for ($i = 0; $i < 5; $i++) {
-            $title = $expected['title'][] = "PHP-SDK-TEST-TITLE-" . sha1($i);
-            $desc = $expected['desc'][] = "PHP-SDK-TEST-DESC-" . md5($i);
-            $expected['id'][] = self::$pixapi->album->sets->create($title, $desc)['id'];
-        }
 
+        $tempSets = $this->createTempSets();
+        foreach ($tempSets as $set) {
+            $expected['title'][] = $set['title'];
+            $expected['id'][] = $set['id'];
+        }
         $actual = self::$pixapi->Album->Sets->search('emmatest');
         foreach ($actual as $set) {
             $this->assertTrue(in_array($set['title'], $expected['title']));
         }
 
-        unset($ret);
-
         foreach ($expected['id'] as $set_id) {
             $ret = self::$pixapi->album->sets->search('emmatest', ['set_id' => $set_id]);
             $this->assertEquals($set_id, $ret['id']);
-            self::$pixapi->album->sets->delete($set_id);
         }
+
+        $this->destoryTempSets($tempSets);
     }
 }
