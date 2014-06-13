@@ -36,10 +36,10 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
         }
         $actual = self::$pixapi->index->now();
 
-        // 誤差在10秒內都算可接受的範圍
+        // 誤差在30秒內都算可接受的範圍
         $expected = abs($actual - time());
 
-        $this->assertLessThanOrEqual(10, $expected);
+        $this->assertLessThanOrEqual(30, $expected);
     }
 
     /**
