@@ -39,4 +39,10 @@ class Pix_Album extends PixAPI
         $response = $this->query('album/site_categories');
         return $this->getResult($response, 'categories');
     }
+
+    public function config()
+    {
+        $response = $this->query('album/config');
+        return $response;
+    }
 }
