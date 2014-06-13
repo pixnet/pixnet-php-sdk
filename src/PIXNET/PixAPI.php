@@ -287,7 +287,7 @@ class PixAPI
             if (!isset($response['result']['message'])) {
                 throw new PixAPIException(serialize($response), PixAPIException::API_ERROR);
             }
-            throw new PixAPIException($response['result']['message'], PixAPIException::API_ERROR);
+            throw new PixAPIException($response['code'] . ' ' . $response['result']['message'], PixAPIException::API_ERROR);
         }
         return $response['result'];
     }
