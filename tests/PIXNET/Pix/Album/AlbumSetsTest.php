@@ -51,6 +51,19 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testposition()
     {
+        $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => 4948779]);
+        $num_of_sets = count($current_albumsets);
+        $i = 1;
+        foreach ($current_albumsets as $set) {
+            $new_order[$i++%$num_of_sets] = $set['id'];
+        }
+        ksort($new_order);
+        $expected = $new_order;
+        $ret_albumsets = self::$pixapi->Album->sets->position('4948779', implode(',', $new_order));
+        foreach ($ret_albumsets as $set) {
+            $actual[] = $set['id'];
+        }
+        $this->assertEquals($actual, $expected);
     }
     public function testsearch()
     {
