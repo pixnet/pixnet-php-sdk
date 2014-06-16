@@ -135,4 +135,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($actual, $expected);
     }
+
+    public function testnearby()
+    {
+        $expected = ['34260'];
+        $options = array('distance_max' => 3500);
+        $ret = self::$pixapi->album->sets->nearby(emmademo, '25.058172', '121.535304', $options);
+        foreach ($ret as $set) {
+            $this->assertTrue(in_array($set['id'], $expected));
+        }
+    }
 }
