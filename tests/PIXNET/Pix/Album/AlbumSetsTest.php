@@ -107,4 +107,18 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($actual, $expected);
     }
+
+    public function testupdate()
+    {
+        $expected_title = "unit test title";
+        $expected_desc = "unit test description";
+        $current_set = self::$pixapi->album->sets->search('emmatest', ['set_id' => 4948710]);
+        $current_title = $current_set['title'];
+        $current_desc = $current_set['description'];
+
+        $actualset = self::$pixapi->album->sets->update(4948710, $expected_title, $expected_desc);
+        $this->assertEquals($actualset['title'], $expected_title);
+        $this->assertEquals($actualset['description'], $expected_desc);
+        self::$pixapi->album->sets->update(4948710, $current_title, $current_desc);
+    }
 }
