@@ -85,4 +85,15 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
         $this->destoryTempSets($tempSets);
     }
+
+    public function testelements()
+    {
+        // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
+        $expected = ['167691000', '167691006'];
+        $current_elements = self::$pixapi->album->sets->elements('emmatest', 4948710);
+        foreach ($current_elements as $ele) {
+            $actual[] = $ele['id'];
+        }
+        $this->assertEquals($actual, $expected);
+    }
 }
