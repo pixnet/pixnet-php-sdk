@@ -45,7 +45,6 @@ class Pix_Album_Folders extends PixAPI
 
     public function update($folder_id, $title, $desc)
     {
-        $folder_id = explode('=', $folder_id)[1];
         if (!is_numeric($folder_id) or empty($title) or empty($desc)) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }

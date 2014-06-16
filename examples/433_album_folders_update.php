@@ -3,7 +3,11 @@ require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
 $folders = $pixapi->album->folders->search($name);
-$current = $pixapi->album->folders->search($name, ['folder_id' => $_GET['folder_id']]);
+if (isset($_GET['folder_id'])) {
+    $current = $pixapi->album->folders->search($name, ['folder_id' => $_GET['folder_id']]);
+} else {
+    $current = $pixapi->album->folders->search($name, ['folder_id' => $folders[0]['id']]);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,7 +56,7 @@ $current = $pixapi->album->folders->search($name, ['folder_id' => $_GET['folder_
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">描述</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="desc" name="desc" placeholder="請輸入描述" value="<?= $current['description'] ? $current['description'] : $folder['description'] ?>">
+            <input type="text" class="form-control" id="desc" name="desc" placeholder="請輸入描述" value="<?= $current['description']? $current['description'] : $folder['description'] ?>">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">修改相簿資料夾</button>
@@ -63,7 +67,10 @@ $current = $pixapi->album->folders->search($name, ['folder_id' => $_GET['folder_
         $pixapi->album->folders->update(<?= htmlspecialchars($_POST['folder_id'])?>, '<?= htmlspecialchars($_POST['title'])?>', '<?= $_POST['desc'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->folders->update($_POST['folder_id'], $_POST['title'], $_POST['desc'])); ?></pre>
+    <?php
+        $folder_id = explode('=', $_POST['folder_id'])[1];
+    ?>
+    <pre><?php print_r($pixapi->album->folders->update($folder_id, $_POST['title'], $_POST['desc'])); ?></pre>
     <?php }?>
 </div>
 </body>
