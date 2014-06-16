@@ -56,6 +56,8 @@ $examples_list = array(
             'name' => '資訊',
             'examples' => array(
                 '取得相簿全站分類' => '401_album_site_categories.php',
+                '取得相簿個人首頁資訊' => '402_album_main.php',
+                '列出相簿個人設定' => '403_album_config.php',
             )
         ),
         array(

@@ -32,11 +32,6 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function setUp()
-    {
-        echo "\033[1;32m" . $this->getName() . " \033[34mFinished.\033[0m" . PHP_EOL;
-    }
-
     public static function tearDownAfterClass()
     {
         Authentication::tearDownAfterClass();
