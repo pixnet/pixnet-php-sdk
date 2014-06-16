@@ -53,4 +53,18 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($actual, $expected);
     }
+
+    public function testUpdate()
+    {
+        $expected_title = "unit test title";
+        $expected_desc = "unit test description";
+        $current_set = self::$pixapi->album->folders->search('emmatest', ['folder_id' => 4948779]);
+        $current_title = $current_set['title'];
+        $current_desc = $current_set['description'];
+
+        $actualset = self::$pixapi->album->folders->update(4948779, $expected_title, $expected_desc);
+        $this->assertEquals($actualset['title'], $expected_title);
+        $this->assertEquals($actualset['description'], $expected_desc);
+        self::$pixapi->album->folders->update(4948779, $current_title, $current_desc);
+    }
 }
