@@ -37,7 +37,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
-    public function testcreate()
+    public function testCreate()
     {
         for ($i = 0; $i < 5; $i++) {
             $title = "PHP-SDK-TEST-TITLE-" . sha1($i);
@@ -49,7 +49,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function testposition()
+    public function testPosition()
     {
         $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => 4948779]);
         $num_of_sets = count($current_albumsets);
@@ -65,7 +65,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($actual, $expected);
     }
-    public function testsearch()
+    public function testSearch()
     {
 
         $tempSets = $this->createTempSets();
@@ -86,7 +86,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->destoryTempSets($tempSets);
     }
 
-    public function testelements()
+    public function testElements()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
         $expected = ['167691000', '167691006'];
@@ -97,7 +97,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testcomments()
+    public function testComments()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
         $expected = ['1095963', '1095966'];
@@ -108,7 +108,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testupdate()
+    public function testUpdate()
     {
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
@@ -122,7 +122,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->sets->update(4948710, $current_title, $current_desc);
     }
 
-    public function testdelete()
+    public function testDelete()
     {
         $tempSets = $this->createTempSets();
         $expected = count($tempSets);
@@ -136,7 +136,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($actual, $expected);
     }
 
-    public function testnearby()
+    public function testNearby()
     {
         $expected = ['34260'];
         $options = array('distance_max' => 3500);

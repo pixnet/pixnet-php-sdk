@@ -19,7 +19,7 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
-    public function testsiteCategories()
+    public function testSiteCategories()
     {
         $actual = self::$pixapi->album->siteCategories();
         $ret = self::$pixapi->query('album/site_categories');
