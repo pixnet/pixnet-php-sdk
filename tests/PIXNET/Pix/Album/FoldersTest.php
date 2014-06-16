@@ -35,4 +35,22 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected_desc, $tempFolder['description']);
         self::$pixapi->album->folders->delete($tempFolder['id']);
     }
+
+    public function testDelete()
+    {
+        $expected_title = 'PIXNET_SDK_TITLE';
+        $expected_desc = 'PIXNET_SDK_DESC';
+        $expected = 5;
+        for ($i = 0; $i < $expected; $i++) {
+            $tempFolders[] = self::$pixapi->album->folders->create($expected_title, $expected_desc);
+        }
+        $actual = 0;
+        foreach ($tempFolders as $folder) {
+            $ret = self::$pixapi->album->folders->delete($folder['id']);
+            if(!$ret['error']) {
+                $actual++;
+            }
+        }
+        $this->assertEquals($actual, $expected);
+    }
 }
