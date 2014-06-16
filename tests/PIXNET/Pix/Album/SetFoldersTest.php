@@ -23,4 +23,17 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
             $this->assertTrue(in_array($set['id'], $expected));
         }
     }
+
+    public function testPosition()
+    {
+        $expected = '4948785,4948779';
+        $ret = self::$pixapi->album->setfolders->position($expected);
+        foreach ($ret as $set) {
+            $actual[] = $set['id'];
+        }
+        $actual = implode(',', $actual);
+        $this->assertEquals($actual, $expected);
+        $expected = '4948779,4948785';
+        $ret = self::$pixapi->album->setfolders->position($expected);
+    }
 }
