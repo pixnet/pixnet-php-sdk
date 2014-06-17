@@ -123,7 +123,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $actualset = self::$pixapi->album->sets->update(4948710, $expected_title, $expected_desc);
         $this->assertEquals($actualset['title'], $expected_title);
         $this->assertEquals($actualset['description'], $expected_desc);
-        self::$pixapi->album->sets->update(4948710, $current_title, $current_desc);
+        self::$pixapi->album->sets->update(4948710, $current_title, $current_desc, ['parent_id' => '4948779']);
     }
 
     public function testDelete()
