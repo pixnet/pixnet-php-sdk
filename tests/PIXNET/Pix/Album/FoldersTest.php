@@ -47,7 +47,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         $actual = 0;
         foreach ($tempFolders as $folder) {
             $ret = self::$pixapi->album->folders->delete($folder['id']);
-            if(!$ret['error']) {
+            if (!$ret['error']) {
                 $actual++;
             }
         }
