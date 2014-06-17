@@ -65,6 +65,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($actual, $expected);
     }
+
     public function testSearch()
     {
 
@@ -73,9 +74,12 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $expected['title'][] = $set['title'];
             $expected['id'][] = $set['id'];
         }
-        $actual = self::$pixapi->Album->Sets->search('emmatest');
-        foreach ($actual as $set) {
-            $this->assertTrue(in_array($set['title'], $expected['title']));
+        $current = self::$pixapi->Album->Sets->search('emmatest');
+        foreach ($current as $set) {
+            $actual[] = $set['title'];
+        }
+        foreach ($expected['title'] as $set) {
+            $this->assertTrue(in_array($set, $actual));
         }
 
         foreach ($expected['id'] as $set_id) {
