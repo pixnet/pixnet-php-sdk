@@ -55,7 +55,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $num_of_sets = count($current_albumsets);
         $i = 1;
         foreach ($current_albumsets as $set) {
-            $new_order[$i++%$num_of_sets] = $set['id'];
+            $new_order[$i++ % $num_of_sets] = $set['id'];
         }
         ksort($new_order);
         $expected = $new_order;
@@ -129,7 +129,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $actual = 0;
         foreach ($tempSets as $set) {
             $ret = self::$pixapi->album->sets->delete($set['id']);
-            if(!$ret['error']) {
+            if (!$ret['error']) {
                 $actual++;
             }
         }
@@ -140,7 +140,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         $expected = ['34260'];
         $options = array('distance_max' => 3500);
-        $ret = self::$pixapi->album->sets->nearby(emmademo, '25.058172', '121.535304', $options);
+        $ret = self::$pixapi->album->sets->nearby('emmademo', '25.058172', '121.535304', $options);
         foreach ($ret as $set) {
             $this->assertTrue(in_array($set['id'], $expected));
         }
