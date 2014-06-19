@@ -13,6 +13,11 @@ if (!empty($_POST['series']) and isset($_POST['folder_id'])) {
     $pixapi->album->sets->position($_POST['folder_id'], $order);
 }
 $folders = $pixapi->album->folders->search($name);
+if (isset($_GET['folder_id'])) {
+    $folder_id = $_GET['folder_id'];
+} else {
+    $folder_id = $folders[0]['id'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,8 +56,8 @@ $folders = $pixapi->album->folders->search($name);
             </select>
         </div>
       </div>
-    <?php if ($_GET['folder_id']) {?>
-    <?php foreach ($pixapi->album->sets->search($pixapi->getUserName(), ['parent_id' => $_GET['folder_id']]) as $set) { ?>
+    <?php if ($folder_id) {?>
+    <?php foreach ($pixapi->album->sets->search($pixapi->getUserName(), ['parent_id' => $folder_id]) as $set) { ?>
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query"><?= $set['title']?></label>
         <div class="col-sm-5">
@@ -61,7 +66,7 @@ $folders = $pixapi->album->folders->search($name);
         </div>
       </div>
     <?php } ?>
-      <input type="hidden" name="folder_id" value="<?= $_GET['folder_id']?>">
+      <input type="hidden" name="folder_id" value="<?= $folder_id ?>">
       <button type="submit" class="btn btn-primary">修改相簿順序</button>
     </form>
     <?php } ?>
