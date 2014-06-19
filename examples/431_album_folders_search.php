@@ -46,7 +46,7 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
     </form>
     <?php if (!empty($_POST['name']) and !empty($_POST['folder_id'])) {?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->folders->search(<?= htmlspecialchars($_POST['name'])?>, array('folder_id' => <?= htmlspecialchars($_POST['folder_id']) ?>)</pre>
+    <pre>$pixapi->album->folders->search(<?= htmlspecialchars($_POST['name'])?>, array('folder_id' => <?= htmlspecialchars($_POST['folder_id']) ?>))</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->folders->search($_POST['name'], array('folder_id' => $_POST['folder_id']))); ?></pre>
     <?php }?>

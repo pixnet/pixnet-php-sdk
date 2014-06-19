@@ -43,7 +43,7 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
     <?php if ('' != ($_POST['folder_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->folders->delete(<?= htmlspecialchars($_POST['folder_id'])?>, $options)
+        $pixapi->album->folders->delete(<?= htmlspecialchars($_POST['folder_id'])?>)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->folders->delete($_POST['folder_id'])); ?></pre>

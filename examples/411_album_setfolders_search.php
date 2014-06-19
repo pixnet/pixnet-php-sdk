@@ -38,7 +38,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">使用者名稱(必填)</label>
-        <input type="text" class="form-control" id="query" name="query" placeholder="請輸入使用者名稱">
+        <input type="text" class="form-control" id="query" name="query" placeholder="請輸入使用者名稱" value="<?= $_POST['query']?$_POST['query']:$pixapi->getUserName()?>">
       </div>
       <button type="submit" class="btn btn-primary">取得相簿列表</button>
     </form>
