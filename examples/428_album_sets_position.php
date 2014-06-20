@@ -29,7 +29,7 @@ if (isset($_GET['folder_id'])) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">修改相簿資料夾內的相簿順序</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->sets->position($title, $desc);</pre>
+    <pre>$pixapi->album->sets->position($folder_id, $ids);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -76,7 +76,7 @@ if (isset($_GET['folder_id'])) {
     ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->sets->position(<?= $folder_id ?>, '<?= htmlspecialchars($order)?>', $options)
+        $pixapi->album->sets->position(<?= $folder_id ?>, '<?= htmlspecialchars($order)?>')
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->position($_POST['folder_id'], $order)) ?></pre>
