@@ -1,27 +1,38 @@
-<form class="form-inline">
-<div class="form-group">
-<a class="btn btn-primary" href="./">回範例列表</a>
-<select onchange="location.href=this.options[this.selectedIndex].value" class="form-control">
-<?php
-
-    $script_name = end(explode('/', $_SERVER["SCRIPT_NAME"]));
-
-    foreach ($examples_list as $group_name => $group) {
-        foreach ($group as $example) {
-?>
-    <optgroup label="<?= $group_name . '/' . $example['name']; ?>">
-    <?php
-            foreach ($example['examples'] as $apiname =>$url ) {
-    ?>
-    <option value="<?= $url; ?>" <?= ($script_name == $url) ? 'selected' : ''?>><?= $apiname; ?></option>
-    <?php
-            }
-    ?>
-    </optgroup>
-<?php
-        }
-    }
-?>
-</select>
+<?php $script_name = end(explode('/', $_SERVER["SCRIPT_NAME"])); ?>
+<?php $item_count = 0; ?>
+<div class="btn-group">
+    <a class="btn btn-primary" href="./">回範例列表</a>
+    <div class="btn-group">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        範例選單
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <?php foreach ($examples_list as $group_name => $group) { ?>
+                <?php $item_count++; ?>
+            <li class="dropdown-submenu">
+                <a tabindex="-1" href="#"><?= $group_name ?></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <?php foreach ($group as $example) { ?>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#"><?= $example['name'] ?></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <?php if (count($example['examples']) > 0) {?>
+                            <?php foreach ($example['examples'] as $apiname => $url) { ?>
+                            <li><a href="<?= $url ?>"><?= $apiname ?></a></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <li class="disabled"><a href="#">建置中</a></li>
+                        <?php } ?>
+                        </ul>
+                    </li>
+                <?php } ?>
+                </ul>
+            </li>
+                <?php if ($item_count < count($examples_list)) { ?>
+            <li role="presentation" class="divider"></li>
+                <?php } ?>
+            <?php } ?>
+        </ul>
+    </div>
 </div>
-</form>
