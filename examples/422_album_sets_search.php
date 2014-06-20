@@ -49,7 +49,7 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName());
     </form>
     <?php if (!empty($_POST['name']) and !empty($_POST['set_id'])) {?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->sets->search(<?= htmlspecialchars($_POST['name'])?>, array('set_id' => <?= htmlspecialchars($_POST['set_id']) ?>)</pre>
+    <pre>$pixapi->album->sets->search(<?= htmlspecialchars($_POST['name'])?>, array('set_id' => <?= htmlspecialchars($_POST['set_id']) ?>))</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->search($_POST['name'], array('set_id' => $_POST['set_id']))); ?></pre>
     <?php }?>
