@@ -49,9 +49,9 @@ if (isset($_GET['folder_id'])) {
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">選擇相簿資料夾</label>
         <div class="col-sm-5">
-            <select name="set_folder_id" class="form-control">
+            <select name="folder_id" class="form-control">
                 <?php foreach($folders as $folder) { ?>
-                <option value="?folder_id=<?= $folder['id'] ?>"><?= $folder['title']?></option>
+                <option value="<?= $folder['id'] ?>"><?= $folder['title']?></option>
                 <?php } ?>
             </select>
         </div>
@@ -66,18 +66,17 @@ if (isset($_GET['folder_id'])) {
         </div>
       </div>
     <?php } ?>
-      <input type="hidden" name="folder_id" value="<?= $folder_id ?>">
       <button type="submit" class="btn btn-primary">修改相簿順序</button>
     </form>
     <?php } ?>
     <?php } else {?>
     <p class="text-left">抱歉，您的相簿內未有資料夾可供操作，請先到您的<a target="_blank" href="http://panel.pixnet.cc/album/albummanagement">管理後台</a>新增資料夾以順利使用</p>
     <?php } ?>
-    <?php if (!empty($_POST['series']) and isset($_POST['set_folder_id'])) {
+    <?php if (!empty($_POST['series']) and isset($_POST['folder_id'])) {
     ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->sets->position(<?= htmlspecialchars($_POST['set_folder_id'])?>, <?= htmlspecialchars($order)?>, $options)
+        $pixapi->album->sets->position(<?= $folder_id ?>, '<?= htmlspecialchars($order)?>', $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->sets->position($_POST['folder_id'], $order)) ?></pre>
