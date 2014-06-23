@@ -23,7 +23,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
     public function testHot()
     {
         $actual = self::$pixapi->mainpage->album->hot(0, array('api_version' => 2, 'count' => 10));
-        $this->assertCount(10, $actual['sets']);
+        $this->assertLessThanOrEqual(10, count($actual['sets']));
     }
 
     /**
@@ -38,7 +38,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
     public function testLatest()
     {
         $actual = self::$pixapi->mainpage->album->latest(0, array('api_version' => 2, 'count' => 10));
-        $this->assertCount(10, $actual['sets']);
+        $this->assertLessThanOrEqual(10, count($actual['sets']));
     }
 
     /**
@@ -53,7 +53,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
     public function testHotWeekly()
     {
         $actual = self::$pixapi->mainpage->album->hot_weekly(0, array('api_version' => 2, 'count' => 10));
-        $this->assertCount(10, $actual['sets']);
+        $this->assertLessThanOrEqual(10, count($actual['sets']));
     }
 
     /**
