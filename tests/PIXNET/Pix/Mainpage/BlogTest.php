@@ -45,7 +45,6 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
     public function testHotException()
     {
         $actual = self::$pixapi->mainpage->blog->hot('');
-        $this->assertCount(10, $actual);
     }
 
     public function testLatest()
@@ -61,7 +60,6 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
     public function testLatestException()
     {
         $actual = self::$pixapi->mainpage->blog->latest('');
-        $this->assertCount(10, $actual);
     }
 
     public function testHotWeekly()
@@ -77,6 +75,5 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
     public function testHotWeeklyException()
     {
         $actual = self::$pixapi->mainpage->blog->hot_weekly('');
-        $this->assertCount(10, $actual);
     }
 }
