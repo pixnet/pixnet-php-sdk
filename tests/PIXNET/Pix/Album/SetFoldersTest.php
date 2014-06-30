@@ -14,6 +14,14 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->album->setfolders->search('');
+    }
+
     public function testSearch()
     {
         $expected = ['4948779', '4948785'];
@@ -22,6 +30,14 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
             $actual = $set['id'];
             $this->assertTrue(in_array($set['id'], $expected));
         }
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testPositionException()
+    {
+        self::$pixapi->album->setfolders->position('');
     }
 
     public function testPosition()
