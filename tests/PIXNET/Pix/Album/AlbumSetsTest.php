@@ -37,6 +37,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->sets->delete('');
+    }
+
     public function testCreate()
     {
         for ($i = 0; $i < 5; $i++) {
@@ -47,6 +55,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($desc, $ret['description']);
             self::$pixapi->album->sets->delete($ret['id']);
         }
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testPositionException()
+    {
+        self::$pixapi->Album->sets->position('', '');
     }
 
     public function testPosition()
@@ -64,6 +80,22 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $actual[] = $set['id'];
         }
         $this->assertEquals($actual, $expected);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->Album->Sets->search('');
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchTwoParamsException()
+    {
+        self::$pixapi->Album->Sets->search('', '');
     }
 
     public function testSearch()
@@ -90,6 +122,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->destoryTempSets($tempSets);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testElementsException()
+    {
+        self::$pixapi->album->sets->elements('', '');
+    }
+
     public function testElements()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
@@ -101,6 +141,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($actual, $expected);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCommentsException()
+    {
+        self::$pixapi->album->sets->comments('', '');
+    }
+
     public function testComments()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
@@ -110,6 +158,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $actual[] = $comm['id'];
         }
         $this->assertEquals($actual, $expected);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testUpdateException()
+    {
+        self::$pixapi->album->sets->search('', '');
     }
 
     public function testUpdate()
@@ -126,6 +182,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->sets->update(4948710, $current_title, $current_desc, ['parent_id' => '4948779']);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        self::$pixapi->album->sets->delete('');
+    }
+
     public function testDelete()
     {
         $tempSets = $this->createTempSets();
@@ -138,6 +202,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             }
         }
         $this->assertEquals($actual, $expected);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testNearbyException()
+    {
+        $ret = self::$pixapi->album->sets->nearby('', '', '');
     }
 
     public function testNearby()
