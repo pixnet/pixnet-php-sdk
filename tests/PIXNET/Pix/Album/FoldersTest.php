@@ -63,7 +63,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
-    public function testdeleteException()
+    public function testDeleteException()
     {
         self::$pixapi->album->folders->delete('');
     }
