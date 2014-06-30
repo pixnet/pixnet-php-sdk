@@ -14,6 +14,22 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->album->folders->search('');
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchTwoParamException()
+    {
+        self::$pixapi->album->folders->search('', '');
+    }
+
     public function testSearch()
     {
         $expected = '4948779';
@@ -26,6 +42,14 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->folders->create('', '');
+    }
+
     public function testCreate()
     {
         $expected_title = 'PIXNET_SDK_TITLE';
@@ -34,6 +58,14 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected_title, $tempFolder['title']);
         $this->assertEquals($expected_desc, $tempFolder['description']);
         self::$pixapi->album->folders->delete($tempFolder['id']);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testdeleteException()
+    {
+        self::$pixapi->album->folders->delete('');
     }
 
     public function testDelete()
@@ -52,6 +84,14 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
             }
         }
         $this->assertEquals($actual, $expected);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testUpdateException()
+    {
+        self::$pixapi->album->folders->update('', '', '');
     }
 
     public function testUpdate()
