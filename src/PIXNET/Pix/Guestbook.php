@@ -34,16 +34,16 @@ class Pix_Guestbook extends PixAPI
         return $response;
     }
 
-    public function create($username, $body, $options = array())
+    public function create($username, $title, $body, $options = array())
     {
-        if ('' == $username or '' == $body) {
+        if ('' == $username or '' == $title or '' == $body) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $parameters = $this->mergeParameters(
-            array('user' => $username, 'body' => $body),
+            array('user' => $username, 'title' => $title, 'body' => $body),
             $options,
             array('is_open'),
-            array('author','title','url','email')
+            array('author', 'url','email')
         );
         $response = $this->query('guestbook', $parameters, 'POST');
         return $response;
