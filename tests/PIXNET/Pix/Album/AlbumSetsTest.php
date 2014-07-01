@@ -42,7 +42,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateException()
     {
-        self::$pixapi->album->sets->delete('');
+        self::$pixapi->album->sets->create('', '');
     }
 
     public function testCreate()
@@ -165,7 +165,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateException()
     {
-        self::$pixapi->album->sets->search('', '');
+        self::$pixapi->album->sets->update('', '', '');
     }
 
     public function testUpdate()
