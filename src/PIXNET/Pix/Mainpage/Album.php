@@ -11,7 +11,6 @@ class Pix_Mainpage_Album extends PixAPI
         $this->client = $client;
     }
 
-
     public function columns($options = array())
     {
         $parameters = $this->mergeParameters(

@@ -11,7 +11,6 @@ class Pix_Mainpage_Blog extends PixAPI
         $this->client = $client;
     }
 
-
     public function columns($category_id = '', $options = array())
     {
         if ('' === $category_id) {
