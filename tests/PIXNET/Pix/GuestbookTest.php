@@ -42,6 +42,13 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
         $this->assertCount(1, $actual['articles']);
     }
 
+    public function testSearchId()
+    {
+        $actual = self::$pixapi->guestbook->search(self::$guestbook_id);
+
+        $this->assertEquals(self::$guestbook_id, $actual['article']['id']);
+    }
+
     public function testReply()
     {
         $actual = self::$pixapi->guestbook->reply(self::$guestbook_id, 'testreply');
