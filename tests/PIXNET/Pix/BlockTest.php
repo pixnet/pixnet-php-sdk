@@ -1,5 +1,5 @@
 <?php
-class Pix_Block_GroupsTest extends PHPUnit_Framework_TestCase
+class Pix_Block_Test extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
 
