@@ -322,6 +322,17 @@ class PixAPI
     }
 
     /**
+     * resetSession 清空SESSION
+     *
+     * @return vodi
+     */
+    public function resetSession()
+    {
+        $this->debug(__METHOD__, $key);
+        unset($_SESSION[self::SESSION_NAME]);
+    }
+
+    /**
      * checkAPIMethod 檢查是否有支援此API
      *
      * @param string $api API名稱
