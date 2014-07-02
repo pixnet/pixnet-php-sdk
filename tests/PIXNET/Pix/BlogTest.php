@@ -27,6 +27,6 @@ class Pix_BlogTest extends PHPUnit_Framework_TestCase
      */
     public function testSubClassNotFoundException()
     {
-        $actual = self::$pixapi->blog->xxx;
+        $actual = self::$pixapi->blog->notfound;
     }
 }

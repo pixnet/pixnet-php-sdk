@@ -48,6 +48,6 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
      */
     public function testSubClassNotFoundException()
     {
-        $actual = self::$pixapi->index->xxx;
+        $actual = self::$pixapi->index->notfound;
     }
 }

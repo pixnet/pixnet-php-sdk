@@ -53,6 +53,6 @@ class Pix_FriendTest extends PHPUnit_Framework_TestCase
      */
     public function testSubClassNotFoundException()
     {
-        $actual = self::$pixapi->friend->xxx;
+        $actual = self::$pixapi->friend->notfound;
     }
 }

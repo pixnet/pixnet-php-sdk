@@ -29,6 +29,6 @@ class Pix_MainpageTest extends PHPUnit_Framework_TestCase
      */
     public function testSubClassNotFoundException()
     {
-        $actual = self::$pixapi->mainpage->xxx;
+        $actual = self::$pixapi->mainpage->notfound;
     }
 }
