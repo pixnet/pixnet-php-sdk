@@ -20,7 +20,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <pre>$pixapi->mainpage->album->latest($category_id, $options);</pre>
     <h1 class="page-header">列出全站近期熱門相簿</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->mainpage->album->hot_weekly($category_id, $options);</pre>
+    <pre>$pixapi->mainpage->album->hotWeekly($category_id, $options);</pre>
 </div>
 </body>
 </html>

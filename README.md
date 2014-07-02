@@ -154,20 +154,20 @@ $pixapi = new PixAPI(array(
 - 列出文章專欄 $pixapi->mainpage->blog->columns();
 - 列出全站熱門 $pixapi->mainpage->blog->hot($options);
 - 列出全站最新 $pixapi->mainpage->blog->latest($options);
-- 列出全站近期影片 $pixapi->mainpage->blog->hot_weekly($options);
+- 列出全站近期影片 $pixapi->mainpage->blog->hotWeekly($options);
 ```
 ####相簿
 ```php
 - 列出相簿專欄 $pixapi->mainpage->album->columns();
 - 列出全站熱門 $pixapi->mainpage->album->hot($options);
 - 列出全站最新 $pixapi->mainpage->album->latest($options);
-- 列出全站近期影片 $pixapi->mainpage->album->hot_weekly($options);
+- 列出全站近期影片 $pixapi->mainpage->album->hotWeekly($options);
 ```
 ####影片
 ```php
 - 列出全站熱門 $pixapi->mainpage->video->hot($options);
 - 列出全站最新 $pixapi->mainpage->video->latest($options);
-- 列出全站近期影片 $pixapi->mainpage->video->hot_weekly($options);
+- 列出全站近期影片 $pixapi->mainpage->video->hotWeekly($options);
 ```
 ###使用者
 ```php

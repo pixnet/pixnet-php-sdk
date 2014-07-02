@@ -19,7 +19,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <pre>$pixapi->mainpage->video->latest($options);</pre>
     <h1 class="page-header">列出全站近期熱門影片</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->mainpage->video->hot_weekly($options);</pre>
+    <pre>$pixapi->mainpage->video->hotWeekly($options);</pre>
 </div>
 </body>
 </html>

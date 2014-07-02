@@ -64,7 +64,7 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
 
     public function testHotWeekly()
     {
-        $actual = self::$pixapi->mainpage->blog->hot_weekly(0);
+        $actual = self::$pixapi->mainpage->blog->hotWeekly(0);
         $this->assertLessThanOrEqual(10, count($actual));
     }
 
@@ -74,6 +74,6 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
      */
     public function testHotWeeklyException()
     {
-        $actual = self::$pixapi->mainpage->blog->hot_weekly('');
+        $actual = self::$pixapi->mainpage->blog->hotWeekly('');
     }
 }

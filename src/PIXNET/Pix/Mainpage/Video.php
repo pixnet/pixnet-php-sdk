@@ -35,7 +35,7 @@ class Pix_Mainpage_Video extends PixAPI
         return $response;
     }
 
-    public function hot_weekly($options = array())
+    public function hotWeekly($options = array())
     {
         $parameters = $this->mergeParameters(
             array(),

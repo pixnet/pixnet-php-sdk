@@ -52,7 +52,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
 
     public function testHotWeekly()
     {
-        $actual = self::$pixapi->mainpage->album->hot_weekly(0, array('api_version' => 2, 'count' => 10));
+        $actual = self::$pixapi->mainpage->album->hotWeekly(0, array('api_version' => 2, 'count' => 10));
         $this->assertLessThanOrEqual(10, count($actual['sets']));
     }
 
@@ -62,6 +62,6 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
      */
     public function testHotWeeklyException()
     {
-        $actual = self::$pixapi->mainpage->album->hot_weekly('');
+        $actual = self::$pixapi->mainpage->album->hotWeekly('');
     }
 }
