@@ -36,7 +36,7 @@ class Pix_Blog extends PixAPI
         return $this->getResult($response, 'blog');
     }
 
-    public function site_categories()
+    public function siteCategories()
     {
         $response = $this->query('blog/site_categories');
         return $this->getResult($response, 'categories');

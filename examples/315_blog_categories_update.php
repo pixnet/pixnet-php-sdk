@@ -85,7 +85,7 @@ if ($query2 != '') {
             <div class="col-sm-10">
               <select class="form-control" id="argv3" name="argv3">
               <?php
-              $site_categories = $pixapi->blog->site_categories();
+              $site_categories = $pixapi->blog->siteCategories();
               foreach ($site_categories as $site_categorie) {
               ?>
                   <option value="<?= $site_categorie['id'] ?>" <?= ($site_categorie['id'] == $category['site_category_id']) ? ' selected="selected"' : ''; ?>><?= $site_categorie['name'] ?></option>

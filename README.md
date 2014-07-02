@@ -55,7 +55,7 @@ $pixapi = new PixAPI(array(
 ```php
 - 列出部落格資訊 $pixapi->blog->info();
 - 查詢其他部落格公開資訊 $pixapi->blog->info($name);
-- 取得部落格全站分類 $pixapi->blog->site_categories();
+- 取得部落格全站分類 $pixapi->blog->siteCategories();
 ```
 ####部落格分類
 ```php
