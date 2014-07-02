@@ -24,6 +24,12 @@ class Pix_BlogTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('emmatest的部落格', $actual['name']);
     }
 
+    public function testSiteCategories()
+    {
+        $actual = self::$pixapi->blog->siteCategories();
+        $this->assertCount(41, $actual);
+    }
+
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
