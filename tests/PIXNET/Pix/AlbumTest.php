@@ -19,6 +19,13 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+
+    public function testMain()
+    {
+        $actual = self::$pixapi->album->main();
+        $this->assertEquals(0, $actual['error']);
+    }
+
     public function testSiteCategories()
     {
         $actual = self::$pixapi->album->siteCategories();
@@ -27,6 +34,11 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testConfig()
+    {
+        $actual = self::$pixapi->album->config();
+        $this->assertEquals(0, $actual['error']);
+    }
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
