@@ -26,4 +26,13 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
         $expected = $ret['categories'];
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
+     */
+    public function testSubClassNotFoundException()
+    {
+        $actual = self::$pixapi->album->notfound;
+    }
 }
