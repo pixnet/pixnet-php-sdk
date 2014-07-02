@@ -14,9 +14,6 @@ class Pix_Block_GroupsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
-    /**
-     * @group test
-     */
     public function testCreate()
     {
         $actual_all = self::$pixapi->block->create('emma');
@@ -42,9 +39,6 @@ class Pix_Block_GroupsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group test
-     */
     public function testDelete()
     {
         self::$pixapi->block->delete('emma');
