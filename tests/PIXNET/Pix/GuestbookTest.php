@@ -146,6 +146,6 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
      */
     public function testSubClassNotFoundException()
     {
-        $actual = self::$pixapi->blog->notfound;
+        $actual = self::$pixapi->guestbook->notfound;
     }
 }
