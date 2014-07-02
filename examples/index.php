@@ -2,6 +2,11 @@
 if (file_exists(__DIR__ . '/init.inc.php')) {
     require_once(__DIR__ . '/bootstrap.php');
 }
+if ('' != $_GET['logout']) {
+    $pixapi->resetSession();
+    header('location:?');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +20,7 @@ if (file_exists(__DIR__ . '/init.inc.php')) {
     <h1 class="page-header">Getting started</h1>
     <?php if (file_exists(__DIR__ . '/init.inc.php')) { ?>
     <?php if ($pixapi->checkAuth()) { ?>
-    <div class="alert alert-success">已經取得使用者授權，您登入的是<?= $pixapi->getUserName(); ?></div>
+    <div class="alert alert-success">已經取得使用者授權，您登入的是<?= $pixapi->getUserName(); ?> <a href="?logout=1">登出</a></div>
     <?php } else { ?>
     <div class="alert alert-danger"><a href="auth.php">尚未取得授權，按此前往授權</a></div>
     <?php }?>
