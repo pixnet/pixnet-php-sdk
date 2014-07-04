@@ -104,6 +104,7 @@ $examples_list = array(
         array(
             'name' => '相簿留言',
             'examples' => array(
+                '取得相簿留言' => '424_album_sets_comments.php',
             )
         ),
         array(
