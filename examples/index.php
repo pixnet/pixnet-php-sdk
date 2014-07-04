@@ -45,8 +45,9 @@ $tab = intval($_GET['tab']);
 foreach ($examples_list as $group_name => $group) {
     $i = 0;
 ?>
-                <li class="<?= ($tab == $j++) ? 'active' : ''; ?>"><a href="#tab<?= $j ?>" data-toggle="tab"><?= $group_name; ?></a></li>
+                <li class="<?= ($tab == $j) ? 'active' : ''; ?>"><a href="#tab<?= $j ?>" data-toggle="tab"><?= $group_name; ?></a></li>
 <?php
+    $j++;
 }
 ?>
                 <li class=""><a href="#tabhelp" data-toggle="tab">安裝說明</a></li>
@@ -58,7 +59,7 @@ $j = 0;
 foreach ($examples_list as $group_name => $group) {
     $i = 0;
 ?>
-                <div class="tab-pane <?= ($tab == ($j++)) ? 'active' : ''; ?>" id="tab<?= $j ?>">
+                <div class="tab-pane <?= ($tab == $j) ? 'active' : ''; ?>" id="tab<?= $j ?>">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -78,7 +79,7 @@ foreach ($examples_list as $group_name => $group) {
 <?php
         foreach ($example['examples'] as $name =>$url ) {
 ?><li>
-                                    <a href="<?= $url; ?>"><?= $name; ?></a>
+                                    <a href="<?= $url; ?>?tab=<?= $j; ?>"><?= $name; ?></a>
                                     </li>
 <?php
         }
@@ -93,6 +94,7 @@ foreach ($examples_list as $group_name => $group) {
                     </table>
                 </div>
 <?php
+    $j++;
 }
 ?>
                 <div class="tab-pane" id="tabhelp">
