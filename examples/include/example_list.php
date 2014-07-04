@@ -97,7 +97,12 @@ $examples_list = array(
             )
         ),
         array(
-            'name' => '留言',
+            'name' => '相片留言',
+            'examples' => array(
+            )
+        ),
+        array(
+            'name' => '相簿留言',
             'examples' => array(
             )
         ),
