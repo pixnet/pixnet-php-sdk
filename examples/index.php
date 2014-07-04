@@ -104,5 +104,15 @@ foreach ($examples_list as $group_name => $group) {
         </div>
     </div>
 </div>
+<script>
+$('body').ready(function(){
+    var url_arr = location.href.split('/');
+    var anchor = url_arr[url_arr.length - 1];
+    $('a[href="' + anchor + '"]').tab('show');
+});
+$('a[data-toggle="tab"]').click(function(){
+    window.history.pushState("object or string", "Title", this.href);
+});
+</script>
 </body>
 </html>
