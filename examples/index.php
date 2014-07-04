@@ -41,10 +41,11 @@ if ('' != $_GET['logout']) {
             <ul class="nav nav-tabs" id="example_tabs">
 <?php
 $j = 0;
+$tab = intval($_GET['tab']);
 foreach ($examples_list as $group_name => $group) {
     $i = 0;
 ?>
-                <li class="<?= (0 == $j++) ? 'active' : ''; ?>"><a href="#tab<?= $j ?>" data-toggle="tab"><?= $group_name; ?></a></li>
+                <li class="<?= ($tab == $j++) ? 'active' : ''; ?>"><a href="#tab<?= $j ?>" data-toggle="tab"><?= $group_name; ?></a></li>
 <?php
 }
 ?>
@@ -57,7 +58,7 @@ $j = 0;
 foreach ($examples_list as $group_name => $group) {
     $i = 0;
 ?>
-                <div class="tab-pane <?= (0 == ($j++)) ? 'active' : ''; ?>" id="tab<?= $j ?>">
+                <div class="tab-pane <?= ($tab == ($j++)) ? 'active' : ''; ?>" id="tab<?= $j ?>">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -101,11 +102,5 @@ foreach ($examples_list as $group_name => $group) {
         </div>
     </div>
 </div>
-
-<script>
-$(function () {
-    $('#example_tabs a:first').tab('show')
-})
-</script>
 </body>
 </html>
