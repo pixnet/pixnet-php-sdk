@@ -10,4 +10,20 @@ class Pix_Album_Comments extends PixAPI
     {
         $this->client = $client;
     }
+
+    public function create($name, $set_id, $body, $options = [])
+    {
+        if (empty($name) or empty($set_id) or empty($body)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name, 'set_id' => $set_id, 'body' => $body),
+            $options,
+            array(),
+            array('password')
+        );
+        $response = $this->query('album/set_comments', $parameters, 'POST');
+        return $response;
+        return $this->getResult($response, 'comments');
+    }
 }
