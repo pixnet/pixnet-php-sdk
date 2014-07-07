@@ -110,9 +110,9 @@ $examples_list = array(
         array(
             'name' => '人臉標記',
             'examples' => array(
-                '新增人臉標記' => '460_album_faces_create.php',
-                '更新人臉標記' => '461_album_faces_update.php',
-                '刪除人臉標記' => '462_album_faces_delete.php',
+                '新增人臉標記' => '470_album_faces_create.php',
+                '更新人臉標記' => '471_album_faces_update.php',
+                '刪除人臉標記' => '472_album_faces_delete.php',
             )
         )
     ),
