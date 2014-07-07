@@ -111,7 +111,7 @@ $('body').ready(function(){
     $('a[href="' + anchor + '"]').tab('show');
 });
 $('a[data-toggle="tab"]').click(function(){
-    window.history.pushState("object or string", "Title", this.href);
+    window.history.pushState("", "", this.href);
 });
 </script>
 </body>
