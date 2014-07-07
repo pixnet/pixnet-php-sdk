@@ -106,6 +106,7 @@ $examples_list = array(
             'examples' => array(
                 '取得相簿留言' => '424_album_sets_comments.php',
                 '新增相簿留言' => '460_album_comments_create.php',
+                '讀取單一留言' => '461_album_comments_search.php',
             )
         ),
         array(
