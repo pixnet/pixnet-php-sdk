@@ -70,4 +70,19 @@ class Pix_Album_Comments extends PixAPI
 
         return $this->spam($name, $comment_id, 'mark_ham', $options);
     }
+
+    public function delete($name, $comment_id, $options = [])
+    {
+        if (empty($name) or empty($comment_id)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            array('user' => $name),
+            $options,
+            array(),
+            array()
+        );
+        $response = $this->query('album/set_comments/' . intval($comment_id), $parameters, 'DELETE');
+        return $response;
+    }
 }

@@ -109,6 +109,7 @@ $examples_list = array(
                 '讀取單一留言' => '461_album_comments_search.php',
                 '將留言設為廣告留言' => '462_album_comments_markspam.php',
                 '將留言設為非廣告留言' => '463_album_comments_unmarkspam.php',
+                '刪除相簿留言' => '464_album_comments_delete.php',
             )
         ),
         array(
