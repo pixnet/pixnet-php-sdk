@@ -23,7 +23,6 @@ class Pix_Album_Comments extends PixAPI
             array('password')
         );
         $response = $this->query('album/set_comments', $parameters, 'POST');
-        return $response;
-        return $this->getResult($response, 'comments');
+        return $this->getResult($response, 'comment');
     }
 }
