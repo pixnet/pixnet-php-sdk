@@ -105,12 +105,12 @@ $examples_list = array(
         array(
             'name' => '相簿留言',
             'examples' => array(
-                '取得相簿留言' => '424_album_sets_comments.php',
-                '新增相簿留言' => '460_album_albumcomments_create.php',
-                '讀取單一留言' => '461_album_albumcomments_search.php',
-                '將留言設為廣告留言' => '462_album_albumcomments_markspam.php',
-                '將留言設為非廣告留言' => '463_album_albumcomments_unmarkspam.php',
-                '刪除相簿留言' => '464_album_albumcomments_delete.php',
+                '取得相簿留言' => '460_album_albumcomments_search.php',
+                '新增相簿留言' => '461_album_albumcomments_create.php',
+                '讀取單一留言' => '462_album_albumcomments_search.php',
+                '將留言設為廣告留言' => '463_album_albumcomments_markspam.php',
+                '將留言設為非廣告留言' => '464_album_albumcomments_unmarkspam.php',
+                '刪除相簿留言' => '465_album_albumcomments_delete.php',
             )
         ),
         array(
