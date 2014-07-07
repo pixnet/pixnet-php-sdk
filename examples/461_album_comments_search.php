@@ -27,11 +27,11 @@ $comments = $pixapi->album->sets->comments($name, $current_set['id']);
         <ul>
             <li>
                 <p>name</p>
-                <p>要留言的相本擁有者</p>
+                <p>相簿擁有者</p>
             </li>
             <li>
-                <p>comment</p>
-                <p>留言內容，文字</p>
+                <p>comment_id</p>
+                <p>該留言 id</p>
             </li>
         </ul>
         <p>選填參數</p>
