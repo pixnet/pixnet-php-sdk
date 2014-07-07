@@ -9,7 +9,7 @@ if (!isset($_GET['set_id'])) {
     $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
 }
 
-$comments = $pixapi->album->sets->comments($name, $current_set['id']);
+$albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,9 +19,9 @@ $comments = $pixapi->album->sets->comments($name, $current_set['id']);
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">刪除相簿單一留言</h1>
+    <h1 class="page-header">取得相簿單一留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->comments->delete($name, $comment_id,$options = array());</pre>
+    <pre>$pixapi->album->albumcomments->search($name, $comment_id,$options = array());</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -62,13 +62,13 @@ $comments = $pixapi->album->sets->comments($name, $current_set['id']);
         <label class="col-sm-2 control-label" for="query">請選擇留言</label>
         <div class="col-sm-5">
             <select class="form-control" id="query" name="comment_id">
-                <?php foreach ($comments as $c) { ?>
+                <?php foreach ($albumcomments as $c) { ?>
                 <option value="<?= $c['id']?>"><?= $c['body']?></option>
                 <?php } ?>
             </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">刪除留言</button>
+      <button type="submit" class="btn btn-primary">取得留言</button>
     </form>
     <script>
     var updateComment = function(set_id) {
@@ -84,10 +84,10 @@ $comments = $pixapi->album->sets->comments($name, $current_set['id']);
     <?php if (!empty($_POST['comment_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->delete('<?= $name?>', '<?= $_POST['comment_id'] ?>', $options)
+        $pixapi->album->albumcomments->search('<?= $name?>', '<?= $_POST['comment_id'] ?>', $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->delete($name, $_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($pixapi->album->albumcomments->search($name, $_POST['comment_id'])); ?></pre>
     <?php }?>
 </div>
 </body>
