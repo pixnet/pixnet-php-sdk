@@ -8,8 +8,6 @@ if (!isset($_GET['set_id'])) {
 } else {
     $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
 }
-
-$albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,9 +17,9 @@ $albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">取得相簿單一留言</h1>
+    <h1 class="page-header">取得相簿所有留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->albumcomments->search($name, ['comment_id' => $comment_id], $options);</pre>
+    <pre>$pixapi->album->albumcomments->search($name, ['set_id' => $set_id], $options);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -30,8 +28,8 @@ $albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
                 <p>相簿擁有者</p>
             </li>
             <li>
-                <p>comment_id</p>
-                <p>該留言 id</p>
+                <p>set_id</p>
+                <p>該相簿 id</p>
             </li>
         </ul>
         <p>選填參數</p>
@@ -47,7 +45,7 @@ $albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">請選擇相簿</label>
         <div class="col-sm-5">
-            <select class="form-control" id="query" name="set_id" onchange="updateComment(this.options[this.selectedIndex].value)">
+            <select class="form-control" id="query" name="set_id">
                 <?php foreach ($sets as $set) { ?>
                     <?php if ($set['id'] == $current_set['id']) {?>
                 <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
@@ -58,36 +56,15 @@ $albumcomments = $pixapi->album->sets->comments($name, $current_set['id']);
             </select>
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="query">請選擇留言</label>
-        <div class="col-sm-5">
-            <select class="form-control" id="query" name="comment_id">
-                <?php foreach ($albumcomments as $c) { ?>
-                <option value="<?= $c['id']?>"><?= $c['body']?></option>
-                <?php } ?>
-            </select>
-        </div>
-      </div>
       <button type="submit" class="btn btn-primary">取得留言</button>
     </form>
-    <script>
-    var updateComment = function(set_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        if (search.indexOf('set_id') > 0) {
-            search = search.split('&')[0];
-        }
-        location = (uri + search + '&set_id=' + set_id + hash);
-    }
-    </script>
-    <?php if (!empty($_POST['comment_id'])) {?>
+    <?php if (!empty($_POST['set_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->albumcomments->search('<?= $name?>', ['comment_id' => <?= $_POST['comment_id'] ?>], $options)
+        $pixapi->album->albumcomments->search('<?= $name?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->albumcomments->search($name, ['comment_id' => $_POST['comment_id']])); ?></pre>
+    <pre><?php print_r($pixapi->album->albumcomments->search($name, ['set_id' => $_POST['set_id']])); ?></pre>
     <?php }?>
 </div>
 </body>

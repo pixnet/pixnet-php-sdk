@@ -26,19 +26,25 @@ class Pix_Album_AlbumComments extends PixAPI
         return $this->getResult($response, 'comment');
     }
 
-    public function search($name, $comment_id, $options = [])
+    public function search($name, $data, $options = [])
     {
-        if (empty($name) or empty($comment_id)) {
+        if (empty($name) or (!isset($data['set_id']) and !isset($data['comment_id']))) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
+        if (isset($data['set_id'])) {
+            $data['user'] = $name;
+            $query_uri = 'album/set_comments';
+        } else {
+            $query_uri = 'album/set_comments/' . $data['comment_id'];
+            $data = ['user' => $name];
+        }
         $parameters = $this->mergeParameters(
-            array('user' => $name),
+            $data,
             $options,
             array(),
-            array()
+            array('password')
         );
-        $response = $this->query('album/set_comments/' . intval($comment_id), $parameters, 'GET');
-        return $this->getResult($response, 'comment');
+        return $this->query($query_uri, $parameters, 'GET');
     }
 
     private function spam($name, $comment_id, $mode, $options)
