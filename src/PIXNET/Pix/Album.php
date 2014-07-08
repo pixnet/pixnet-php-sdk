@@ -20,7 +20,7 @@ class Pix_Album extends PixAPI
                 'setfolders' => 'Pix_Album_SetFolders',
                 'articles' => 'Pix_Album_Articles',
                 'elements' => 'Pix_Album_Elements',
-                'albumcomments' => 'Pix_Album_AlbumComments',
+                'comments' => 'Pix_Album_Comments',
                 'elementcomments' => 'Pix_Album_ElementComments',
                 'faces' => 'Pix_Album_Faces',
             );

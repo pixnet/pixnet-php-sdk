@@ -19,7 +19,7 @@ if (!isset($_GET['set_id'])) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">取得相簿所有留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->albumcomments->search($name, ['set_id' => $set_id], $options);</pre>
+    <pre>$pixapi->album->comments->search($name, ['set_id' => $set_id], $options);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -61,10 +61,10 @@ if (!isset($_GET['set_id'])) {
     <?php if (!empty($_POST['set_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->albumcomments->search('<?= $name?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
+        $pixapi->album->comments->search('<?= $name?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->albumcomments->search($name, ['set_id' => $_POST['set_id']])); ?></pre>
+    <pre><?php print_r($pixapi->album->comments->search($name, ['set_id' => $_POST['set_id']])); ?></pre>
     <?php }?>
 </div>
 </body>

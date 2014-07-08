@@ -14,7 +14,7 @@ $sets = $pixapi->album->sets->search($name);
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">新增相簿留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->albumcomments->create($name, $set_id, $comment,$options = array());</pre>
+    <pre>$pixapi->album->comments->create($name, $set_id, $comment,$options = array());</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -62,10 +62,10 @@ $sets = $pixapi->album->sets->search($name);
     <?php if (!empty($_POST['set_id']) and !empty($_POST['comment'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->albumcomments->create('<?= $name?>', <?= htmlspecialchars($_POST['set_id'])?>, '<?= $_POST['comment'] ?>', $options)
+        $pixapi->album->comments->create('<?= $name?>', <?= htmlspecialchars($_POST['set_id'])?>, '<?= $_POST['comment'] ?>', $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->albumcomments->create($name, $_POST['set_id'], $_POST['comment'])); ?></pre>
+    <pre><?php print_r($pixapi->album->comments->create($name, $_POST['set_id'], $_POST['comment'])); ?></pre>
     <?php }?>
 </div>
 </body>
