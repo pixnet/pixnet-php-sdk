@@ -32,4 +32,20 @@ class Pix_Album_Elements_Comments extends Pix_Comments
         $response = $this->query('album/comments', $parameters, 'POST');
         return $this->getResult($response, 'comment');
     }
+
+    public function search($name, $data, $options = [])
+    {
+        if (empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $data['user'] = $name;
+        $parameters = $this->mergeParameters(
+            $data,
+            $options,
+            array('element_id', 'set_id'),
+            array('password')
+        );
+        $response = $this->query('album/comments', $parameters, 'GET');
+        return $this->getResult($response, 'comments');
+    }
 }
