@@ -11,6 +11,11 @@ class Pix_Album_Faces extends PixAPI
         $this->client = $client;
     }
 
+    public function __get($class_name)
+    {
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+    }
+
     public function create($user, $element_id, $x, $y, $w, $h)
     {
         if ('' == $user or '' == $element_id or '' == $x or '' == $y or '' == $w or '' == $h) {
