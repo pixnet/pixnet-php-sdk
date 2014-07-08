@@ -25,7 +25,6 @@ abstract class Pix_Comments extends PixAPI
 
     public function search($options = array())
     {
-        var_dump($this->api_path);
         if (!is_array($options)) {
             $parameters = array($options);
             $response = $this->query($this->api_path, $parameters, 'URI');
@@ -99,7 +98,7 @@ abstract class Pix_Comments extends PixAPI
         return $response;
     }
 
-    public function markSpam($comment_id)
+    public function markSpam($comment_id, $options = array())
     {
         if ('' == $comment_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);

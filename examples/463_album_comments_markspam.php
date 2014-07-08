@@ -27,7 +27,7 @@ foreach ($comments as $c) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">將留言設為廣告留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->comments->markSpam($name, $comment_id,$options = array());</pre>
+    <pre>$pixapi->album->comments->markSpam($comment_id);</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
@@ -90,10 +90,10 @@ foreach ($comments as $c) {
     <?php if (!empty($_POST['comment_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->markSpam('<?= $name?>', '<?= $_POST['comment_id'] ?>', $options)
+        $pixapi->album->comments->markSpam('<?= $_POST['comment_id'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->markSpam($name, $_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($pixapi->album->comments->markSpam($_POST['comment_id'])); ?></pre>
     <?php }?>
 </div>
 </body>
