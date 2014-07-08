@@ -21,7 +21,6 @@ class Pix_Album extends PixAPI
                 'articles' => 'Pix_Album_Articles',
                 'elements' => 'Pix_Album_Elements',
                 'albumcomments' => 'Pix_Album_AlbumComments',
-                'elementcomments' => 'Pix_Album_ElementComments',
                 'faces' => 'Pix_Album_Faces',
             );
         $class = $class_list[$class_name];
