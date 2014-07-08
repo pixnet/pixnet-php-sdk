@@ -4,11 +4,12 @@
  * All rights reserved.
  */
 
-class Pix_Album_Comments extends PixAPI
+class Pix_Album_Comments extends Pix_Comments
 {
     public function __construct($client)
     {
         $this->client = $client;
+        $this->setApiPath('album/set_comments');
     }
 
     public function create($name, $set_id, $body, $options = [])
@@ -45,50 +46,5 @@ class Pix_Album_Comments extends PixAPI
             array('password')
         );
         return $this->query($query_uri, $parameters, 'GET');
-    }
-
-    private function spam($name, $comment_id, $mode, $options)
-    {
-        $parameters = $this->mergeParameters(
-            array('user' => $name),
-            $options,
-            array(),
-            array()
-        );
-        $response = $this->query('album/set_comments/' . intval($comment_id) . '/' . $mode, $parameters, 'POST');
-        return $this->getResult($response, 'comment');
-    }
-
-    public function markSpam($name, $comment_id, $options = [])
-    {
-        if (empty($name) or empty($comment_id)) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-
-        return $this->spam($name, $comment_id, 'mark_spam', $options);
-    }
-
-    public function unmarkSpam($name, $comment_id, $options = [])
-    {
-        if (empty($name) or empty($comment_id)) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-
-        return $this->spam($name, $comment_id, 'mark_ham', $options);
-    }
-
-    public function delete($name, $comment_id, $options = [])
-    {
-        if (empty($name) or empty($comment_id)) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $parameters = $this->mergeParameters(
-            array('user' => $name),
-            $options,
-            array(),
-            array()
-        );
-        $response = $this->query('album/set_comments/' . intval($comment_id), $parameters, 'DELETE');
-        return $response;
     }
 }

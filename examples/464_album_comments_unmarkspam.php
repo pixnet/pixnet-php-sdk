@@ -27,24 +27,13 @@ foreach ($comments as $c) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">將留言設為廣告留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->comments->unmarkSpam($name, $comment_id,$options = array());</pre>
+    <pre>$pixapi->album->comments->markHam($comment_id)</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
             <li>
-                <p>name</p>
-                <p>相簿擁有者</p>
-            </li>
-            <li>
                 <p>comment_id</p>
                 <p>該留言 id</p>
-            </li>
-        </ul>
-        <p>選填參數</p>
-        <ul>
-            <li>
-                <p>password</p>
-                <p>如果指定使用者的相本被密碼保護，則需要指定這個參數以通過授權</p>
             </li>
         </ul>
     </div>
@@ -90,10 +79,10 @@ foreach ($comments as $c) {
     <?php if (!empty($_POST['comment_id'])) {?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->unmarkSpam('<?= $name?>', '<?= $_POST['comment_id'] ?>', $options)
+        $pixapi->album->comments->markHam('<?= $_POST['comment_id'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->unmarkSpam($name, $_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($pixapi->album->comments->markHam($_POST['comment_id'])); ?></pre>
     <?php }?>
 </div>
 </body>

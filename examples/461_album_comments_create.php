@@ -54,7 +54,7 @@ $sets = $pixapi->album->sets->search($name);
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">留言</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="query" name="comment" placeholder="請輸入留言" value="<?= $_POST['desc']? $_POST['desc'] : '這是 PIXNET_SDK 建立的相簿' ?>">
+            <input type="text" class="form-control" id="query" name="comment" placeholder="請輸入留言" value="<?= $_POST['desc']? $_POST['desc'] : '這是 PIXNET_SDK 建立的留言' ?>">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">新增留言</button>
