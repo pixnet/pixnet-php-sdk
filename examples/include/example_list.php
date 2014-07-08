@@ -200,7 +200,7 @@ $examples_list = array(
             'name' => '相簿',
             'examples' => array(
                 '列出相簿專欄' => '811_mainpage_album_columns.php',
-                '列出全站熱門、最新、近期相簿' => '812_mainpage_album_hot.php',
+                '列出全站熱門、最新、近期、精選相簿' => '812_mainpage_album_hot.php',
             )
         ),
         array(
