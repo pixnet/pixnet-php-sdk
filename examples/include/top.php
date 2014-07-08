@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <?php if (count($example['examples']) > 0) {?>
                             <?php foreach ($example['examples'] as $apiname => $url) { ?>
-                            <li><a href="<?= $url ?>"><?= $apiname ?></a></li>
+                            <li><a href="<?= $url ?>?tab=<?= $_GET['tab']?>"><?= $apiname ?></a></li>
                             <?php } ?>
                         <?php } else { ?>
                             <li class="disabled"><a href="#">建置中</a></li>

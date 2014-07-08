@@ -99,19 +99,26 @@ $examples_list = array(
         array(
             'name' => '相片留言',
             'examples' => array(
+                '取得相片留言' => '450_album_sets_comments.php',
             )
         ),
         array(
             'name' => '相簿留言',
             'examples' => array(
+                '取得相簿留言' => '460_album_albumcomments_search.php',
+                '新增相簿留言' => '461_album_albumcomments_create.php',
+                '讀取單一留言' => '462_album_albumcomments_search.php',
+                '將留言設為廣告留言' => '463_album_albumcomments_markspam.php',
+                '將留言設為非廣告留言' => '464_album_albumcomments_unmarkspam.php',
+                '刪除相簿留言' => '465_album_albumcomments_delete.php',
             )
         ),
         array(
             'name' => '人臉標記',
             'examples' => array(
-                '新增人臉標記' => '460_album_faces_create.php',
-                '更新人臉標記' => '461_album_faces_update.php',
-                '刪除人臉標記' => '462_album_faces_delete.php',
+                '新增人臉標記' => '470_album_faces_create.php',
+                '更新人臉標記' => '471_album_faces_update.php',
+                '刪除人臉標記' => '472_album_faces_delete.php',
             )
         )
     ),
