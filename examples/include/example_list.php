@@ -100,6 +100,7 @@ $examples_list = array(
             'name' => '相片留言',
             'examples' => array(
                 '取得相片留言' => '450_album_sets_comments.php',
+                '新增相片留言' => '453_album_elements_comments_create.php',
             )
         ),
         array(
