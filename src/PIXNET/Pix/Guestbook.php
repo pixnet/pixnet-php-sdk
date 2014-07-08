@@ -4,16 +4,12 @@
  * All rights reserved.
  */
 
-class Pix_Guestbook extends PixAPI
+class Pix_Guestbook extends Pix_Comments
 {
     public function __construct($client)
     {
         $this->client = $client;
-    }
-
-    public function __get($class_name)
-    {
-        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+        $this->setApiPath('guestbook');
     }
 
     public function search($options = array())
@@ -61,51 +57,6 @@ class Pix_Guestbook extends PixAPI
             array()
         );
         $response = $this->query('guestbook/' . $guestbook_id . '/reply', $parameters, 'POST');
-        return $response;
-    }
-
-    public function open($guestbook_id)
-    {
-        if ('' == $guestbook_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $response = $this->query('guestbook/' . $guestbook_id . '/open', array(), 'POST');
-        return $response;
-    }
-
-    public function close($guestbook_id)
-    {
-        if ('' == $guestbook_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $response = $this->query('guestbook/' . $guestbook_id . '/close', array(), 'POST');
-        return $response;
-    }
-
-    public function markSpam($guestbook_id)
-    {
-        if ('' == $guestbook_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $response = $this->query('guestbook/' . $guestbook_id . '/mark_spam', array(), 'POST');
-        return $response;
-    }
-
-    public function markHam($guestbook_id)
-    {
-        if ('' == $guestbook_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $response = $this->query('guestbook/' . $guestbook_id . '/mark_ham', array(), 'POST');
-        return $response;
-    }
-
-    public function delete($guestbook_id)
-    {
-        if ('' == $guestbook_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $response = $this->query('guestbook/' . $guestbook_id, array(), 'DELETE');
         return $response;
     }
 }
