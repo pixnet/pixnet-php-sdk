@@ -11,6 +11,11 @@ class Pix_Blog_Categories extends PixAPI
         $this->client = $client;
     }
 
+    public function __get($class_name)
+    {
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+    }
+
     public function search($category_id = '', $is_folder = false)
     {
         if ('' != $category_id) {

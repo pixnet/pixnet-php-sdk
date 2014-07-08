@@ -11,6 +11,11 @@ class Pix_Album_SetFolders extends PixAPI
         $this->client = $client;
     }
 
+    public function __get($class_name)
+    {
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+    }
+
     public function search($name, $options = array())
     {
         $parameters = $this->mergeParameters(

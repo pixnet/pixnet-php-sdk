@@ -11,6 +11,11 @@ class Pix_Mainpage_Album extends PixAPI
         $this->client = $client;
     }
 
+    public function __get($class_name)
+    {
+        throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
+    }
+
     public function columns($options = array())
     {
         $parameters = $this->mergeParameters(
