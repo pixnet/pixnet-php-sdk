@@ -19,7 +19,7 @@ class Pix_Album extends PixAPI
                 'sets' => 'Pix_Album_Sets',
                 'setfolders' => 'Pix_Album_SetFolders',
                 'articles' => 'Pix_Album_Articles',
-                'albumcomments' => 'Pix_Album_AlbumComments',
+                'elements' => 'Pix_Album_Elements',
                 'faces' => 'Pix_Album_Faces',
             );
         $class = $class_list[$class_name];

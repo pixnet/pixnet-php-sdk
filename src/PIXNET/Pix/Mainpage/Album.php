@@ -70,4 +70,10 @@ class Pix_Mainpage_Album extends PixAPI
         $response = $this->query('mainpage/album/categories/hot_weekly/' . $category_id, $parameters, 'GET');
         return $response;
     }
+
+    public function bestSelected()
+    {
+        $response = $this->query('mainpage/album/best_selected/', array(), 'GET');
+        return $response;
+    }
 }

@@ -21,6 +21,9 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">列出全站近期熱門相簿</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->mainpage->album->hotWeekly($category_id, $options);</pre>
+    <h1 class="page-header">列出全站近期精選相簿</h1>
+    <h3>呼叫方式</h3>
+    <pre>$pixapi->mainpage->album->bestSelected();</pre>
 </div>
 </body>
 </html>

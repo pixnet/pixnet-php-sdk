@@ -4,7 +4,7 @@
  * All rights reserved.
  */
 
-class Pix_Album_Element extends PixAPI
+class Pix_Album_Elements extends PixAPI
 {
     public function __construct($client)
     {
