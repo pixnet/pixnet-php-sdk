@@ -105,6 +105,7 @@ $examples_list = array(
                 '新增相片留言' => '453_album_elements_comments_create.php',
                 '將留言設為廣告留言' => '454_album_elements_comments_markspam.php',
                 '將留言設為非廣告留言' => '455_album_elements_comments_unmarkspam.php',
+                '刪除相片留言' => '456_album_elements_comments_delete.php',
             )
         ),
         array(
