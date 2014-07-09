@@ -28,7 +28,6 @@ class Pix_Album_Elements_Comments extends Pix_Comments
             array(),
             array('password')
         );
-        var_dump('album/comments');
         $response = $this->query('album/comments', $parameters, 'POST');
         return $this->getResult($response, 'comment');
     }
