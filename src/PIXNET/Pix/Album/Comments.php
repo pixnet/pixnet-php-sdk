@@ -45,6 +45,11 @@ class Pix_Album_Comments extends Pix_Comments
             array(),
             array('password')
         );
-        return $this->query($query_uri, $parameters, 'GET');
+        $response = $this->query($query_uri, $parameters, 'GET');
+        if (isset($data['set_id'])) {
+            return $this->getResult($response, 'comments');
+        } elseif (isset($data['comment_id'])) {
+            return $this->getResult($response, 'comment');
+        }
     }
 }
