@@ -30,4 +30,93 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             self::$pixapi->album->elements->comments->delete($c['id']);
         }
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->album->elements->comments->search('', '');
+    }
+
+    public function testSearchTotal()
+    {
+
+        $tempcomments = $this->createTempcomments();
+        $expected = [];
+        foreach ($tempcomments as $comment) {
+            $expected['body'][] = $comment['body'];
+            $expected['id'][] = $comment['id'];
+        }
+        $current = self::$pixapi->album->elements->comments->search('emmatest', []);
+
+        foreach ($current as $comment) {
+            $actual['id'][] = $comment['id'];
+            $actual['body'][] = $comment['body'];
+        }
+
+        foreach ($expected['body'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['body']));
+        }
+
+        foreach ($expected['id'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['id']));
+        }
+
+        $this->destoryTempComments($current);
+    }
+
+    public function testSearchSet()
+    {
+
+        $tempcomments = $this->createTempcomments();
+        $expected = [];
+        foreach ($tempcomments as $comment) {
+            $expected['body'][] = $comment['body'];
+            $expected['id'][] = $comment['id'];
+        }
+        $current = self::$pixapi->album->elements->comments->search('emmatest', ['set_id' => self::$test_set['id']]);
+
+        foreach ($current as $comment) {
+            $actual['id'][] = $comment['id'];
+            $actual['body'][] = $comment['body'];
+        }
+
+        foreach ($expected['body'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['body']));
+        }
+
+        foreach ($expected['id'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['id']));
+        }
+
+        $this->destoryTempComments($current);
+    }
+
+    public function testSearchElement()
+    {
+
+        $tempcomments = $this->createTempcomments();
+        $expected = [];
+        foreach ($tempcomments as $comment) {
+            $expected['body'][] = $comment['body'];
+            $expected['id'][] = $comment['id'];
+        }
+        $current = self::$pixapi->album->elements->comments->search('emmatest', ['element_id' => self::$test_element['id']]);
+
+        foreach ($current as $comment) {
+            $actual['id'][] = $comment['id'];
+            $actual['body'][] = $comment['body'];
+        }
+
+        foreach ($expected['body'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['body']));
+        }
+
+        foreach ($expected['id'] as $comment) {
+            $this->assertTrue(in_array($comment, $actual['id']));
+        }
+
+        $this->destoryTempComments($current);
+    }
 }
