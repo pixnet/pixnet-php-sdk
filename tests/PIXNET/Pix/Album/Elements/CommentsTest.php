@@ -177,4 +177,22 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         }
         $this->destoryTempComments($comments);
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testHamException()
+    {
+        self::$pixapi->album->elements->comments->markHam('');
+    }
+
+    public function testMarkHam()
+    {
+        $comments = $this->createTempComments();
+        foreach ($comments as $c) {
+            $spamc = self::$pixapi->album->elements->comments->markHam($c['id'])['comment'];
+            $this->assertEquals(0, $spamc['is_spam']);
+        }
+        $this->destoryTempComments($comments);
+    }
 }
