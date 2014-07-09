@@ -104,6 +104,7 @@ $examples_list = array(
                 '取得相簿內所有相片留言' => '452_album_elements_comments_search.php',
                 '新增相片留言' => '453_album_elements_comments_create.php',
                 '將留言設為廣告留言' => '454_album_elements_comments_markspam.php',
+                '將留言設為非廣告留言' => '455_album_elements_comments_unmarkspam.php',
             )
         ),
         array(
