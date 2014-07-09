@@ -61,4 +61,22 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
 
         $this->destoryTempComments($current);
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->comments->create('', '', '');
+    }
+
+    public function testCreate()
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $body = md5($i);
+            $comment = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], $body);
+            $this->assertEquals($body, $comment['body']);
+            self::$pixapi->Album->comments->delete($comment['id']);
+        }
+    }
 }
