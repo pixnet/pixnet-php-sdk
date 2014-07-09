@@ -119,4 +119,22 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
 
         $this->destoryTempComments($current);
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->elements->comments->create('', '', '');
+    }
+
+    public function testCreate()
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $body = md5($i);
+            $comment = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], $body);
+            $this->assertEquals($body, $comment['body']);
+            self::$pixapi->album->elements->comments->delete($comment['id']);
+        }
+    }
 }
