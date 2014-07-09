@@ -90,7 +90,7 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $tempcomments = $this->createTempcomments();
+        $tempcomments = $this->createTempComments();
         $expected = count($tempcomments);
         $actual = 0;
         foreach ($tempcomments as $comment) {
