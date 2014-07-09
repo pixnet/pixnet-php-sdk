@@ -137,4 +137,26 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             self::$pixapi->album->elements->comments->delete($comment['id']);
         }
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        self::$pixapi->album->elements->comments->delete('');
+    }
+
+    public function testDelete()
+    {
+        $tempcomments = $this->createTempComments();
+        $expected = count($tempcomments);
+        $actual = 0;
+        foreach ($tempcomments as $comment) {
+            $ret = self::$pixapi->album->elements->comments->delete($comment['id']);
+            if (!$ret['error']) {
+                $actual++;
+            }
+        }
+        $this->assertEquals($actual, $expected);
+    }
 }
