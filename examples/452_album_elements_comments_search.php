@@ -7,10 +7,10 @@ foreach ($sets as $k => $set) {
     $count = $pixapi->album->sets->elements($name, $set['id']) ? count($pixapi->album->sets->elements($name, $set['id'])) : 0;
     $sets[$k]['title'] .= " ( $count )";
 }
-if (!isset($_GET['set_id'])) {
+if (!isset($_POST['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_POST['set_id']]);
 }
 ?>
 <!DOCTYPE html>
@@ -32,8 +32,8 @@ if (!isset($_GET['set_id'])) {
                 <p>使用者名稱</p>
             </li>
             <li>
-                <p>element_id</p>
-                <p>相片 id</p>
+                <p>set_id</p>
+                <p>相簿 id</p>
             </li>
         </ul>
         <p>選填參數</p>
@@ -72,9 +72,9 @@ if (!isset($_GET['set_id'])) {
     </form>
     <?php if (!empty($_POST['set_id'])) {?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->elements->comments->search(<?= $name ?>, ['element_id' => <?= $_POST['element_id'] ?>], $options)</pre>
+    <pre>$pixapi->album->elements->comments->search(<?= $name ?>, ['set_id' => <?= $_POST['set_id'] ?>], $options)</pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->elements->comments->search($name, ['element_id' => $_POST['element_id']])); ?></pre>
+    <pre><?php print_r($pixapi->album->elements->comments->search($name, ['set_id' => $_POST['set_id']])); ?></pre>
     <?php }?>
 </div>
 </body>
