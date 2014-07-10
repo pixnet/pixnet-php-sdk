@@ -14,7 +14,7 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
     private function createTempComments()
     {
         $comments = [];
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $comments[$i] = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], 'test message');
         }
         return $comments;
