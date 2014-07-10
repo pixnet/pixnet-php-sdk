@@ -152,12 +152,20 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     public function testComments()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
-        $expected = ['1095963', '1095966'];
-        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', 4948710);
-        foreach ($current_albumcomments as $comm) {
-            $actual[] = $comm['id'];
+        $comments = [];
+        $expected = [];
+        for ($i = 0; $i < 5; $i++) {
+            $comments[$i] = self::$pixapi->Album->comments->create('emmatest', 4948710, 'test message');
+            $expected[] = $comments[$i]['id'];
         }
-        $this->assertEquals($actual, $expected);
+        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', 4948710);
+        foreach ($current_albumcomments as $c) {
+            $this->assertTrue(in_array($c['id'], $expected));
+        }
+
+        foreach ($comments as $c) {
+            self::$pixapi->Album->comments->delete($c['id']);
+        }
     }
 
     /**
