@@ -289,6 +289,7 @@ class PixAPI
             }
             throw new PixAPIException($response['code'] . ' ' . $response['result']['message'], PixAPIException::API_ERROR);
         }
+        $response['result']['http_code'] = $response['code'];
         return $response['result'];
     }
 
