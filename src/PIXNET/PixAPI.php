@@ -18,6 +18,7 @@ class PixAPI
     protected $client;
     protected $query_username;
     public static $debugmode = false;
+    public static $error_message;
     /**
      * __construct
      *
@@ -287,7 +288,12 @@ class PixAPI
             if (!isset($response['result']['message'])) {
                 throw new PixAPIException(serialize($response), PixAPIException::API_ERROR);
             }
-            throw new PixAPIException($response['code'] . ' ' . $response['result']['message'], PixAPIException::API_ERROR);
+            self::$error_message = sprintf(
+                'httpcode:%s error:%s',
+                $response['code'],
+                $response['result']['message']
+            );
+            return false;
         }
         return $response['result'];
     }
@@ -506,5 +512,9 @@ class PixAPI
             'mainpage/blog',
             'mainpage/album',
         );
+    }
+
+    public function error() {
+        return self::$error_message;
     }
 }
