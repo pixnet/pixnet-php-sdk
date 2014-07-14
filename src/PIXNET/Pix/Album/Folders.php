@@ -16,8 +16,11 @@ class Pix_Album_Folders extends PixAPI
         throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
-    public function search($name = null, $options = null)
+    public function search($name, $options = null)
     {
+        if (empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
         $parameters = $this->mergeParameters(
             array('user' => $name),
             $options,

@@ -18,6 +18,9 @@ class Pix_Album_SetFolders extends PixAPI
 
     public function search($name, $options = array())
     {
+        if (empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
         $parameters = $this->mergeParameters(
             array('user' => $name),
             $options,
