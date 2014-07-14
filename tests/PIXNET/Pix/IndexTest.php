@@ -23,7 +23,8 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
            'rate' => 0,
            'authenticated' => true,
            'limit' => 6000,
-           'error' => 0
+           'error' => 0,
+           'http_code' => 200
         ];
 
         $this->assertEquals($expected, $actual);

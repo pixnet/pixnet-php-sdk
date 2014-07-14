@@ -17,7 +17,7 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
     public function testColumns()
     {
         $actual = self::$pixapi->mainpage->album->columns(array('api_version' => 2));
-        $this->assertCount(6, $actual);
+        $this->assertCount(7, $actual);
     }
 
     public function testHot()

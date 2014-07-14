@@ -39,7 +39,6 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
             array(
                 'user_name' => 'emmatest2',
                 'groups' => array(
-                    'group_name' => 'pixnet'
                 )
             ),
             array(

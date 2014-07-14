@@ -17,18 +17,18 @@ class Pix_Mainpage_VideoTest extends PHPUnit_Framework_TestCase
     public function testHot()
     {
         $actual = self::$pixapi->mainpage->video->hot();
-        $this->assertLessThanOrEqual(10, count($actual['elements']));
+        $this->assertLessThanOrEqual(11, count($actual['elements']));
     }
 
     public function testLatest()
     {
         $actual = self::$pixapi->mainpage->video->latest();
-        $this->assertLessThanOrEqual(10, count($actual['elements']));
+        $this->assertLessThanOrEqual(11, count($actual['elements']));
     }
 
     public function testHotWeekly()
     {
         $actual = self::$pixapi->mainpage->video->hotWeekly();
-        $this->assertLessThanOrEqual(10, count($actual['elements']));
+        $this->assertLessThanOrEqual(11, count($actual['elements']));
     }
 }
