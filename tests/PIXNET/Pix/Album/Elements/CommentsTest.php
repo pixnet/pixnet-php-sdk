@@ -18,7 +18,6 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         $comments = [];
         for ($i = 0; $i < 1; $i++) {
             $comments[$i] = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], 'test message');
-            echo "create " . $comments[$i]['id'] . PHP_EOL;
         }
         return $comments;
     }
@@ -26,7 +25,6 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     private function destoryTempComments($comments)
     {
         foreach ($comments as $c) {
-            echo "delete " . $c['id'] . PHP_EOL;
             self::$pixapi->album->elements->comments->delete($c['id']);
         }
     }
