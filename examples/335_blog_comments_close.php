@@ -1,6 +1,17 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+$query = $_POST['query'];
+$comments = $pixapi->blog->comments->search();
+if ($comments['total'] > 0) {
+    foreach ($comments as $k => $v) {
+        if ($v['is_open']) {
+            $comments['data'][$k]['body'] .= "(公開)";
+        } else {
+            $comments['data'][$k]['body'] .= "(悄悄話)";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>

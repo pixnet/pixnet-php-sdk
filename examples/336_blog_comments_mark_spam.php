@@ -1,6 +1,14 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
+$comments = $pixapi->blog->comments->search();
+if ($comments['total'] > 0) {
+foreach ($comments['data'] as $k => $v) {
+    if ($v['is_spam']) {
+        $comments['data'][$k]['body'] .= "(廣告留言)";
+    }
+}
+}
 ?>
 <!DOCTYPE html>
 <html>
