@@ -384,10 +384,23 @@ class PixAPI
     public function getResult($response, $key)
     {
         $this->debug(__METHOD__);
-        if (isset($response[$key])) {
-            return $response[$key];
+        if (!isset($response['total'])) {
+            if (is_array($response[$key])) {
+                $keys = array_keys($response[$key]);
+                if (is_numeric($keys[0])) {
+                    $response['total'] = count($response[$key]);
+                } elseif (count($keys) > 0) {
+                    $response['total'] = 1;
+                }
+            } else {
+                $response['total'] = 0;
+            }
         }
-        return false;
+        if (isset($response[$key])) {
+            $response['data'] = $response[$key];
+            unset($response[$key]);
+        }
+        return $response;
     }
 
     /**
@@ -403,7 +416,7 @@ class PixAPI
         if ('' != $username and $cache) {
             return $username;
         }
-        $user = $this->getResult($this->query('account'), 'account');
+        $user = $this->getResult($this->query('account'), 'account')['data'];
         $username = $user['name'];
         $this->setSession('username', $username);
         return $username;
