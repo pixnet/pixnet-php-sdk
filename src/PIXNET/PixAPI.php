@@ -400,6 +400,20 @@ class PixAPI
         if (isset($response[$key])) {
             $response['data'] = $response[$key];
             unset($response[$key]);
+        } else {
+            $count = 0;
+            foreach ($response as $k => $value) {
+                if (is_array($value)) {
+                    if (!$count) {
+                        $response['data'] = $value;
+                        unset($response[$k]);
+                        $count++;
+                    } else {
+                        $response['data2'] = $value;
+                        unset($response[$k]);
+                    }
+                }
+            }
         }
         return $response;
     }
