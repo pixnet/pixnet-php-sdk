@@ -18,6 +18,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function columns($options = array())
     {
+        $options['api_version'] = 2;    //  強制使用新版 api
         $parameters = $this->mergeParameters(
             array(),
             $options,
@@ -30,6 +31,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function hot($category_id, $options = array())
     {
+        $options['api_version'] = 2;    //  強制使用新版 api
         if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
@@ -46,6 +48,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function latest($category_id, $options = array())
     {
+        $options['api_version'] = 2;    //  強制使用新版 api
         if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
@@ -62,6 +65,7 @@ class Pix_Mainpage_Album extends PixAPI
 
     public function hotWeekly($category_id, $options = array())
     {
+        $options['api_version'] = 2;    //  強制使用新版 api
         if ('' === $category_id) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
