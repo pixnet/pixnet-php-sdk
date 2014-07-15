@@ -22,7 +22,7 @@ if ('' != $query) {
       <div class="form-group">
           <select class="form-control" id="query" name="query">
           <?php
-          $blocks = $pixapi->block->search();
+          $blocks = $pixapi->block->search()['data'];
           foreach ($blocks as $block) {
           ?>
               <option value="<?= $block['user']['name']; ?>" <?= ($query == $block['user']['name']) ? 'selected' : ''; ?>><?= $block['user']['display_name'] ?></option>

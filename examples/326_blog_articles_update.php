@@ -3,7 +3,7 @@ require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $id = $_GET['id'];
 if ('' != $id) {
-    $data = $pixapi->blog->articles->search($id);
+    $data = $pixapi->blog->articles->search($id)['data'];
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ if ('' != $id) {
               <select class="form-control" id="id" name="id" onchange="location.href=this.options[this.selectedIndex].value">
               <option value="">請選擇</option>
               <?php
-              $articles = $pixapi->blog->articles->latest(array('limit' => 5));
+              $articles = $pixapi->blog->articles->latest(array('limit' => 5))['data'];
               foreach ($articles as $article) {
                 if ($article['id'] > 0) {
               ?>

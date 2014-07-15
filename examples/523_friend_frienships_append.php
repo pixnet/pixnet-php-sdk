@@ -31,7 +31,7 @@ if ('' != $query and '' != $query2 ) {
               <option value="">請選擇</option>
               <?php
               $friendships = $pixapi->friend->friendships->search();
-              foreach ($friendships['friend_pairs'] as $friend) {
+              foreach ($friendships['data'] as $friend) {
                 if ($friend['id'] > 0 and !$friend['groups']) {
               ?>
                   <option value="<?= $friend['user_name'] ?>" <?= ($query == $friend['user_name']) ? 'selected' : '' ?>><?= $friend['user_name'] ?></option>
@@ -48,7 +48,7 @@ if ('' != $query and '' != $query2 ) {
               <option value="">請選擇</option>
               <?php
               $groups = $pixapi->friend->groups->search();
-              foreach ($groups['friend_groups'] as $group) {
+              foreach ($groups['data'] as $group) {
                 if ($group['id'] > 0) {
               ?>
                   <option value="<?= $group['id'] ?>" <?= ($query2 == $group['id']) ? 'selected' : '' ?>><?= $group['name'] ?></option>

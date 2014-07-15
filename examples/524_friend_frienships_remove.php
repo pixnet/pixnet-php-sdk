@@ -28,8 +28,8 @@ if ('' != $query2) {
             <div class="col-sm-4"><select class="form-control" id="query" name="query" onchange="location.href=this.options[this.selectedIndex].value">
               <option value="">請選擇</option>
               <?php
-              $groups = $pixapi->friend->groups->search();
-              foreach ($groups['friend_groups'] as $group) {
+              $groups = $pixapi->friend->groups->search()['data'];
+              foreach ($groups as $group) {
                 if ($group['id'] > 0) {
               ?>
                   <option value="<?= '?query=' . $group['id'] ?>" <?= ($query == $group['id']) ? 'selected' : '' ?>><?= $group['name'] ?></option>
@@ -49,7 +49,7 @@ if ('' != $query2) {
               <option value="">請選擇</option>
               <?php
               $friendships = $pixapi->friend->friendships->search();
-              foreach ($friendships['friend_pairs'] as $friend) {
+              foreach ($friendships['data'] as $friend) {
                 if ($friend['id'] > 0) {
                     foreach ($friend['groups'] as $gro) {
                         if ($query == $gro['id']) {

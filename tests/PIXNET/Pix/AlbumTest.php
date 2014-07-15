@@ -28,7 +28,7 @@ class Pix_AlbumTest extends PHPUnit_Framework_TestCase
 
     public function testSiteCategories()
     {
-        $actual = self::$pixapi->album->siteCategories();
+        $actual = self::$pixapi->album->siteCategories()['data'];
         $ret = self::$pixapi->query('album/site_categories');
         $expected = $ret['categories'];
         $this->assertEquals($expected, $actual);

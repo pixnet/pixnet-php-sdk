@@ -17,16 +17,16 @@ class Pix_BlogTest extends PHPUnit_Framework_TestCase
 
     public function testInfo()
     {
-        $actual = self::$pixapi->blog->info();
+        $actual = self::$pixapi->blog->info()['data'];
         $this->assertEquals('emmatest的部落格', $actual['name']);
 
-        $actual = self::$pixapi->blog->info('emmatest');
+        $actual = self::$pixapi->blog->info('emmatest')['data'];
         $this->assertEquals('emmatest的部落格', $actual['name']);
     }
 
     public function testSiteCategories()
     {
-        $actual = self::$pixapi->blog->siteCategories();
+        $actual = self::$pixapi->blog->siteCategories()['data'];
         $this->assertCount(41, $actual);
     }
 

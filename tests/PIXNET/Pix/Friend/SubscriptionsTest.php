@@ -17,9 +17,10 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
+        $delete = self::$pixapi->friend->subscriptions->delete('emmatest4');
         $actual_all = self::$pixapi->friend->subscriptions->search();
 
-        foreach ($actual_all['subscriptions'] as $detail) {
+        foreach ($actual_all['data'] as $detail) {
             $actual[] = $detail['user']['name'];
         }
 
@@ -33,11 +34,11 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
     public function testSearchSpecifiedUser()
     {
         $subscriptions = self::$pixapi->friend->subscriptions->search();
-        $user_name = $subscriptions['subscriptions'][0]['user']['name'];
+        $user_name = $subscriptions['data'][0]['user']['name'];
 
         $actual_all = self::$pixapi->friend->subscriptions->search($user_name);
 
-        $actual = $actual_all['subscription']['user']['name'];
+        $actual = $actual_all['data']['user']['name'];
 
         $expected = $user_name;
 
@@ -47,12 +48,12 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
     public function testCreateHasGroup()
     {
         $ids = self::$pixapi->friend->subscriptionGroups->search();
-        $id = $ids['subscription_groups'][0]['id'];
+        $id = $ids['data'][0]['id'];
         $actual_create = self::$pixapi->friend->subscriptions->create('emmatest3', array('group_ids' => $id));
 
         $actual = array(
-            'name' => $actual_create['subscription']['user']['name'],
-            'id'   => $actual_create['subscription']['groups'][0]['id'],
+            'name' => $actual_create['data']['user']['name'],
+            'id'   => $actual_create['data']['groups'][0]['id'],
         );
 
         $expected = array(
@@ -68,8 +69,8 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         $actual_create = self::$pixapi->friend->subscriptions->create('emmatest4');
 
         $actual = array(
-            'name' => $actual_create['subscription']['user']['name'],
-            'group' => $actual_create['subscription']['groups']['id']
+            'name' => $actual_create['data']['user']['name'],
+            'group' => $actual_create['data']['groups']['id']
         );
 
         $expected = array(
@@ -91,12 +92,12 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
     public function testJoinSubscriptionGroup()
     {
         $groups = self::$pixapi->friend->subscriptionGroups->search();
-        $group_id = $groups['subscription_groups'][0]['id'];
+        $group_id = $groups['data'][0]['id'];
 
         $actual_all = self::$pixapi->friend->subscriptions->joinSubscriptionGroup('emmatest4', array('group_ids' => $group_id));
         $actual = array(
-            $actual_all['subscription']['user']['name'],
-            $actual_all['subscription']['groups'][0]['id']
+            $actual_all['data']['user']['name'],
+            $actual_all['data']['groups'][0]['id']
         );
 
         $expected = array(
@@ -128,13 +129,13 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
     public function testLeaveSubscriptionGroup()
     {
         $subscriptions = self::$pixapi->friend->subscriptions->search();
-        $name = $subscriptions['subscriptions'][2]['user']['name'];
-        $group_id = $subscriptions['subscriptions'][2]['groups'][0]['id'];
+        $name = $subscriptions['data'][2]['user']['name'];
+        $group_id = $subscriptions['data'][2]['groups'][0]['id'];
 
         $actual_all = self::$pixapi->friend->subscriptions->leaveSubscriptionGroup($name, array('group_ids' => $group_id));
         $actual = array(
-            $actual_all['subscription']['user']['name'],
-            $actual_all['subscription']['groups'][0]['id']
+            $actual_all['data']['user']['name'],
+            $actual_all['data']['groups'][0]['id']
         );
 
         $expected = array(
@@ -169,7 +170,7 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         $delete = self::$pixapi->friend->subscriptions->delete('emmatest4');
 
         $actual_all = self::$pixapi->friend->subscriptions->search();
-        foreach ($actual_all['subscriptions'] as $detail) {
+        foreach ($actual_all['data'] as $detail) {
             $actual[] = $detail['user']['name'];
         }
 

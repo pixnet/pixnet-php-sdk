@@ -50,7 +50,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
             <div class="col-sm-10">
               <select class="form-control" id="argv3" name="argv3">
               <?php
-              $site_categories = $pixapi->blog->siteCategories();
+              $site_categories = $pixapi->blog->siteCategories()['data'];
               foreach ($site_categories as $site_categorie) {
               ?>
                   <option value="<?= $site_categorie['id'] ?>"><?= $site_categorie['name'] ?></option>

@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
-$sets = $pixapi->album->sets->search($pixapi->getUserName());
+$sets = $pixapi->album->sets->search($pixapi->getUserName())['data'];
 ?>
 <!DOCTYPE html>
 <html>

@@ -16,8 +16,12 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
+        $current = self::$pixapi->block->search()['data'];
+        if ("emma" == $current[0]['user']['name']) {
+            self::$pixapi->block->delete('emma');
+        }
         $actual_all = self::$pixapi->block->create('emma');
-        $actual = $actual_all['block']['user']['name'];
+        $actual = $actual_all['data']['user']['name'];
 
         $this->assertEquals('emma', $actual);
     }
@@ -32,7 +36,7 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
-        $actual_all = self::$pixapi->block->search();
+        $actual_all = self::$pixapi->block->search()['data'];
         $actual = $actual_all[0]['user']['name'];
         $expected = 'emma';
 
@@ -41,10 +45,13 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
+        $current = self::$pixapi->block->search();
+        if (0 == $current['total']) {
+            self::$pixapi->block->create('emma');
+        }
         self::$pixapi->block->delete('emma');
-        $actual = self::$pixapi->block->search();
-
-        $this->assertFalse($actual);
+        $actual = self::$pixapi->block->search()['data'];
+        $this->assertNull($actual);
     }
 
     /**

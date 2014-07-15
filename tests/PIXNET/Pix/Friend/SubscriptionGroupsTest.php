@@ -19,12 +19,11 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
     {
         $actual_all = self::$pixapi->friend->subscriptionGroups->search();
 
-        foreach ($actual_all['subscription_groups'] as $group) {
+        foreach ($actual_all['data'] as $group) {
             $actual[] = array(
                 'name'     => $group['name'],
                 'position' => $group['position']
             );
-
             self::$group_id[] = $group['id'];
         }
 
@@ -45,16 +44,16 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
     public function testSearchSpecifiedId()
     {
         $groups = self::$pixapi->friend->subscriptionGroups->search();
-        $group_id = intval($groups['subscription_groups'][0]['id']);
-        $group_name = $groups['subscription_groups'][0]['name'];
-        $group_position = intval($groups['subscription_groups'][0]['position']);
+        $group_id = intval($groups['data'][0]['id']);
+        $group_name = $groups['data'][0]['name'];
+        $group_position = intval($groups['data'][0]['position']);
 
         $actual_all = self::$pixapi->friend->subscriptionGroups->search($group_id);
 
         $actual = array(
-            'id'       => $actual_all['subscription_group']['id'],
-            'name'     => $actual_all['subscription_group']['name'],
-            'position' => $actual_all['subscription_group']['position'],
+            'id'       => $actual_all['data']['id'],
+            'name'     => $actual_all['data']['name'],
+            'position' => $actual_all['data']['position'],
         );
 
         $expected = array(
@@ -69,18 +68,18 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $actual_create_1 = self::$pixapi->friend->subscriptionGroups->create('friend');
-        self::$group_id[] = $actual_create_1['subscription_group']['id'];
+        self::$group_id[] = $actual_create_1['data']['id'];
         $actual_create_2 = self::$pixapi->friend->subscriptionGroups->create('test');
-        self::$group_id[] = $actual_create_2['subscription_group']['id'];
+        self::$group_id[] = $actual_create_2['data']['id'];
 
         $actual = array(
             array(
-                'name'     => $actual_create_1['subscription_group']['name'],
-                'position' => $actual_create_1['subscription_group']['position']
+                'name'     => $actual_create_1['data']['name'],
+                'position' => $actual_create_1['data']['position']
             ),
             array(
-                'name'     => $actual_create_2['subscription_group']['name'],
-                'position' => $actual_create_2['subscription_group']['position']
+                'name'     => $actual_create_2['data']['name'],
+                'position' => $actual_create_2['data']['position']
             )
         );
 
@@ -109,12 +108,12 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $groups = self::$pixapi->friend->subscriptionGroups->search();
-        $group_id = $groups['subscription_groups'][3]['id'];
+        $group_id = $groups['data'][3]['id'];
 
         $actual_all = self::$pixapi->friend->subscriptionGroups->update($group_id, 'update');
         $actual = array(
-            $actual_all['subscription_group']['name'],
-            $actual_all['subscription_group']['position']
+            $actual_all['data']['name'],
+            $actual_all['data']['position']
         );
 
         $expected = array(
@@ -151,7 +150,7 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
             . self::$group_id[2];
         $actual_all = self::$pixapi->friend->subscriptionGroups->position($id);
 
-        foreach ($actual_all['subscription_groups'] as $group) {
+        foreach ($actual_all['data'] as $group) {
             $actual[] = array(
                 'id'     => $group['id'],
                 'position' => $group['position']
@@ -194,7 +193,7 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
         $delete = self::$pixapi->friend->subscriptionGroups->delete(self::$group_id[3]);
 
         $actual_all = self::$pixapi->friend->subscriptionGroups->search();
-        foreach ($actual_all['subscription_groups'] as $group) {
+        foreach ($actual_all['data'] as $group) {
             $actual[] = array(
                 'name'     => $group['name'],
                 'position' => $group['position']

@@ -17,7 +17,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
           <?php
-          $comments = $pixapi->blog->comments->search();
+          $comments = $pixapi->blog->comments->search()['data'];
           ?>
           <select class="form-control" id="query" name="query">
           <?php

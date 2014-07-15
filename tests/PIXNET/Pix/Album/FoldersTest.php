@@ -33,11 +33,11 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $expected = '4948779';
-        $ret = self::$pixapi->album->folders->search('emmatest');
+        $ret = self::$pixapi->album->folders->search('emmatest')['data'];
         $actual = $ret[0]['id'];
         $this->assertEquals($expected, $actual);
 
-        $ret = self::$pixapi->album->folders->search('emmatest', ['folder_id' => '4948779']);
+        $ret = self::$pixapi->album->folders->search('emmatest', ['folder_id' => '4948779'])['data'];
         $actual = $ret['id'];
         $this->assertEquals($expected, $actual);
     }
@@ -54,7 +54,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     {
         $expected_title = 'PIXNET_SDK_TITLE';
         $expected_desc = 'PIXNET_SDK_DESC';
-        $tempFolder = self::$pixapi->album->folders->create($expected_title, $expected_desc);
+        $tempFolder = self::$pixapi->album->folders->create($expected_title, $expected_desc)['data'];
         $this->assertEquals($expected_title, $tempFolder['title']);
         $this->assertEquals($expected_desc, $tempFolder['description']);
         self::$pixapi->album->folders->delete($tempFolder['id']);
@@ -72,9 +72,9 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     {
         $expected_title = 'PIXNET_SDK_TITLE';
         $expected_desc = 'PIXNET_SDK_DESC';
-        $expected = 5;
+        $expected = 1;
         for ($i = 0; $i < $expected; $i++) {
-            $tempFolders[] = self::$pixapi->album->folders->create($expected_title, $expected_desc);
+            $tempFolders[] = self::$pixapi->album->folders->create($expected_title, $expected_desc)['data'];
         }
         $actual = 0;
         foreach ($tempFolders as $folder) {
@@ -98,11 +98,11 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     {
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
-        $current_set = self::$pixapi->album->folders->search('emmatest', ['folder_id' => 4948779]);
+        $current_set = self::$pixapi->album->folders->search('emmatest', ['folder_id' => 4948779])['data'];
         $current_title = $current_set['title'];
         $current_desc = $current_set['description'];
 
-        $actualset = self::$pixapi->album->folders->update(4948779, $expected_title, $expected_desc);
+        $actualset = self::$pixapi->album->folders->update(4948779, $expected_title, $expected_desc)['data'];
         $this->assertEquals($actualset['title'], $expected_title);
         $this->assertEquals($actualset['description'], $expected_desc);
         self::$pixapi->album->folders->update(4948779, $current_title, $current_desc);

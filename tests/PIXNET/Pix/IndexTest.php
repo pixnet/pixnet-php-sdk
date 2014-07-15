@@ -20,11 +20,13 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->index->rate();
 
         $expected = [
-           'rate' => 0,
-           'authenticated' => true,
-           'limit' => 6000,
            'error' => 0,
-           'http_code' => 200
+           'http_code' => 200,
+           'data' => [
+               'rate' => 0,
+               'authenticated' => true,
+               'limit' => 6000
+           ]
         ];
 
         $this->assertEquals($expected, $actual);
@@ -35,7 +37,7 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
         if (function_exists("date_default_timezone_set")) {
             date_default_timezone_set("Asia/Taipei");
         }
-        $actual = self::$pixapi->index->now();
+        $actual = self::$pixapi->index->now()['data'];
 
         // 誤差在30秒內都算可接受的範圍
         $expected = abs($actual - time());

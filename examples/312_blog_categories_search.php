@@ -28,7 +28,7 @@ if ('' != $query) {
 
           <select class="form-control" id="query" name="query">
           <?php
-          $categories = $pixapi->blog->categories->search();
+          $categories = $pixapi->blog->categories->search()['data'];
           foreach ($categories as $categorie) {
             if ($categorie['id'] > 0) {
           ?>

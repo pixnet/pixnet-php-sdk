@@ -25,7 +25,7 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $expected = ['4948779', '4948785'];
-        $ret = self::$pixapi->album->setfolders->search('emmatest');
+        $ret = self::$pixapi->album->setfolders->search('emmatest')['data'];
         foreach ($ret as $set) {
             $this->assertTrue(in_array($set['id'], $expected));
         }
@@ -42,7 +42,7 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
     public function testPosition()
     {
         $expected = '4948785,4948779';
-        $ret = self::$pixapi->album->setfolders->position($expected);
+        $ret = self::$pixapi->album->setfolders->position($expected)['data'];
         foreach ($ret as $set) {
             $actual[] = $set['id'];
         }

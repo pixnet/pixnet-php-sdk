@@ -9,15 +9,15 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     {
         Authentication::setUpBeforeClass();
         self::$pixapi = Authentication::$pixapi;
-        self::$test_set = self::$pixapi->Album->Sets->search('emmatest')[0];
-        self::$test_element = self::$pixapi->album->sets->elements('emmatest', self::$test_set['id'])[0];
+        self::$test_set = self::$pixapi->Album->Sets->search('emmatest')['data'][0];
+        self::$test_element = self::$pixapi->album->sets->elements('emmatest', self::$test_set['id'])['data'][0];
     }
 
     private function createTempComments()
     {
         $comments = [];
         for ($i = 0; $i < 1; $i++) {
-            $comments[$i] = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], 'test message');
+            $comments[$i] = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], 'test message')['data'];
         }
         return $comments;
     }
@@ -46,7 +46,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', []);
+        $current = self::$pixapi->album->elements->comments->search('emmatest', [])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -73,7 +73,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', ['set_id' => self::$test_set['id']]);
+        $current = self::$pixapi->album->elements->comments->search('emmatest', ['set_id' => self::$test_set['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -100,7 +100,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', ['element_id' => self::$test_element['id']]);
+        $current = self::$pixapi->album->elements->comments->search('emmatest', ['element_id' => self::$test_element['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -128,9 +128,9 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $body = md5($i);
-            $comment = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], $body);
+            $comment = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], $body)['data'];
             $this->assertEquals($body, $comment['body']);
             self::$pixapi->album->elements->comments->delete($comment['id']);
         }
@@ -170,7 +170,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     {
         $comments = $this->createTempComments();
         foreach ($comments as $c) {
-            $spamc = self::$pixapi->album->elements->comments->markSpam($c['id'])['comment'];
+            $spamc = self::$pixapi->album->elements->comments->markSpam($c['id'])['data'];
             $this->assertEquals(1, $spamc['is_spam']);
         }
         $this->destoryTempComments($comments);
@@ -188,7 +188,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     {
         $comments = $this->createTempComments();
         foreach ($comments as $c) {
-            $spamc = self::$pixapi->album->elements->comments->markHam($c['id'])['comment'];
+            $spamc = self::$pixapi->album->elements->comments->markHam($c['id'])['data'];
             $this->assertEquals(0, $spamc['is_spam']);
         }
         $this->destoryTempComments($comments);

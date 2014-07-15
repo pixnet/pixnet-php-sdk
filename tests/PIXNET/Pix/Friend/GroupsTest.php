@@ -19,7 +19,7 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
     {
         $actual_all = self::$pixapi->friend->groups->search();
 
-        foreach ($actual_all['friend_groups'] as $group) {
+        foreach ($actual_all['data'] as $group) {
             $actual[] = $group['name'];
         }
 
@@ -34,13 +34,13 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
     public function testSearchSpecifiedId()
     {
         $groups = self::$pixapi->friend->groups->search();
-        $group_id = intval($groups['friend_groups'][0]['id']);
-        $group_name = $groups['friend_groups'][0]['name'];
+        $group_id = intval($groups['data'][0]['id']);
+        $group_name = $groups['data'][0]['name'];
         $actual_all = self::$pixapi->friend->groups->search($group_id);
 
         $actual = array(
-            'id'   => $actual_all['friend_group']['id'],
-            'name' => $actual_all['friend_group']['name']
+            'id'   => $actual_all['data']['id'],
+            'name' => $actual_all['data']['name']
         );
 
         $expected = array(
@@ -54,9 +54,11 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $actual_all = self::$pixapi->friend->groups->create('friend');
-        $actual = $actual_all['friend_group']['name'];
+        $group_id = $actual_all['data']['id'];
+        $actual = $actual_all['data']['name'];
 
         $this->assertEquals('friend', $actual);
+        $actual = self::$pixapi->friend->groups->delete($group_id);
     }
 
     /**
@@ -69,14 +71,15 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
 
     public function testUpdate()
     {
-        $groups = self::$pixapi->friend->groups->search();
-        self::$group_id = $groups['friend_groups'][2]['id'];
-        $group_name = $groups['friend_groups'][2]['name'];
+        $groups = self::$pixapi->friend->groups->create('test-update');
+        $group_id = $groups['data']['id'];
+        $group_name = $groups['data']['name'];
 
-        $actual = self::$pixapi->friend->groups->update(self::$group_id, 'update');
+        $actual = self::$pixapi->friend->groups->update($group_id, 'update');
         $expected = 'update';
 
-        $this->assertEquals($expected, $actual['friend_group']['name']);
+        $this->assertEquals($expected, $actual['data']['name']);
+        $actual = self::$pixapi->friend->groups->delete($group_id);
     }
 
     /**
@@ -99,14 +102,15 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $actual = self::$pixapi->friend->groups->delete(self::$group_id);
+        $test_group = self::$pixapi->friend->groups->create('test-delete');
+        $actual = self::$pixapi->friend->groups->delete($test_group['data']['id']);
 
         $groups = self::$pixapi->friend->groups->search();
-        foreach ($groups['friend_groups'] as $group) {
+        foreach ($groups['data'] as $group) {
             $data[] = $group['id'];
         }
 
-        $this->assertFalse(in_array(self::$group_id, $data));
+        $this->assertFalse(in_array($test_group['data']['id'], $data));
     }
 
     /**

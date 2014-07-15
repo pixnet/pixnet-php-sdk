@@ -12,7 +12,7 @@ if (!empty($_POST['series'])) {
     $order = implode('-', $order);
     $pixapi->album->setfolders->position($order);
 }
-$folders = $pixapi->album->setfolders->search($name);
+$folders = $pixapi->album->setfolders->search($name)['data'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,7 @@ $folders = $pixapi->album->setfolders->search($name);
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <?php if ($folders) { ?>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
-    <?php foreach ($pixapi->album->setfolders->search($pixapi->getUserName()) as $set) { ?>
+    <?php foreach ($pixapi->album->setfolders->search($pixapi->getUserName())['data'] as $set) { ?>
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query"><?= $set['title']?></label>
         <div class="col-sm-5">

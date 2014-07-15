@@ -17,7 +17,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         for ($i = 0; $i < 5; $i++) {
             $title = "PHP-SDK-TEST-TITLE-" . sha1($i);
             $desc = "PHP-SDK-TEST-DESC-" . md5($i);
-            $expected[] = self::$pixapi->album->sets->create($title, $desc);
+            $expected[] = self::$pixapi->album->sets->create($title, $desc)['data'];
         }
         return $expected;
     }
@@ -50,7 +50,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         for ($i = 0; $i < 5; $i++) {
             $title = "PHP-SDK-TEST-TITLE-" . sha1($i);
             $desc = "PHP-SDK-TEST-DESC-" . md5($i);
-            $ret = self::$pixapi->album->sets->create($title, $desc);
+            $ret = self::$pixapi->album->sets->create($title, $desc)['data'];
             $this->assertEquals($title, $ret['title']);
             $this->assertEquals($desc, $ret['description']);
             self::$pixapi->album->sets->delete($ret['id']);
@@ -67,7 +67,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testPosition()
     {
-        $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => 4948779]);
+        $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => 4948779])['data'];
         $num_of_sets = count($current_albumsets);
         $i = 1;
         foreach ($current_albumsets as $set) {
@@ -75,7 +75,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         ksort($new_order);
         $expected = $new_order;
-        $ret_albumsets = self::$pixapi->Album->sets->position('4948779', implode(',', $new_order));
+        $ret_albumsets = self::$pixapi->Album->sets->position('4948779', implode(',', $new_order))['data'];
         foreach ($ret_albumsets as $set) {
             $actual[] = $set['id'];
         }
@@ -106,7 +106,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $expected['title'][] = $set['title'];
             $expected['id'][] = $set['id'];
         }
-        $current = self::$pixapi->Album->Sets->search('emmatest');
+        $current = self::$pixapi->Album->Sets->search('emmatest')['data'];
         foreach ($current as $set) {
             $actual[] = $set['title'];
         }
@@ -115,7 +115,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
 
         foreach ($expected['id'] as $set_id) {
-            $ret = self::$pixapi->album->sets->search('emmatest', ['set_id' => $set_id]);
+            $ret = self::$pixapi->album->sets->search('emmatest', ['set_id' => $set_id])['data'];
             $this->assertEquals($set_id, $ret['id']);
         }
 
@@ -134,7 +134,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
         $expected = ['167691000', '167691006'];
-        $current_elements = self::$pixapi->album->sets->elements('emmatest', 4948710);
+        $current_elements = self::$pixapi->album->sets->elements('emmatest', 4948710)['data'];
         foreach ($current_elements as $ele) {
             $actual[] = $ele['id'];
         }
@@ -152,11 +152,10 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     public function testComments()
     {
         // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
-        $expected = 'test message';
-        $comment = self::$pixapi->Album->comments->create('emmatest', 4948710, $expected);
-        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', 4948710);
-        $this->assertEquals($current_albumcomments[0]['body'], $expected);
-        self::$pixapi->Album->comments->delete($current_albumcomments[0]['id']);
+        $comment = self::$pixapi->Album->comments->create('emmatest', 4948710, 'test message')['data'];
+        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', 4948710)['data'][0];
+        $this->assertEquals($current_albumcomments['id'], $comment['id']);
+        self::$pixapi->Album->comments->delete($current_albumcomments['id']);
     }
 
     /**
@@ -171,11 +170,11 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
-        $current_set = self::$pixapi->album->sets->search('emmatest', ['set_id' => 4948710]);
+        $current_set = self::$pixapi->album->sets->search('emmatest', ['set_id' => 4948710])['data'];
         $current_title = $current_set['title'];
         $current_desc = $current_set['description'];
 
-        $actualset = self::$pixapi->album->sets->update(4948710, $expected_title, $expected_desc);
+        $actualset = self::$pixapi->album->sets->update(4948710, $expected_title, $expected_desc)['data'];
         $this->assertEquals($actualset['title'], $expected_title);
         $this->assertEquals($actualset['description'], $expected_desc);
         self::$pixapi->album->sets->update(4948710, $current_title, $current_desc, ['parent_id' => '4948779']);
@@ -215,7 +214,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         $expected = ['34260'];
         $options = array('distance_max' => 3500);
-        $ret = self::$pixapi->album->sets->nearby('emmademo', '25.058172', '121.535304', $options);
+        $ret = self::$pixapi->album->sets->nearby('emmademo', '25.058172', '121.535304', $options)['data'];
         foreach ($ret as $set) {
             $this->assertTrue(in_array($set['id'], $expected));
         }

@@ -19,7 +19,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
 
           <select class="form-control" id="query" name="query">
           <?php
-          $articles = $pixapi->blog->articles->latest(array('limit' => 5));
+          $articles = $pixapi->blog->articles->latest(array('limit' => 5))['data'];
           foreach ($articles as $article) {
             if ($article['id'] > 0) {
           ?>

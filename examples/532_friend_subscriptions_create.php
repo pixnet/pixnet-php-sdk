@@ -10,7 +10,7 @@ $query = $_POST['query'];
 $post = [];
 $groups = $pixapi->friend->subscriptionGroups->search();
 
-foreach ($groups['subscription_groups'] as $group) {
+foreach ($groups['data'] as $group) {
     if (!$_POST['query_' . $group['id']]) {
         continue;
     }
@@ -63,7 +63,7 @@ if ('' != $query) {
               if (1 != $user['is_vip']) {
                   $type = 'radio';
               }
-              foreach ($groups['subscription_groups'] as $group) {
+              foreach ($groups['data'] as $group) {
                 if ($group['id'] > 0) {
               ?>
               <input type="<?= $type ?>" id="query_<?= $group['id'] ?>" name="query_<?= $group['id'] ?>" value="<?= $group['id'] ?>"><?= $group['name'] ?></option>

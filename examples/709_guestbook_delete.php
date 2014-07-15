@@ -23,7 +23,7 @@ if ('' != $query) {
           <select class="form-control" id="query" name="query">
           <?php
           $guestbooks = $pixapi->guestbook->search();
-          foreach ($guestbooks['articles'] as $guestbook) {
+          foreach ($guestbooks['data'] as $guestbook) {
           ?>
               <option value="<?= $guestbook['id'] ?>" <?= ($query == $guestbook['id']) ? 'selected' : ''; ?>><?= $guestbook['title'] ?></option>
           <?php

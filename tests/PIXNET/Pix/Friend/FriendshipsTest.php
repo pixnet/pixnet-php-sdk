@@ -12,15 +12,14 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass()
     {
-        $delete = self::$pixapi->friend->subscriptions->delete('emmatest4');
         Authentication::tearDownAfterClass();
     }
 
     public function testSearch()
     {
-        $actual_all = self::$pixapi->friend->friendships->search();
+        $actual_all = self::$pixapi->friend->friendships->search()['data'];
 
-        foreach ($actual_all['friend_pairs'] as $key => $detail) {
+        foreach ($actual_all as $key => $detail) {
             $actual[$key] = array(
                 'user_name' => $detail['user_name']
             );
@@ -43,22 +42,26 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 'user_name' => 'emmatest3',
-                'groups' => array()
+                'groups' => array(
+                )
             )
         );
 
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     */
     public function testCreate()
     {
-        $actual_all = self::$pixapi->friend->friendships->create('emmatest4');
+        $actual_all = self::$pixapi->friend->friendships->create('emmatest4')['data'];
 
-        $actual = $actual_all['friend_pair']['user_name'];
+        $actual = $actual_all['user_name'];
 
         $expected = 'emmatest4';
 
         $this->assertEquals($expected, $actual);
+        $delete = self::$pixapi->friend->friendships->delete('emmatest4')['data'];
     }
 
     /**
@@ -69,17 +72,18 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->friend->friendships->create('');
     }
 
+    /**
+     */
     public function testAppendGroup()
     {
-        $friendships = self::$pixapi->friend->friendships->search();
-        $name = $friendships['friend_pairs'][2]['user_name'];
-        $groups = self::$pixapi->friend->groups->search();
-        $group_id = $groups['friend_groups'][0]['id'];
-
-        $actual_all = self::$pixapi->friend->friendships->appendGroup($name, $group_id);
+        $friendships = self::$pixapi->friend->friendships->search()['data'];
+        $name = $friendships[1]['user_name'];
+        $groups = self::$pixapi->friend->groups->search()['data'];
+        $group_id = $groups[0]['id'];
+        $actual_all = self::$pixapi->friend->friendships->appendGroup($name, $group_id)['data'];
         $actual = array(
-            'name'     => $actual_all['friend_pair']['user_name'],
-            'group_id' => $actual_all['friend_pair']['groups'][0]['id']
+            'name'     => $actual_all['user_name'],
+            'group_id' => $actual_all['groups'][0]['id']
         );
 
         $expected = array(
@@ -88,6 +92,7 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals($expected, $actual);
+        self::$pixapi->friend->friendships->removeGroup($name, $group_id)['data'];
     }
 
     /**
@@ -96,9 +101,11 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
      */
     public function testAppendGroupException($name, $group_id)
     {
-        $actual = self::$pixapi->friend->friendships->appendGroup($name, $group_id);
+        $actual = self::$pixapi->friend->friendships->appendGroup($name, $group_id)['data'];
     }
 
+    /**
+     */
     public function dataAppendGroupException()
     {
         return array(
@@ -110,14 +117,15 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testRemoveGroup()
     {
-        $friendships = self::$pixapi->friend->friendships->search();
-        $name = $friendships['friend_pairs'][2]['user_name'];
-        $group_id = $friendships['friend_pairs'][2]['groups'][0]['id'];
+        $friendships = self::$pixapi->friend->friendships->search()['data'];
+        $name = $friendships[1]['user_name'];
+        $groups = self::$pixapi->friend->groups->search()['data'];
+        $group_id = $groups[0]['id'];
 
         $actual_all = self::$pixapi->friend->friendships->removeGroup($name, $group_id)['data'];
         $actual = array(
-            'name'     => $actual_all['friend_pair']['user_name'],
-            'group_id' => $actual_all['friend_pair']['groups'][0]['id']
+            'name'     => $actual_all['user_name'],
+            'group_id' => $actual_all['groups'][0]['id']
         );
 
         $expected = array(
@@ -148,10 +156,11 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $delete = self::$pixapi->friend->friendships->delete('emmatest4');
+        $actual_all = self::$pixapi->friend->friendships->create('emmatest4')['data'];
+        $delete = self::$pixapi->friend->friendships->delete('emmatest4')['data'];
 
-        $actual_all = self::$pixapi->friend->friendships->search();
-        foreach ($actual_all['friend_pairs'] as $detail) {
+        $actual_all = self::$pixapi->friend->friendships->search()['data'];
+        foreach ($actual_all as $detail) {
             $actual[] = $detail['user_name'];
         }
 

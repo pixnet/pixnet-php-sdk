@@ -33,7 +33,7 @@ if ($query2 != '') {
               <option value="">請選擇</option>
               <?php
               $groups = $pixapi->friend->groups->search();
-              foreach ($groups['friend_groups'] as $gro) {
+              foreach ($groups['data'] as $gro) {
                 if ($gro['id'] > 0) {
               ?>
                   <option value="?query=<?= $gro['id'] ?>" <?= ($query == $gro['id']) ? 'selected' : ''; ?>><?= $gro['name'] ?></option>

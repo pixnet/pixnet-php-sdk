@@ -19,13 +19,13 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <label class="col-sm-2 control-label" for="query">留言：</label>
         <div class="col-sm-10">
           <?php
-          $comments = $pixapi->blog->comments->search();
+          $comments = $pixapi->blog->comments->search()['data'];
           ?>
           <select class="form-control" id="query" name="query">
           <?php
-          foreach ($comments as $comments) {
+          foreach ($comments as $comment) {
           ?>
-              <option value="<?= $comments['id'] ?>" <?= ($query == $comments['id']) ? 'selected' : ''; ?>><?= $comments['body'] ?></option>
+              <option value="<?= $comment['id'] ?>" <?= ($query == $comment['id']) ? 'selected' : ''; ?>><?= $comment['body'] ?></option>
           <?php
           }
           ?>

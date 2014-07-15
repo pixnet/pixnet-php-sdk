@@ -21,10 +21,10 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $actual = self::$pixapi->guestbook->create('emmatest', 'testtitle', 'testbody');
-        self::$guestbook_id = $actual['article']['id'];
+        self::$guestbook_id = $actual['data']['id'];
 
-        $this->assertEquals('testtitle', $actual['article']['title']);
-        $this->assertEquals('testbody', $actual['article']['body']);
+        $this->assertEquals('testtitle', $actual['data']['title']);
+        $this->assertEquals('testbody', $actual['data']['body']);
     }
 
     /**
@@ -39,21 +39,27 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->guestbook->search();
 
-        $this->assertCount(1, $actual['articles']);
+        foreach ($actual['data'] as $g) {
+            if ($g['id'] != self::$guestbook_id) {
+                self::$pixapi->guestbook->delete($g['id']);
+            }
+        }
+        $actual = self::$pixapi->guestbook->search();
+        $this->assertCount(1, $actual['data']);
     }
 
     public function testSearchId()
     {
         $actual = self::$pixapi->guestbook->search(self::$guestbook_id);
 
-        $this->assertEquals(self::$guestbook_id, $actual['article']['id']);
+        $this->assertEquals(self::$guestbook_id, $actual['data']['id']);
     }
 
     public function testReply()
     {
         $actual = self::$pixapi->guestbook->reply(self::$guestbook_id, 'testreply');
 
-        $this->assertEquals('testreply', $actual['article']['reply']);
+        $this->assertEquals('testreply', $actual['data']['reply']);
     }
 
     /**
@@ -68,7 +74,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->guestbook->open(self::$guestbook_id);
 
-        $this->assertEquals(1, $actual['article']['is_open']);
+        $this->assertEquals(1, $actual['data']['is_open']);
     }
 
     /**
@@ -83,7 +89,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->guestbook->close(self::$guestbook_id);
 
-        $this->assertEquals(0, $actual['article']['is_open']);
+        $this->assertEquals(0, $actual['data']['is_open']);
     }
 
     /**
@@ -98,7 +104,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->guestbook->markSpam(self::$guestbook_id);
 
-        $this->assertEquals(1, $actual['article']['is_spam']);
+        $this->assertEquals(1, $actual['data']['is_spam']);
     }
 
     /**
@@ -113,7 +119,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->guestbook->markHam(self::$guestbook_id);
 
-        $this->assertEquals(00, $actual['article']['is_spam']);
+        $this->assertEquals(00, $actual['data']['is_spam']);
     }
 
     /**

@@ -13,7 +13,7 @@ $query = $_GET['query'];
 $post = [];
 $groups = $pixapi->friend->subscriptionGroups->search();
 
-foreach ($groups['subscription_groups'] as $group) {
+foreach ($groups['data'] as $group) {
     if (!$_POST['query_' . $group['id']]) {
         continue;
     }
@@ -55,7 +55,7 @@ if ($query and $query2) {
               <option value="">請選擇</option>
 <?php
 $subscriptions = $pixapi->friend->subscriptions->search();
-foreach ($subscriptions['subscriptions'] as $subscription) {
+foreach ($subscriptions['data'] as $subscription) {
     if ($subscription['user']['name'] and $subscription['groups']) {
 ?>
               <option value="?query=<?= $subscription['user']['name'] ?>" <?= ($query == $subscription['user']['name']) ? 'selected' : ''; ?>><?= $subscription['user']['name'] ?></option>
@@ -71,7 +71,7 @@ foreach ($subscriptions['subscriptions'] as $subscription) {
             <label class="col-sm-2 control-label" for="query2">離開群組(必選)</label>
             <div class="col-sm-4">
 <?php
-        foreach ($subscriptions['subscriptions'] as $subscription) {
+        foreach ($subscriptions['data'] as $subscription) {
             if ($subscription['user']['name'] != $query or !$subscription['groups']) {
                 continue;
             }

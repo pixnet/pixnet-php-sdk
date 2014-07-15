@@ -36,7 +36,7 @@ if ($query2 != '') {
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
        <?php
-       $category = $pixapi->blog->categories->search($query, $isFolder);
+       $category = $pixapi->blog->categories->search($query, $isFolder)['data'];
        ?>
         <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
@@ -44,7 +44,7 @@ if ($query2 != '') {
             <div class="col-sm-4"><select class="form-control" id="query" name="query" onchange="location.href=this.options[this.selectedIndex].value">
               <option value="">請選擇</option>
               <?php
-              $categories = $pixapi->blog->categories->search();
+              $categories = $pixapi->blog->categories->search()['data'];
               foreach ($categories as $categorie) {
                 if ($categorie['id'] > 0) {
               ?>
@@ -85,7 +85,7 @@ if ($query2 != '') {
             <div class="col-sm-10">
               <select class="form-control" id="argv3" name="argv3">
               <?php
-              $site_categories = $pixapi->blog->siteCategories();
+              $site_categories = $pixapi->blog->siteCategories()['data'];
               foreach ($site_categories as $site_categorie) {
               ?>
                   <option value="<?= $site_categorie['id'] ?>" <?= ($site_categorie['id'] == $category['site_category_id']) ? ' selected="selected"' : ''; ?>><?= $site_categorie['name'] ?></option>
