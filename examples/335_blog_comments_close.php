@@ -43,7 +43,6 @@ if ($comments['total'] > 0) {
       <button type="submit" class="btn btn-primary">將留言設為悄悄話</button>
     </form>
     <?php
-        $query = $_POST['query'];
         if ('' != $query) {
     ?>
     <h3>執行</h3>
