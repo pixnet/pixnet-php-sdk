@@ -24,17 +24,18 @@ foreach ($comments['data'] as $k => $v) {
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
-          <?php
-          $comments = $pixapi->blog->comments->search();
-          ?>
           <select class="form-control" id="query" name="query">
-          <?php
-          foreach ($comments as $comments) {
-          ?>
-              <option value="<?= $comments['id'] ?>" <?= ($query == $comments['id']) ? 'selected' : ''; ?>><?= $comments['body'] ?></option>
-          <?php
-          }
-          ?>
+            <?php
+            if ($comments['total'] > 0) {
+                foreach ($comments['data'] as $comment) {
+            ?>
+              <option value="<?= $comment['id'] ?>" <?= ($query == $comment['id']) ? 'selected' : ''; ?>><?= $comment['body'] ?></option>
+            <?php
+                }
+            } else {
+            ?>
+                <option disabled>沒有留言</option>
+            <?php } ?>
           </select>
       </div>
       <button type="submit" class="btn btn-primary">將留言設為廣告留言</button>
