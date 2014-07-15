@@ -114,7 +114,7 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         $name = $friendships['friend_pairs'][2]['user_name'];
         $group_id = $friendships['friend_pairs'][2]['groups'][0]['id'];
 
-        $actual_all = self::$pixapi->friend->friendships->removeGroup($group_id, $name);
+        $actual_all = self::$pixapi->friend->friendships->removeGroup($name, $group_id)['data'];
         $actual = array(
             'name'     => $actual_all['friend_pair']['user_name'],
             'group_id' => $actual_all['friend_pair']['groups'][0]['id']
@@ -132,9 +132,9 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
      * @expectedException PixAPIException
      * @dataProvider dataRemoveGroupException
      */
-    public function testRemoveGroupException($group_id, $name)
+    public function testRemoveGroupException($name, $group_id)
     {
-        $actual = self::$pixapi->friend->friendships->removeGroup($group_id, $name);
+        $actual = self::$pixapi->friend->friendships->removeGroup($name, $group_id);
     }
 
     public function dataRemoveGroupException()

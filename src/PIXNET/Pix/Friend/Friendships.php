@@ -59,7 +59,7 @@ class Pix_Friend_Friendships extends PixAPI
         return $this->getResult($response, 'friend_pair');
     }
 
-    public function removeGroup($group_id, $name)
+    public function removeGroup($name, $group_id)
     {
         if ('' == $group_id or '' == $name) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);

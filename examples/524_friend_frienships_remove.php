@@ -5,7 +5,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
 $query = $_GET['query'];
 $query2 = $_POST['query2'];
 if ('' != $query2) {
-    $response = $pixapi->friend->friendships->removeGroup($query, $query2);
+    $response = $pixapi->friend->friendships->removeGroup($query2, $query);
 }
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if ('' != $query2) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">將好友從群組移除</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->friend->friendships->removeGroup($id, $name);</pre>
+    <pre>$pixapi->friend->friendships->removeGroup($name, $id);</pre>
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
@@ -75,7 +75,7 @@ if ('' != $query2) {
         </form>
         <?php if ('' != $query2) { ?>
         <h3>執行</h3>
-        <pre>$pixapi->friend->friendships->removeGroup('<?= htmlspecialchars($query) ?>','<?= htmlspecialchars($query2) ?>');</pre>
+        <pre>$pixapi->friend->friendships->removeGroup('<?= htmlspecialchars($query2) ?>','<?= htmlspecialchars($query) ?>');</pre>
         <h3>執行結果</h3>
         <pre><?php print_r($response); ?></pre>
         <?php } ?>

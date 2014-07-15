@@ -108,7 +108,7 @@ $pixapi = new PixAPI(array(
 - 列出好友名單 $pixapi->friend->friendships->search($option = array());
 - 新增好友 $pixapi->friend->friendships->create($name);
 - 加入群組 $pixapi->friend->friendships->appendGroup($name, $id);
-- 移除群組 $pixapi->friend->friendships->removeGroup($id, $name);
+- 移除群組 $pixapi->friend->friendships->removeGroup($name, $id);
 - 刪除好友 $pixapi->friend->friendships->delete($name);
 ```
 ####訂閱
