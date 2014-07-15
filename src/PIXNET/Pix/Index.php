@@ -18,7 +18,13 @@ class Pix_Index extends PixAPI
 
     public function rate()
     {
-        return $this->query('index/rate');
+        $response = $this->query('index/rate');
+        $data = [$response['rate'], $response['authenticated'], $response['limit']];
+        unset($response['rate']);
+        unset($response['authenticated']);
+        unset($response['limit']);
+        $response['data'] = $data;
+        return $response;
     }
 
     public function now()

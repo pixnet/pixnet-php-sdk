@@ -52,7 +52,10 @@ class Pix_Mainpage_Blog extends PixAPI
             array()
         );
         $response = $this->query('mainpage/blog/categories/hot/' . $category_id, $parameters, 'GET');
-        return $response;
+        $data['http_code'] = $response['http_code'];
+        unset($response['http_code']);
+        $data['data'] = $response;
+        return $data;
     }
 
     public function latest($category_id, $options = array())
@@ -68,7 +71,10 @@ class Pix_Mainpage_Blog extends PixAPI
             array()
         );
         $response = $this->query('mainpage/blog/categories/latest/' . $category_id, $parameters, 'GET');
-        return $response;
+        $data['http_code'] = $response['http_code'];
+        unset($response['http_code']);
+        $data['data'] = $response;
+        return $data;
     }
 
     public function hotWeekly($category_id, $options = array())
@@ -84,6 +90,9 @@ class Pix_Mainpage_Blog extends PixAPI
             array()
         );
         $response = $this->query('mainpage/blog/categories/hot_weekly/' . $category_id, $parameters, 'GET');
-        return $response;
+        $data['http_code'] = $response['http_code'];
+        unset($response['http_code']);
+        $data['data'] = $response;
+        return $data;
     }
 }
