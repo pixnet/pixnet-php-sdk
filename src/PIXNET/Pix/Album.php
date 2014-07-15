@@ -46,6 +46,6 @@ class Pix_Album extends PixAPI
     public function config()
     {
         $response = $this->query('album/config');
-        return $response;
+        return $this->getResult($response, 'config');
     }
 }

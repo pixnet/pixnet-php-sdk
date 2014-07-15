@@ -26,7 +26,7 @@ class Pix_Friend_Friendships extends PixAPI
         );
 
         $response = $this->query('friendships', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'friend_pairs');
     }
 
     public function create($name)
@@ -41,7 +41,7 @@ class Pix_Friend_Friendships extends PixAPI
             array()
         );
         $response = $this->query('friendships', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'friend_pair');
     }
 
     public function appendGroup($name, $group_id)
@@ -56,7 +56,7 @@ class Pix_Friend_Friendships extends PixAPI
             array()
         );
         $response = $this->query('friendships/append_group', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'friend_pair');
     }
 
     public function removeGroup($group_id, $name)
@@ -71,7 +71,7 @@ class Pix_Friend_Friendships extends PixAPI
             array()
         );
         $response = $this->query('friendships/remove_group', $parameters, 'DELETE');
-        return $response;
+        return $this->getResult($response, 'friend_pair');
     }
 
     public function delete($name)

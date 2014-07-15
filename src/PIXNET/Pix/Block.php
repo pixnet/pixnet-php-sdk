@@ -30,7 +30,7 @@ class Pix_Block extends PixAPI
         }
         $parameters = array('user' => $user);
         $response = $this->query('blocks', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'block');
     }
 
     public function delete($user)

@@ -17,7 +17,7 @@ class Pix_Guestbook extends Pix_Comments
         if (!is_array($options)) {
             $parameters = array($options);
             $response = $this->query('guestbook', $parameters, 'URI');
-            return $response;
+            return $this->getResult($response, 'article');
         }
         $parameters = $this->mergeParameters(
             array(),
@@ -27,7 +27,7 @@ class Pix_Guestbook extends Pix_Comments
         );
 
         $response = $this->query('guestbook', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'articles');
     }
 
     public function create($username, $title, $body, $options = array())
@@ -42,7 +42,7 @@ class Pix_Guestbook extends Pix_Comments
             array('author', 'url','email')
         );
         $response = $this->query('guestbook', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'article');
     }
 
     public function reply($guestbook_id, $body, $options = array())
@@ -57,6 +57,6 @@ class Pix_Guestbook extends Pix_Comments
             array()
         );
         $response = $this->query('guestbook/' . $guestbook_id . '/reply', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'article');
     }
 }

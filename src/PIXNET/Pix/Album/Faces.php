@@ -28,7 +28,7 @@ class Pix_Album_Faces extends PixAPI
             array()
         );
         $response = $this->query('album/faces', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'element');
     }
 
     public function createByRecommendId($user, $recommend_id, $options = array())

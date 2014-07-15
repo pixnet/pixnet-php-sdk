@@ -69,7 +69,7 @@ class Pix_Blog_Articles extends PixAPI
         );
         $response = $this->query('blog/articles/' . $article_id . '/comments', $parameters, 'GET');
 
-        return $this->getResult($response, 'comments');
+        return $this->getResult($response, 'article');
     }
 
     public function create($title, $body, $options = array())
@@ -84,7 +84,7 @@ class Pix_Blog_Articles extends PixAPI
             array('tags','thumb','trackback','password','password_hint','friend_group_ids','notify_twitter','notify_facebook')
         );
         $response = $this->query('blog/articles', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'article');
     }
 
     public function update($article_id, $title, $body, $options = array())
@@ -99,7 +99,7 @@ class Pix_Blog_Articles extends PixAPI
             array('tags','thumb','trackback','password','password_hint','friend_group_ids','notify_twitter','notify_facebook')
         );
         $response = $this->query('blog/articles/' . $article_id, $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'article');
     }
 
     public function delete($article_id, $is_folder = false)

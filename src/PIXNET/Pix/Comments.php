@@ -28,7 +28,7 @@ abstract class Pix_Comments extends PixAPI
         if (!is_array($options)) {
             $parameters = array($options);
             $response = $this->query($this->api_path, $parameters, 'URI');
-            return $response;
+            return $this->getResult($response, 'comment');
         }
         $parameters = $this->mergeParameters(
             array(),
@@ -53,7 +53,7 @@ abstract class Pix_Comments extends PixAPI
             array('author', 'title', 'url', 'email', 'blog_password', 'article_password')
         );
         $response = $this->query($this->api_path, $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function reply($comment_id, $body, $options = array())
@@ -68,7 +68,7 @@ abstract class Pix_Comments extends PixAPI
             array()
         );
         $response = $this->query($this->api_path . '/' . $comment_id . '/reply', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function delete($comment_id)
@@ -86,7 +86,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/open', array(), 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function close($comment_id)
@@ -95,7 +95,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/close', array(), 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function markSpam($comment_id, $options = array())
@@ -104,7 +104,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_spam', array(), 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function markHam($comment_id)
@@ -113,12 +113,12 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_ham', array(), 'POST');
-        return $response;
+        return $this->getResult($response, 'comment');
     }
 
     public function latest()
     {
         $response = $this->query($this->api_path . '/latest', array(), 'GET');
-        return $response;
+        return $this->getResult($response, 'latest_comments');
     }
 }

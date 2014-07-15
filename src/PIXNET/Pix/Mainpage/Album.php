@@ -25,7 +25,7 @@ class Pix_Mainpage_Album extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/columns', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'columns');
     }
 
     public function hot($category_id, $options = array())
@@ -41,7 +41,7 @@ class Pix_Mainpage_Album extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/categories/hot/' . $category_id, $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'sets');
     }
 
     public function latest($category_id, $options = array())
@@ -57,7 +57,7 @@ class Pix_Mainpage_Album extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/categories/latest/' . $category_id, $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'sets');
     }
 
     public function hotWeekly($category_id, $options = array())
@@ -73,12 +73,12 @@ class Pix_Mainpage_Album extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/categories/hot_weekly/' . $category_id, $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'sets');
     }
 
     public function bestSelected()
     {
         $response = $this->query('mainpage/album/best_selected/', array(), 'GET');
-        return $response;
+        return $this->getResult($response, 'sets');
     }
 }

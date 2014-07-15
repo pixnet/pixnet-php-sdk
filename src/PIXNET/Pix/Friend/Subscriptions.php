@@ -26,7 +26,7 @@ class Pix_Friend_Subscriptions extends PixAPI
                 array()
             );
             $response = $this->query('friend/subscriptions/' . $options, $parameters, 'GET');
-            return $response;
+            return $this->getResult($response, 'subscription');
         }
         $parameters = $this->mergeParameters(
             array(),
@@ -36,7 +36,7 @@ class Pix_Friend_Subscriptions extends PixAPI
         );
 
         $response = $this->query('friend/subscriptions', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'subscriptions');
     }
 
     public function create($name, $options = array())
@@ -51,7 +51,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array('group_ids')
         );
         $response = $this->query('friend/subscriptions', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'subscription');
     }
 
     public function joinSubscriptionGroup($name, $group_id)
@@ -66,7 +66,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array('group_ids')
         );
         $response = $this->query('friend/subscriptions/' . $name . '/join_subscription_group', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'subscription');
     }
 
     public function leaveSubscriptionGroup($name, $group_id)
@@ -81,7 +81,7 @@ class Pix_Friend_Subscriptions extends PixAPI
             array('group_ids')
         );
         $response = $this->query('friend/subscriptions/' . $name . '/leave_subscription_group', $parameters, 'POST');
-        return $response;
+        return $this->getResult($response, 'subscription');
     }
 
     public function delete($name)

@@ -25,7 +25,7 @@ class Pix_Mainpage_Video extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/video/hot/', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'elements');
     }
 
     public function latest($options = array())
@@ -37,7 +37,7 @@ class Pix_Mainpage_Video extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/video/latest/', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'elements');
     }
 
     public function hotWeekly($options = array())
@@ -49,6 +49,6 @@ class Pix_Mainpage_Video extends PixAPI
             array()
         );
         $response = $this->query('mainpage/album/video/hot_weekly/', $parameters, 'GET');
-        return $response;
+        return $this->getResult($response, 'elements');
     }
 }

@@ -144,8 +144,6 @@ class Pix_Album_Sets extends PixAPI
             array(),
             array()
         );
-        $response = $this->query('album/sets/' . $set_id, $parameters, 'DELETE');
-        return $response;
-        return $this->getResult($response, 'sets');
+        return $this->query('album/sets/' . $set_id, $parameters, 'DELETE');
     }
 }
