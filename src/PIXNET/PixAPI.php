@@ -293,7 +293,6 @@ class PixAPI
                 $response['code'],
                 $response['result']['message']
             );
-            return false;
         }
         $response['result']['http_code'] = $response['code'];
         return $response['result'];
@@ -392,6 +391,8 @@ class PixAPI
                 } elseif (count($keys) > 0) {
                     $response['total'] = 1;
                 }
+            } elseif ('' != $response[$key]) {
+                $response['total'] = 1;
             } else {
                 $response['total'] = 0;
             }

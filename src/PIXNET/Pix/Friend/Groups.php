@@ -26,7 +26,7 @@ class Pix_Friend_Groups extends PixAPI
                 array()
             );
             $response = $this->query('friend/groups/' . $options, $parameters, 'GET');
-            return $response;
+            return $this->getResult($response, 'friend_group');
         }
         $parameters = $this->mergeParameters(
             array(),
