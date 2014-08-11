@@ -18,7 +18,7 @@ class Pix_Blog_Articles extends PixAPI
 
     public function search($options)
     {
-        if (!is_array($options)) {
+        if (is_numeric($options)) {
             $parameters = $this->mergeParameters(
                 array(),
                 $options,
