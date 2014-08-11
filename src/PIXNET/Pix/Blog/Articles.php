@@ -16,7 +16,7 @@ class Pix_Blog_Articles extends PixAPI
         throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
-    public function search($options)
+    public function search($options = [])
     {
         if (is_numeric($options)) {
             $parameters = $this->mergeParameters(
