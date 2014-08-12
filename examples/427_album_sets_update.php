@@ -19,37 +19,23 @@ $set = $pixapi->album->sets->search($name, ['set_id' => $set['id']]);
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>set_id</p>
-        <p>相簿 id，數字</p></li>
-        <li><p>title</p>
-        <p>標題，文字</p></li>
-        <li><p>description</p>
-        <p>描述，文字</p></li>
+            <li><p>set_id</p><p>相簿 id，數字</p></li>
+            <li><p>title</p><p>標題，文字</p></li>
+            <li><p>description</p><p>描述，文字</p></li>
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>permission</p>
-        <p>閱讀權限，0: 完全公開 / 1: 好友相簿 / 3: 密碼相簿 / 4: 隱藏相簿 / 5: 好友群組相簿</p></li>
-        <li><p>category_id</p>
-        <p>相簿分類，數字，預設為0</p></li>
-        <li><p>is_lockright</p>
-        <p>是否鎖右鍵，1: 上鎖. 0: 不上鎖，預設為0</p></li>
-        <li><p>allow_cc</p>
-        <p>是否採用CC授權 0: copyrighted / 1: cc</p></li>
-        <li><p>cancomment</p>
-        <p>是否允許留言 0: 禁止留言, 1: 開放留言, 2: 限好友留言, 3: 限會員留言</p></li>
-        <li><p>password</p>
-        <p>相簿密碼 (當 permission 為 3 時需要)</p></li>
-        <li><p>password_hint</p>
-        <p>密碼提示 (當 permission 為 3 時需要)</p></li>
-        <li><p>friend_group_ids</p>
-        <p>好友群組ID, 以「,」 或 「-」 區隔. 例: '231423,123235,3213324', '231423-123235-3213324'. 當 permission 為 5 時需要</p></li>
-        <li><p>allow_commercial_usr</p>
-        <p>0: 不允許商業使用. 1: 允許商業使用, 預設為 0</p></li>
-        <li><p>allow_derivation</p>
-        <p>0: 不允許創作衍生著作. 1: 允許創作衍生著作, 預設為 0</p></li>
-        <li><p>parent_id</p>
-        <p>如果這個 parent_id 被指定, 則此相簿會放置在這個相簿資料夾底下(只能放在資料夾底下)</p></li>
+            <li><p>permission</p><p>閱讀權限，0: 完全公開 / 1: 好友相簿 / 3: 密碼相簿 / 4: 隱藏相簿 / 5: 好友群組相簿</p></li>
+            <li><p>category_id</p><p>相簿分類，數字，預設為0</p></li>
+            <li><p>is_lockright</p><p>是否鎖右鍵，1: 上鎖. 0: 不上鎖，預設為0</p></li>
+            <li><p>allow_cc</p><p>是否採用CC授權 0: copyrighted / 1: cc</p></li>
+            <li><p>cancomment</p><p>是否允許留言 0: 禁止留言, 1: 開放留言, 2: 限好友留言, 3: 限會員留言</p></li>
+            <li><p>password</p><p>相簿密碼 (當 permission 為 3 時需要)</p></li>
+            <li><p>password_hint</p><p>密碼提示 (當 permission 為 3 時需要)</p></li>
+            <li><p>friend_group_ids</p><p>好友群組ID, 以「,」 或 「-」 區隔. 例: '231423,123235,3213324', '231423-123235-3213324'. 當 permission 為 5 時需要</p></li>
+            <li><p>allow_commercial_usr</p><p>0: 不允許商業使用. 1: 允許商業使用, 預設為 0</p></li>
+            <li><p>allow_derivation</p><p>0: 不允許創作衍生著作. 1: 允許創作衍生著作, 預設為 0</p></li>
+            <li><p>parent_id</p><p>如果這個 parent_id 被指定, 則此相簿會放置在這個相簿資料夾底下(只能放在資料夾底下)</p></li>
         </ul>
     </div>
     <h3><a name="execute" href="#execute">實際測試</a></h3>

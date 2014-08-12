@@ -18,25 +18,13 @@ $sets = $pixapi->album->sets->search($name);
     <div class="well">
         <p>必填參數</p>
         <ul>
-            <li>
-                <p>set_id</p>
-                <p>要留言的相本 id</p>
-            </li>
-            <li>
-                <p>name</p>
-                <p>要留言的相本擁有者</p>
-            </li>
-            <li>
-                <p>comment</p>
-                <p>留言內容，文字</p>
-            </li>
+            <li><p>set_id</p><p>要留言的相本 id</p></li>
+            <li><p>name</p><p>要留言的相本擁有者</p></li>
+            <li><p>comment</p><p>留言內容，文字</p></li>
         </ul>
         <p>選填參數</p>
         <ul>
-            <li>
-                <p>password</p>
-                <p>如果指定使用者的相本被密碼保護，則需要指定這個參數以通過授權</p>
-            </li>
+            <li><p>password</p><p>如果指定使用者的相本被密碼保護，則需要指定這個參數以通過授權</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

@@ -16,10 +16,8 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>title</p>
-        <p>標題，文字</p></li>
-        <li><p>description</p>
-        <p>描述，文字</p></li>
+            <li><p>title</p><p>標題，文字</p></li>
+            <li><p>description</p><p>描述，文字</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

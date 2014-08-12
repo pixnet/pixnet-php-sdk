@@ -31,10 +31,7 @@ foreach ($comments as $c) {
     <div class="well">
         <p>必填參數</p>
         <ul>
-            <li>
-                <p>comment_id</p>
-                <p>該留言 id</p>
-            </li>
+            <li><p>comment_id</p><p>該留言 id</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

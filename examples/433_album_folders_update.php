@@ -23,12 +23,9 @@ if (isset($_GET['folder_id'])) {
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>folder_id</p>
-        <p>相簿資料夾 id，數字</p></li>
-        <li><p>title</p>
-        <p>標題，文字</p></li>
-        <li><p>description</p>
-        <p>描述，文字</p></li>
+            <li><p>folder_id</p><p>相簿資料夾 id，數字</p></li>
+            <li><p>title</p><p>標題，文字</p></li>
+            <li><p>description</p><p>描述，文字</p></li>
         </ul>
     </div>
     <h3><a name="execute" href="#execute">實際測試</a></h3>

@@ -18,44 +18,20 @@ $sets = $pixapi->album->sets->search($name)['data'];
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li>
-        <p>name</p>
-        <p>使用者名稱</p>
-        </li>
-        <li>
-        <p>set_id</p>
-        <p>相簿 id</p>
-        </li>
+            <li><p>name</p><p>使用者名稱</p></li>
+            <li><p>set_id</p><p>相簿 id</p></li>
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>type</p>
-
-        <p>指定要回傳的類別. pic: 只顯示圖片; video: 只顯示影片; audio: 只顯示音樂</p></li>
-        <li><p>page</p>
-
-        <p>頁數, 預設為1</p></li>
-        <li><p>per_page</p>
-
-        <p>每頁幾筆, 預設為100</p></li>
-        <li><p>password</p>
-
-        <p>相簿密碼，當使用者相簿設定為密碼相簿時使用</p></li>
-        <li><p>with_detail</p>
-
-        <p>傳回詳細資訊，指定為1時將會回傳完整圖片資訊，預設為0</p></li>
-        <li><p>trim_user</p>
-
-        <p>不傳回相片擁有者資訊，指定為1時將不會回傳相片擁有者資訊，預設為0</p></li>
-        <li><p>use_iframe</p>
-
-        <p>影音的外嵌 tag 使用 iframe 格式</p></li>
-        <li><p>iframe_width</p>
-
-        <p>影音的外嵌 iframe width</p></li>
-        <li><p>iframe_height</p>
-
-        <p>影音的外嵌 iframe height</p></li>
+            <li><p>type</p><p>指定要回傳的類別. pic: 只顯示圖片; video: 只顯示影片; audio: 只顯示音樂</p></li>
+            <li><p>page</p><p>頁數, 預設為1</p></li>
+            <li><p>per_page</p><p>每頁幾筆, 預設為100</p></li>
+            <li><p>password</p><p>相簿密碼，當使用者相簿設定為密碼相簿時使用</p></li>
+            <li><p>with_detail</p><p>傳回詳細資訊，指定為1時將會回傳完整圖片資訊，預設為0</p></li>
+            <li><p>trim_user</p><p>不傳回相片擁有者資訊，指定為1時將不會回傳相片擁有者資訊，預設為0</p></li>
+            <li><p>use_iframe</p><p>影音的外嵌 tag 使用 iframe 格式</p></li>
+            <li><p>iframe_width</p><p>影音的外嵌 iframe width</p></li>
+            <li><p>iframe_height</p><p>影音的外嵌 iframe height</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

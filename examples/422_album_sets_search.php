@@ -17,17 +17,11 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName())['data'];
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li>
-        <p>name</p>
-        <p>使用者名稱</p>
-        </li>
+            <li><p>name</p><p>使用者名稱</p></li>
         </ul>
         <p>選填參數</p>
         <ul>
-        <li>
-        <p>set_id</p>
-        <p>相簿 id</p>
-        </li>
+            <li><p>set_id</p><p>相簿 id</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

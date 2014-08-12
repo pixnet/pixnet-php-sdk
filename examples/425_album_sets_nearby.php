@@ -16,27 +16,15 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li>
-        <p>name</p>
-        <p>使用者名稱</p>
-        </li>
-        <li>
-        <p>lat</p>
-        <p>WGS84 坐標系緯度，例如 25.058172</p>
-        </li>
-        <li>
-        <p>lon</p>
-        <p>WGS84 坐標系經度，例如 121.535304</p>
-        </li>
+            <li><p>name</p><p>使用者名稱</p></li>
+            <li><p>lat</p><p>WGS84 坐標系緯度，例如 25.058172</p></li>
+            <li><p>lon</p><p>WGS84 坐標系經度，例如 121.535304</p></li>
         </ul>
         <p>選填參數</p>
         <ul>
-        <li><p>page</p>
-        <p>頁數, 預設為1</p></li>
-        <li><p>per_page</p>
-        <p>每頁幾筆, 預設為100</p></li>
-        <li><p>trim_user</p>
-        <p>是否每本相簿都要回傳使用者資訊，若設定為 1 則不回傳。預設為 0</p></li>
+            <li><p>page</p><p>頁數, 預設為1</p></li>
+            <li><p>per_page</p><p>每頁幾筆, 預設為100</p></li>
+            <li><p>trim_user</p><p>是否每本相簿都要回傳使用者資訊，若設定為 1 則不回傳。預設為 0</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

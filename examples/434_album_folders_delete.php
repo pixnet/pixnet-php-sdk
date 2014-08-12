@@ -17,8 +17,7 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>folder_id</p>
-        <p>欲刪除的相簿資料夾 id</p></li>
+            <li><p>folder_id</p><p>欲刪除的相簿資料夾 id</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

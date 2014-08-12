@@ -28,10 +28,7 @@ $folders = $pixapi->album->setfolders->search($name)['data'];
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li>
-            <p>ids</p>
-            <p>該資料夾內的相簿 id，按照順序以 <code>,</code> 或 <code>-</code> 為分隔，放在越前面的表示圖片的順序越優先。(EX: 12394813,12938503,12395064,12351423 or 12394813-12938503-12395064-12351423 )</p>
-        </li>
+            <li><p>ids</p><p>該資料夾內的相簿 id，按照順序以 <code>,</code> 或 <code>-</code> 為分隔，放在越前面的表示圖片的順序越優先。(EX: 12394813,12938503,12395064,12351423 or 12394813-12938503-12395064-12351423 )</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>

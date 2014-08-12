@@ -17,8 +17,7 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName());
     <div class="well">
         <p>必填參數</p>
         <ul>
-        <li><p>set_id</p>
-        <p>欲刪除的相簿 id</p></li>
+            <li><p>set_id</p><p>欲刪除的相簿 id</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
