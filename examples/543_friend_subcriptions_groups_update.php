@@ -20,6 +20,13 @@ if ($query2 != '') {
     <h1 class="page-header">修改訂閱群組</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptionGroups->update($id, $name);</pre>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>id</p><p>群組 id</p></li>
+            <li><p>name</p><p>群組名稱</p></li>
+        </ul>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">

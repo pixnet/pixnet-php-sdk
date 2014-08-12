@@ -31,7 +31,21 @@ if ($query2 != '') {
     <h1 class="page-header">修改部落格分類</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->categories->update($id, $name, $is_folder = false, $options = array());</pre>
-    <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/blogArticlesUpdate" target="blank">Options說明</a></div>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>id</p><p>分類id，數字</p></li>
+            <li><p>name</p><p>分類名稱，文字</p></li>
+        </ul>
+        <p>選填參數</p>
+        <ul>
+            <li><p>is_folder</p><p>若為分類資料夾為 true，否則為 false</p></li>
+            <li><p>description</p><p>分類說明，文字</p></li>
+            <li><p>show_index</p><p>是否在首頁上顯示, 1: yes, 0: no. 預設為 1</p></li>
+            <li><p>site_category_id</p><p>對應的全站文章類別 id. 只有當 is_folder 為 false 時需要, 預設為 0</p></li>
+            <li><p>site_category_done</p><p>是否已決定對應. 只有當 is_folder 為 false 時需要. 如果它設為 0, 則 PIXNET 後台會在發表文章時詢問是否要對應全站文章類別</p></li>
+        <ul>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">

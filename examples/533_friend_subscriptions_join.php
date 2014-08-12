@@ -43,7 +43,17 @@ if ($query and $query2) {
     <?php require_once(__DIR__ . '/include/top.php'); ?>
     <h1 class="page-header">加入訂閱群組</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->friend->subscriptions->joinSubscriptionGroup($name, $group_ids = array());</pre>
+    <pre>$pixapi->friend->subscriptions->joinSubscriptionGroup($name, $options = array());</pre>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>user</p><p>要加入的訂閱使用者帳號</p></li>
+        </ul>
+        <p>選填參數</p>
+        <ul>
+            <li><p>group_ids</p><p>要加入的訂閱群組 id, 可以複數用 <code>,</code> 或 <code>-</code> 隔開</p></li>
+        </ul>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="alert alert-info">非VIP只能將使用者加入一個訂閱群組</div>

@@ -13,7 +13,31 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">新增文章</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->articles->create($title, $body, $options);</pre>
-    <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/blogArticlesCreate" target="blank">Options說明</a></div>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>title</p><p>文章標題，文字</p></li>
+            <li><p>body</p><p>文章內容，文字</p></li>
+        </ul>
+        <p>選填參數</p>
+        <ul>
+            <li><p>status</p><p>文章狀態, 0: 刪除, 1: 草稿, 2: 公開, 3: 密碼, 4: 隱藏, 5: 好友, 7: 共同作者</p></li>
+            <li><p>public_at</p><p>公開時間, 這個表示文章的發表時間, 以 UNIX timestamp 的方式輸入, 預設為現在時間</p></li>
+            <li><p>category_id</p><p>個人分類, 數字, 請先到 <a href="/#!/doc/pixnetApi/blogCategories" target="_blank">BlogCategory</a> 裡找自己的分類列表, 預設是0</p></li>
+            <li><p>site_category_id</p><p>站台分類, 數字, 預設是0</p></li>
+            <li><p>use_nl2br</p><p>是否使用 nl2br, 預設是0 (1 → 使用 nl2br, 0 → 不使用)</p></li>
+            <li><p>comment_perm</p><p>可留言權限. 0: 關閉留言, 1: 開放所有人留言, 2: 僅開放會員留言, 3:開放好友留言. 預設會看 Blog 整體設定</p></li>
+            <li><p>comment_hidden</p><p>預設留言狀態. 0: 公開, 1: 強制隱藏. 預設為0(公開)</p></li>
+            <li><p>tags</p><p>標籤, 以”,”為分隔, 如”foo,bar”</p></li>
+            <li><p>thumb</p><p>文章縮圖網址, 會影響 oEmbed 與 SNS (Twitter, Facebook, Plurk …) 抓到的縮圖</p></li>
+            <li><p>trackback</p><p>發送引用通知, 可以輸入複數網站(用空白分隔)</p></li>
+            <li><p>password</p><p>當 status 被設定為 3 時需要輸入這個參數以設定為此文章的密碼</p></li>
+            <li><p>password_hint</p><p>當 status 被設定為 3 時需要輸入這個參數以設定為此文章的密碼提示</p></li>
+            <li><p>friend_group_ids</p><p>當 status 被設定為 5 時可以輸入這個參數以設定此文章可閱讀的好友群組, 預設不輸入代表所有好友</p></li>
+            <li><p>notify_twitter</p><p>動態發送至 Twitter. 必須先有同步關係才能發送, 預設為部落格全域設定. 請參考 <a href="http://panel.pixnet.cc/blog/config" title="http://panel.pixnet.cc/blog/config">http://panel.pixnet.cc/blog/config</a></p></li>
+            <li><p>notify_facebook</p><p>動態發送至 Facebook. 必須先有同步關係才能發送, 預設為部落格全域設定. 請參考 <a href="http://panel.pixnet.cc/blog/config" title="http://panel.pixnet.cc/blog/config">http://panel.pixnet.cc/blog/config</a></p></li>
+        </ul>
+    </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">

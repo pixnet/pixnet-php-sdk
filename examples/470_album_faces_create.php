@@ -13,7 +13,22 @@ require_once(__DIR__ . '/include/checkAuth.php');
     <h1 class="page-header">新增人臉標記</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->faces->create($user, $element_id, $x, $y, $w, $h);</pre>
-    <div class="well"><a href="http://developer.pixnet.pro/#!/doc/pixnetApi/albumFaces" target="blank">Options說明</a></div>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>user</p><p>要標記的使用者帳號。被標記者必須設定標記者為好友。</p></li>
+            <li><p>recommend<em>id 或 element</em>id</p><p>兩者擇其一指定，參數內容請見下方說明</p></li>
+        </ul>
+        <p>選填參數</p>
+        <ul>
+            <li><p>recommend_id</p><p>系統建議的 id 。 <a href="/#!/doc/pixnetApi/albumElementsId" title="album_elements_id">GET album/elements/:id</a> 可取得此資訊。</p></li>
+            <li><p>element_id</p><p>相片或影像的 id 。</p></li>
+            <li><p>x</p><p>標記起點距相片最左邊的距離，單位是 px 。所對應的座標基準是 normal 這張相片。當不指定 recommend_id  時，需指定此參數。</p></li>
+            <li><p>y</p><p>標記起點距相片最上緣的距離，單位是 px 。所對應的座標基準是 normal 這張相片。當不指定 recommend_id  時，需指定此參數。</p></li>
+            <li><p>w</p><p>標記的寬度，單位是 px 。所對應的座標基準是 normal 這張相片。當不指定 recommend_id 時，需指定此參數 。</p></li>
+            <li><p>h</p><p>標記的高度，單位是 px 。所對應的座標基準是 normal 這張相片。當不指定 recommend_id 時，需指定此參數 。</p></li>
+        </ul>
+    </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">

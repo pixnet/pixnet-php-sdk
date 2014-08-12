@@ -20,6 +20,13 @@ if ('' != $query and '' != $query2 ) {
     <h1 class="page-header">將好友加入群組</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->friendships->appendGroup($name, $id);</pre>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>id</p><p>群組 id, 數字</p></li>
+            <li><p>name</p><p>使用者名稱, 文字</p></li>
+        </ul>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="alert alert-info">非VIP只能將使用者加入一個群組</div>

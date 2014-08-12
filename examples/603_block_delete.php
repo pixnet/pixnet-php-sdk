@@ -17,6 +17,12 @@ if ('' != $query) {
     <h1 class="page-header">刪除黑名單</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->block->delete($user);</pre>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>user</p><p>使用者名稱</p></li>
+        </ul>
+    </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">

@@ -40,6 +40,12 @@ if ($_POST) {
     <h1 class="page-header">修改訂閱群組排序</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptionGroups->position($ids);</pre>
+    <div class="well">
+        <p>必填參數</p>
+        <ul>
+            <li><p>ids</p><p>相簿 id 順序以 <code>,</code> 或 <code>-</code> 為分隔，放在越前面的表示圖片的順序越優先。 (EX: 12394813,12938503,12395064,12351423 or 12394813-12938503-12395064-12351423 )</p></li>
+        </ul>
+    </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
 <?php

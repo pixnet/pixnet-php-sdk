@@ -26,7 +26,7 @@ require_once(__DIR__ . '/include/checkAuth.php');
         if ('' != $query) {
     ?>
     <h3>執行</h3>
-    <pre>$pixapi->blog->info(<?= $query; ?>);</pre>
+    <pre>$pixapi->blog->info('<?= $query; ?>');</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->blog->info($query)); ?></pre>
     <?php
