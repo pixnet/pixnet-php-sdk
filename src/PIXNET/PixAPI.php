@@ -543,7 +543,8 @@ class PixAPI
         );
     }
 
-    public function error() {
+    public function error()
+    {
         return self::$error_message;
     }
 }

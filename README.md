@@ -49,6 +49,11 @@ $pixapi = new PixAPI(array(
 ##更多範例
 更多完整的範例在examples資料夾，請執行examples/index.php，依據步驟設定
 
+## 聯絡我們
+
+Email: pixnetapi@pixnet.tw
+Twitter: @pixnetapi
+
 ##快速查詢用法
 
 ###部落格
