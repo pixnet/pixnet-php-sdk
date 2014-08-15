@@ -15,6 +15,14 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->friend->groups->test->test();
+    }
+
     public function testSearch()
     {
         $actual_all = self::$pixapi->friend->groups->search();

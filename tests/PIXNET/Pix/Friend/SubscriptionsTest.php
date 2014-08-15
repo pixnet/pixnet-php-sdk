@@ -15,6 +15,14 @@ class Pix_Friend_SubscriptionsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->friend->subscriptions->test->test();
+    }
+
     public function testSearch()
     {
         $delete = self::$pixapi->friend->subscriptions->delete('emmatest4');

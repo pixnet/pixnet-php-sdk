@@ -37,6 +37,14 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->elements->comments->search('', '');
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->album->elements->comments->test->test();
+    }
+
     public function testSearchTotal()
     {
 

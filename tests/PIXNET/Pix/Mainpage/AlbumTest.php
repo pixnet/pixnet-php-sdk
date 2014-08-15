@@ -35,6 +35,14 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->mainpage->album->hot('');
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->mainpage->album->test->test();
+    }
+
     public function testLatest()
     {
         $actual = self::$pixapi->mainpage->album->latest(0, array('api_version' => 2, 'count' => 10));

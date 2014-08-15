@@ -31,4 +31,12 @@ class Pix_Mainpage_VideoTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->mainpage->video->hotWeekly();
         $this->assertLessThanOrEqual(11, count($actual['elements']));
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->mainpage->video->test->test();
+    }
 }

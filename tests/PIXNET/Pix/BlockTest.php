@@ -34,6 +34,14 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->block->create('');
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->block->test->test();
+    }
+
     public function testSearch()
     {
         $actual_all = self::$pixapi->block->search()['data'];

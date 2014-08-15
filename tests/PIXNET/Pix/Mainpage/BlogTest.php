@@ -32,6 +32,14 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
         $this->assertCount(7, $actual);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->mainpage->blog->test->test();
+    }
+
     public function testHot()
     {
         $actual = self::$pixapi->mainpage->blog->hot(0)['data'];

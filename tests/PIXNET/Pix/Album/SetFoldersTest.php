@@ -22,6 +22,14 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->setfolders->search('');
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testGet()
+    {
+        self::$pixapi->album->setfolders->test->test();
+    }
+
     public function testSearch()
     {
         $expected = ['4948779', '4948785'];
