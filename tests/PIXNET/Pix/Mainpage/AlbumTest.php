@@ -64,6 +64,12 @@ class Pix_Mainpage_AlbumTest extends PHPUnit_Framework_TestCase
         $this->assertLessThanOrEqual(10, count($actual['sets']));
     }
 
+    public function testBestSelected()
+    {
+        $actual = self::$pixapi->mainpage->album->bestSelected();
+        $this->assertLessThanOrEqual(18, count($actual['data']));
+    }
+
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::REQUIRE_PARAMETERS_MISSING
