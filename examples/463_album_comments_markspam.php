@@ -2,19 +2,31 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+foreach ($sets as $k => $set) {
+    $count = $pixapi->album->comments->search($name, ['set_id' => $set['id']])['total'];
+    $sets[$k]['title'] .= " ( $count 則留言)";
+}
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+}
+if ("" != $_POST['comment_id']) {
+    $result = $pixapi->album->comments->markSpam($_POST['comment_id']);
 }
 
-$comments = $pixapi->album->sets->comments($name, $current_set['id']);
-foreach ($comments as $c) {
-    if ($c['is_spam']) {
-        $c['body'] = "(spamed)" . $c['body'];
+$comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
+$comments = $comment_data['total'] ? $comment_data['data'] : 0;
+if ($comments) {
+    foreach ($comments as $c) {
+        if ($c['is_spam']) {
+            $c['body'] = "(spamed)" . $c['body'];
+        }
+        $modify_comments[] = $c;
     }
-    $modify_comments[] = $c;
+} else {
+    $comments = [['id' => '0" disabled="disabled', 'body' => '無留言']];
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +43,6 @@ foreach ($comments as $c) {
     <div class="well">
         <p>必填參數</p>
         <ul>
-            <li><p>name</p><p>相簿擁有者</p></li>
             <li><p>comment_id</p><p>該留言 id</p></li>
         </ul>
         <p>選填參數</p>
@@ -78,13 +89,13 @@ foreach ($comments as $c) {
         location = (uri + search + '&set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['comment_id'])) {?>
+    <?php if (isset($result)) {?>
     <h3>實際執行</h3>
     <pre>
         $pixapi->album->comments->markSpam('<?= $_POST['comment_id'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->markSpam($_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($result); ?></pre>
     <?php }?>
 </div>
 </body>

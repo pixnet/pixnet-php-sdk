@@ -2,11 +2,18 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+foreach ($sets as $k => $set) {
+    $count = $pixapi->album->elements->comments->search($name, ['set_id' => $set['id']])['total'];
+    $sets[$k]['title'] .= " ( $count 則留言)";
+}
+if ("" != $_POST['set_id']) {
+    $result = $pixapi->album->comments->search($name, ['set_id' => $_POST['set_id']]);
+}
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
 }
 ?>
 <!DOCTYPE html>
@@ -49,13 +56,13 @@ if (!isset($_GET['set_id'])) {
       </div>
       <button type="submit" class="btn btn-primary">取得留言</button>
     </form>
-    <?php if (!empty($_POST['set_id'])) {?>
+    <?php if (isset($result)) {?>
     <h3>實際執行</h3>
     <pre>
         $pixapi->album->comments->search('<?= $name?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->search($name, ['set_id' => $_POST['set_id']])); ?></pre>
+    <pre><?php print_r($result); ?></pre>
     <?php }?>
 </div>
 </body>

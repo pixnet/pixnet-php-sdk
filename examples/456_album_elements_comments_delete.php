@@ -2,18 +2,21 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+if ("" != $_POST['comment_id']) {
+    $result = $pixapi->album->elements->comments->delete($_POST['comment_id']);
+}
 foreach ($sets as $k => $set) {
-    $count = $pixapi->album->sets->elements($name, $set['id']) ? count($pixapi->album->sets->elements($name, $set['id'])) : 0;
-    $sets[$k]['title'] .= " ( $count )";
+    $count = $pixapi->album->elements->comments->search($name, ['set_id' => $set['id']])['total'];
+    $sets[$k]['title'] .= " ( $count 則留言)";
 }
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
 }
-
-$comments = $pixapi->album->elements->comments->search($name, ['set_id' => $current_set['id']]);
+$comment_data = $pixapi->album->elements->comments->search($name, ['set_id' => $current_set['id']]);
+$comments = $comment_data['total'] ? $comment_data['data'] : 0;
 if ($comments) {
     foreach ($comments as $k => $c) {
         if ($comments[$k]['is_spam']) {
@@ -83,13 +86,13 @@ if ($comments) {
         location = (uri + search + '&set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['comment_id'])) {?>
+    <?php if (isset($result)) {?>
     <h3>實際執行</h3>
     <pre>
         $pixapi->album->elements->comments->delete('<?= $_POST['comment_id'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->elements->comments->delete($_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($result); ?></pre>
     <?php }?>
 </div>
 </body>

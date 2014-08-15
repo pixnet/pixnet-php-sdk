@@ -2,14 +2,25 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+foreach ($sets as $k => $set) {
+    $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
+    $sets[$k]['title'] .= " ( $count )";
+}
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
 }
 
-$elements = $pixapi->album->sets->elements($name, $current_set['id']);
+$element_data = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
+if ($element_data['total']) {
+    $elements = $element_data['data'];
+    foreach ($elements as $k => $e) {
+        $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
+        $elements[$k]['title'] .= " ( $count )";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,8 +65,12 @@ $elements = $pixapi->album->sets->elements($name, $current_set['id']);
         <label class="col-sm-2 control-label" for="query">請選擇照片</label>
         <div class="col-sm-5">
             <select class="form-control" id="query" name="element_id">
-                <?php foreach ($elements as $e) { ?>
+                <?php if ($elements) { ?>
+                    <?php foreach ($elements as $e) { ?>
                 <option value="<?= $e['id']?>"><?= $e['title']?></option>
+                    <?php } ?>
+                <?php } else { ?>
+                <option disabled>無照片</option>
                 <?php } ?>
             </select>
         </div>

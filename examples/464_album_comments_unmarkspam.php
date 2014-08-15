@@ -2,19 +2,31 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+foreach ($sets as $k => $set) {
+    $count = $pixapi->album->comments->search($name, ['set_id' => $set['id']])['total'];
+    $sets[$k]['title'] .= " ( $count 則留言)";
+}
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+}
+if ("" != $_POST['comment_id']) {
+    $result = $pixapi->album->comments->markHam($_POST['comment_id']);
 }
 
-$comments = $pixapi->album->sets->comments($name, $current_set['id']);
-foreach ($comments as $c) {
-    if ($c['is_spam']) {
-        $c['body'] = "(spamed)" . $c['body'];
+$comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
+$comments = $comment_data['total'] ? $comment_data['data'] : 0;
+if ($comments) {
+    foreach ($comments as $k => $c) {
+        if ($c['is_spam']) {
+            $c['body'] = "(spamed)" . $c['body'];
+        }
+        $comments[$k] = $c;
     }
-    $modify_comments[] = $c;
+} else {
+    $comments = [['id' => '0" disabled="disabled', 'body' => '無留言']];
 }
 ?>
 <!DOCTYPE html>
@@ -25,13 +37,17 @@ foreach ($comments as $c) {
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">將留言設為廣告留言</h1>
+    <h1 class="page-header">將留言設為非廣告留言</h1>
     <h3>呼叫方式</h3>
-    <pre>$pixapi->album->comments->markHam($comment_id)</pre>
+    <pre>$pixapi->album->comments->markHam($comment_id, $options = array())</pre>
     <div class="well">
         <p>必填參數</p>
         <ul>
             <li><p>comment_id</p><p>該留言 id</p></li>
+        </ul>
+        <p>選填參數</p>
+        <ul>
+            <li><p>password</p><p>如果指定使用者的相本被密碼保護，則需要指定這個參數以通過授權</p></li>
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
@@ -54,7 +70,7 @@ foreach ($comments as $c) {
         <label class="col-sm-2 control-label" for="query">請選擇留言</label>
         <div class="col-sm-5">
             <select class="form-control" id="query" name="comment_id">
-                <?php foreach ($modify_comments as $c) { ?>
+                <?php foreach ($comments as $c) { ?>
                 <option value="<?= $c['id']?>"><?= $c['body']?></option>
                 <?php } ?>
             </select>
@@ -73,13 +89,13 @@ foreach ($comments as $c) {
         location = (uri + search + '&set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['comment_id'])) {?>
+    <?php if (isset($result)) {?>
     <h3>實際執行</h3>
     <pre>
         $pixapi->album->comments->markHam('<?= $_POST['comment_id'] ?>')
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->comments->markHam($_POST['comment_id'])); ?></pre>
+    <pre><?php print_r($result); ?></pre>
     <?php }?>
 </div>
 </body>

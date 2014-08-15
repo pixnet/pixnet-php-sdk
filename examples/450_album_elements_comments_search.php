@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
 foreach ($sets as $k => $set) {
     $count = $pixapi->album->sets->elements($name, $set['id']) ? count($pixapi->album->sets->elements($name, $set['id'])) : 0;
     $sets[$k]['title'] .= " ( $count )";
@@ -12,7 +12,7 @@ if (!isset($_GET['set_id'])) {
 } else {
     $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
 }
-$elements = $pixapi->album->sets->elements($name, $current_set['id']);
+$elements = $pixapi->album->sets->search($name)['data'];
 foreach ($elements as $k => $e) {
     $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = []) ? count($pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])) : 0;
     $elements[$k]['title'] .= " ( $count )";
@@ -24,7 +24,7 @@ if (!isset($_GET['element_id'])) {
     $current_element = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']]);
 }
 
-$comments = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']]);
+$comments = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']])['data'];
 ?>
 <!DOCTYPE html>
 <html>

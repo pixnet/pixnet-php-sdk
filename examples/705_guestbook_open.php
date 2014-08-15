@@ -25,12 +25,16 @@ require_once(__DIR__ . '/include/checkAuth.php');
         <select class="form-control" id="query" name="query">
           <?php
           $guestbooks = $pixapi->guestbook->search(array('filter' => 'whisper'));
-          foreach ($guestbooks['data'] as $guestbook) {
+          if ($guestbooks['total']) {
+              foreach ($guestbooks['data'] as $guestbook) {
           ?>
               <option value="<?= $guestbook['id'] ?>" <?= ($query == $guestbook['id']) ? 'selected' : ''; ?>><?= $guestbook['title'] ?></option>
           <?php
-          }
+              }
+          } else {
           ?>
+              <option disabled>無留言可提供測試</option>
+          <?php } ?>
           </select>
       </div>
       <button type="submit" class="btn btn-primary">設定為公開</button>

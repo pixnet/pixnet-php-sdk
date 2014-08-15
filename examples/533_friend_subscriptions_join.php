@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 
-$user = $pixapi->user->info();
+$user = $pixapi->user->info()['data'];
 $num = 0;
 $type = 'checkbox';
 if (1 != $user['is_vip']) {
@@ -13,20 +13,8 @@ $query = $_GET['query'];
 $post = [];
 $groups = $pixapi->friend->subscriptionGroups->search();
 
-foreach ($groups['subscription_groups'] as $group) {
-    if (!$_POST['query_' . $group['id']]) {
-        continue;
-    }
-    $post[] = $_POST['query_' . $group['id']];
-}
-
-foreach ($post as $result) {
-    if ((count($post) - 1) > $num) {
-        $query2 .= $result . ',';
-    } else {
-        $query2 .= $result;
-    }
-    $num++;
+if ($_POST['query_2']) {
+    $query2 = implode(',', $_POST['query_2']);
 }
 
 if ($query and $query2) {
@@ -66,13 +54,12 @@ if ($query and $query2) {
               <option value="">請選擇</option>
 <?php
 $subscriptions = $pixapi->friend->subscriptions->search();
-foreach ($subscriptions['subscriptions'] as $subscription) {
+foreach ($subscriptions['data'] as $subscription) {
     // 非 VIP 只能將使用者加入一個訂閱群組，若該使用者已有群組則不顯示
-    if (1 != $user['is_vip'] and $subscription['groups']) {
+    if (1 != $user['is_vip'] and $subscription['group']) {
         continue;
     }
-    if ($subscription['user']['name']) {
-?>
+    if ($subscription['user']['name']) { ?>
               <option value="?query=<?= $subscription['user']['name'] ?>" <?= ($query == $subscription['user']['name']) ? 'selected' : ''; ?>><?= $subscription['user']['name'] ?></option>
 <?php
     }
@@ -86,10 +73,10 @@ foreach ($subscriptions['subscriptions'] as $subscription) {
             <label class="col-sm-2 control-label" for="query2">加入群組(必選)</label>
             <div class="col-sm-4">
 <?php
-foreach ($groups['subscription_groups'] as $group) {
-    $show_group = 0;
+foreach ($groups['data'] as $group) {
+    $show_group = 1;
     if ($group['id'] > 0) {
-        foreach ($subscriptions['subscriptions'] as $subscription) {
+        foreach ($subscriptions['data'] as $subscription) {
             if ($subscription['user']['name'] != $query) {
                 continue;
             }
@@ -99,14 +86,14 @@ foreach ($groups['subscription_groups'] as $group) {
             // 該使用者已在某群組裡面則不顯示該群組
             foreach ($subscription['groups'] as $hasgroup) {
                 if ($group['id'] == $hasgroup['id']) {
-                    $show_group = 1;
+                    $show_group = 0;
                     continue;
                 }
             }
         }
-        if (1 != $show_group) {
+        if ($show_group) {
 ?>
-              <input type="<?= $type ?>" id="query_<?= $group['id'] ?>" name="query_<?= $group['id'] ?>" value="<?= $group['id'] ?>"><?= $group['name'] ?></option>
+              <input type="<?= $type ?>" id="query_<?= $group['id'] ?>" name="query_2[]" value="<?= $group['id'] ?>"><?= $group['name'] ?></option>
 <?php
         }
     }
