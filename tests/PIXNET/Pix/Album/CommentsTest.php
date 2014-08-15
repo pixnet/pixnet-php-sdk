@@ -43,6 +43,17 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->Album->comments->search('', '');
     }
 
+    public function testSearchComment()
+    {
+        $tempcomment = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], 'test message')['data'];
+        $expected['body'] = $tempcomment['body'];
+        $expected['id'] = $tempcomment['id'];
+        $current = self::$pixapi->Album->comments->search('emmatest', ['comment_id' => $tempcomment['id']])['data'];
+        $this->assertEquals($current['body'], $expected['body']);
+        $this->assertEquals($current['id'], $expected['id']);
+        $this->destoryTempComments([$tempcomment]);
+    }
+
     public function testSearchSet()
     {
 
