@@ -17,4 +17,10 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->blog->comments->notfound;
     }
+
+    public function testLatest()
+    {
+        $actual = self::$pixapi->blog->comments->latest();
+        $this->assertLessThanOrEqual(5, $actual['total']);
+    }
 }
