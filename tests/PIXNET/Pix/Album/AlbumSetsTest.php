@@ -40,6 +40,14 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
+    public function testGet()
+    {
+        self::$pixapi->album->sets->test->test();
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
     public function testCreateException()
     {
         self::$pixapi->album->sets->create('', '');
