@@ -23,54 +23,6 @@ abstract class Pix_Comments extends PixAPI
         $this->api_path = $name;
     }
 
-    public function search($options = array())
-    {
-        if (!is_array($options)) {
-            $parameters = array($options);
-            $response = $this->query($this->api_path, $parameters, 'URI');
-            return $this->getResult($response, 'comment');
-        }
-        $parameters = $this->mergeParameters(
-            array(),
-            $options,
-            array('article_id', 'page', 'per_page'),
-            array('blog_password', 'article_password', 'filter', 'sort')
-        );
-        $response = $this->query($this->api_path, $parameters, 'GET');
-
-        return $this->getResult($response, 'comments');
-    }
-
-    public function create($user, $article_id, $body, $options = array())
-    {
-        if ('' == $article_id or '' == $body or '' == $user) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $parameters = $this->mergeParameters(
-            array('article_id' => $article_id, 'body' => $body, 'user' => $user),
-            $options,
-            array('is_open'),
-            array('author', 'title', 'url', 'email', 'blog_password', 'article_password')
-        );
-        $response = $this->query($this->api_path, $parameters, 'POST');
-        return $this->getResult($response, 'comment');
-    }
-
-    public function reply($comment_id, $body, $options = array())
-    {
-        if ('' == $comment_id or '' == $body) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
-        $parameters = $this->mergeParameters(
-            array('body' => $body),
-            $options,
-            array(),
-            array()
-        );
-        $response = $this->query($this->api_path . '/' . $comment_id . '/reply', $parameters, 'POST');
-        return $this->getResult($response, 'comment');
-    }
-
     public function delete($comment_id)
     {
         if ('' == $comment_id) {
