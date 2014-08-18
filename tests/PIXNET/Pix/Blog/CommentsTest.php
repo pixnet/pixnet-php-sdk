@@ -2,11 +2,13 @@
 class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
+    public static $test_comments;
 
     public static function setUpBeforeClass()
     {
         Authentication::setUpBeforeClass();
         self::$pixapi = Authentication::$pixapi;
+        self::$test_comments = self::$pixapi->blog->comments->search(['article_id' => 11903807]);
     }
 
     /**
