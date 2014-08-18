@@ -4,7 +4,6 @@
  * All rights reserved.
  */
 
-// @codeCoverageIgnoreStart
 call_user_func(function () {
     set_include_path(implode(PATH_SEPARATOR, array(
         get_include_path(),
@@ -14,4 +13,3 @@ call_user_func(function () {
 
 require(__DIR__ . '/PIXNET/PixLoader.php');
 PixLoader::registerAutoload();
-// @codeCoverageIgnoreEnd
