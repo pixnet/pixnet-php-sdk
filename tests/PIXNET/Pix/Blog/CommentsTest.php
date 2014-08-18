@@ -20,6 +20,14 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->blog->comments->notfound;
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->blog->comments->search('TEST');
+    }
+
     public function testLatest()
     {
         $actual = self::$pixapi->blog->comments->latest();
