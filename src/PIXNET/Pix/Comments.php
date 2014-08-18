@@ -8,6 +8,9 @@ abstract class Pix_Comments extends PixAPI
 {
     private $api_path = '';
 
+    /**
+      * @codeCoverageIgnore
+      */
     public function __construct($client)
     {
         $this->client = $client;
