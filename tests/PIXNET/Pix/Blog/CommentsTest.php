@@ -28,6 +28,12 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->comments->search('TEST');
     }
 
+    public function testSearchArticleComments()
+    {
+        $comments = self::$pixapi->blog->comments->search(['article_id' => 11903807]);
+        $this->assertEquals(2, $comments['total']);
+    }
+
     public function testLatest()
     {
         $actual = self::$pixapi->blog->comments->latest();
