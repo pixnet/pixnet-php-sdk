@@ -14,6 +14,9 @@ class Pix_Blog_Comments extends Pix_Comments
 
     public function search($options = array())
     {
+        if (!is_array($options) and "" != $options and !is_numeric($options)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
         if (!is_array($options)) {
             $parameters = array($options);
             $response = $this->query('blog/comments', $parameters, 'URI');
