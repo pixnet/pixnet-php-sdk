@@ -19,17 +19,8 @@ class Pix_IndexTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->index->rate();
 
-        $expected = [
-           'error' => 0,
-           'http_code' => 200,
-           'data' => [
-               'rate' => 0,
-               'authenticated' => true,
-               'limit' => 6000
-           ]
-        ];
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(200, $actual['http_code']);
+        $this->assertTrue($actual['data']['authenticated']);
     }
 
     public function testNow()
