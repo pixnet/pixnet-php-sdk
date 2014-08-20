@@ -286,7 +286,7 @@ class PixAPI
         $response = $this->client->query($url, $parameters, $method, $http_headers, true);
         if (!$response['result'] or 200 != $response['code'] or 0 < $response['result']['error']) {
             if (!isset($response['result']['message'])) {
-                throw new PixAPIException(serialize($response), PixAPIException::API_ERROR);
+                throw new PixAPIException(sprintf('httpcode:%s reponse:%s', $response['code'], json_encode($response)), PixAPIException::API_ERROR);
             }
             self::$error_message = sprintf(
                 'httpcode:%s error:%s',
