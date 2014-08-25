@@ -36,6 +36,15 @@ class Pix_Blog extends PixAPI
         return $this->getResult($response, 'blog');
     }
 
+    public function suggestedTags($username = '')
+    {
+        if ('' == $username) {
+            $username = $this->getUserName();
+        }
+        $response = $this->query('blog/suggested_tags', array('user' => $username));
+        return $this->getResult($response, 'tags');
+    }
+
     public function siteCategories()
     {
         $response = $this->query('blog/site_categories');
