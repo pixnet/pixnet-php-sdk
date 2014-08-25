@@ -7,6 +7,7 @@ $examples_list = array(
                 '取得部落格資訊' => '301_blog_info.php',
                 '查詢其他部落格公開資訊' => '302_blog_info.php',
                 '取得部落格全站分類' => '303_blog_site_categories.php',
+                '取得建議標籤' => '304_suggested_tags.php',
             )
         ),
         array(
