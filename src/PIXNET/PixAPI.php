@@ -515,6 +515,7 @@ class PixAPI
             'blog/categories',
             'blog/articles',
             'blog/comments',
+            'blog/suggested_tags',
             'blog/site_categories',
             'album/main',
             'album/setfolders',
