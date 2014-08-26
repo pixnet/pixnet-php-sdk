@@ -2,6 +2,9 @@
 class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
+    public static $tempSet;
+    public static $tempElements;
+    public static $fixture_pics = ['350x200-emmatest.png', '350x250-emmatest.png', '400x500-emmatest.png', '550x200-emmatest.png'];
 
     public static function setUpBeforeClass()
     {
@@ -17,4 +20,23 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->elements->test->test();
     }
 
+    private function createTempAlbum()
+    {
+        self::$tempSet = self::$pixapi->album->sets->create('emmatest title', 'emmatest description');
+        echo "Temp Set " . self::$tempSet['data']['id'] . " created." . PHP_EOL;
+    }
+
+    private function destroyTempAlbum()
+    {
+        $ret = self::$pixapi->album->sets->delete(self::$tempSet['data']['id']);
+        echo "Temp Set " . self::$tempSet['data']['id'] . " destroyed." . PHP_EOL;
+    }
+
+    private function createTempElements()
+    {
+        foreach (self::$fixture_pics as $filename) {
+            $filename = __DIR__ . '/../../../fixture/' . $filename;
+            self::$tempElements[] = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
+        }
+    }
 }
