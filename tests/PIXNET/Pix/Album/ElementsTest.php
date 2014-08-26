@@ -39,4 +39,15 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
             self::$tempElements[] = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
         }
     }
+
+    public function testCreate()
+    {
+        $this->createTempAlbum();
+        foreach (self::$fixture_pics as $filename) {
+            $filename = __DIR__ . '/../../../fixture/' . $filename;
+            $element = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
+            $this->assertEquals($element['error'], 0);
+        }
+        $this->destroyTempAlbum();
+    }
 }
