@@ -2,7 +2,10 @@
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name);
+$sets = $pixapi->album->sets->search($name)['data'];
+if (count($sets) == 0) {
+    $sets[] = ['id' => '" disabled="disabled', 'title' => '無相簿可供測試'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +32,7 @@ $sets = $pixapi->album->sets->search($name);
         </ul>
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
-    <form action="#execute" class="form-inline" role="form" method="POST">
+    <form action="#execute" class="form-horizontal" role="form" method="POST">
       <div class="form-group">
         <label class="col-sm-4 control-label" for="query">請選擇相簿</label>
         <div class="col-sm-5">
