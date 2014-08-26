@@ -25,7 +25,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     /**
      * 刪除測試用的相簿
      */
-    private function destoryTempSets($sets)
+    private function destroyTempSets($sets)
     {
         foreach ($sets as $set) {
             self::$pixapi->album->sets->delete($set['id']);
@@ -127,7 +127,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($set_id, $ret['id']);
         }
 
-        $this->destoryTempSets($tempSets);
+        $this->destroyTempSets($tempSets);
     }
 
     /**

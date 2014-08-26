@@ -20,13 +20,13 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->elements->test->test();
     }
 
-    private function createTempAlbum()
+    private function createTempSet()
     {
         self::$tempSet = self::$pixapi->album->sets->create('emmatest title', 'emmatest description');
         echo "Temp Set " . self::$tempSet['data']['id'] . " created." . PHP_EOL;
     }
 
-    private function destroyTempAlbum()
+    private function destroyTempSet()
     {
         $ret = self::$pixapi->album->sets->delete(self::$tempSet['data']['id']);
         echo "Temp Set " . self::$tempSet['data']['id'] . " destroyed." . PHP_EOL;
@@ -42,12 +42,12 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $this->createTempAlbum();
+        $this->createTempSet();
         foreach (self::$fixture_pics as $filename) {
             $filename = __DIR__ . '/../../../fixture/' . $filename;
             $element = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
             $this->assertEquals($element['error'], 0);
         }
-        $this->destroyTempAlbum();
+        $this->destroyTempSet();
     }
 }
