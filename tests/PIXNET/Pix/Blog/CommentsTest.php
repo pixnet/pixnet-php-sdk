@@ -84,6 +84,15 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->comments->create('emmatest', '', '');
     }
 
+    /**
+     * @expectedException PixAPIException
+     * @group gulp
+     */
+    public function testReplyException()
+    {
+        self::$pixapi->blog->comments->reply('','');
+    }
+
     public function testLatest()
     {
         $actual = self::$pixapi->blog->comments->latest();
