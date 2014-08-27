@@ -84,9 +84,21 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->comments->create('emmatest', '', '');
     }
 
+    public function testReply()
+    {
+        $article = $this->createTempArticle();
+        $body = "unit test";
+        $comment = self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        $expected = $comment['body'];
+        $reply_body = "reply unit test";
+        $reply = self::$pixapi->blog->comments->reply($comment['id'], $reply_body)['data'];
+        $actual = self::$pixapi->blog->comments->search($comment['id']);
+        $this->assertEquals($reply_body, $actual['data']['reply']['body']);
+        $this->destroyTempArticle($article);
+    }
+
     /**
      * @expectedException PixAPIException
-     * @group gulp
      */
     public function testReplyException()
     {
