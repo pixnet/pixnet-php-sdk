@@ -38,8 +38,14 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
 
     public function testSearchArticleComments()
     {
-        $comments = self::$pixapi->blog->comments->search(['article_id' => 11903807]);
-        $this->assertEquals(2, $comments['total']);
+        $article = $this->createTempArticle();
+        for ($i = 0; $i < 5; $i++) {
+            $body = "unit test" . md5(time);
+            self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        }
+        $actual = self::$pixapi->blog->comments->search(['article_id' => $article['id']]);
+        $this->assertEquals($i, $actual['total']);
+        $this->destroyTempArticle($article);
     }
 
     public function testSearchAll()
