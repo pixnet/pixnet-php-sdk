@@ -2,6 +2,7 @@
 class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
+    public static $fixture_pics = ['350x200-emmatest.png', '350x250-emmatest.png', '400x500-emmatest.png', '550x200-emmatest.png'];
 
     public static function setUpBeforeClass()
     {
@@ -10,16 +11,25 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * 產生測試用的相片
+     */
+    private function createTempElements($set)
+    {
+        foreach (self::$fixture_pics as $filename) {
+            $path = __DIR__ . '/../../../fixture/';
+            $tempElements[] = self::$pixapi->album->elements->create($set['id'], $path . $filename, ['title' => $filename]);
+        }
+        return $tempElements;
+    }
+
+    /**
      * 產生測試用的相簿
      */
     private function createTempSets()
     {
-        for ($i = 0; $i < 5; $i++) {
-            $title = "PHP-SDK-TEST-TITLE-" . sha1($i);
-            $desc = "PHP-SDK-TEST-DESC-" . md5($i);
-            $expected[] = self::$pixapi->album->sets->create($title, $desc)['data'];
-        }
-        return $expected;
+        $title = "PHP-SDK-TEST-TITLE-" . sha1(time());
+        $desc = "PHP-SDK-TEST-DESC-" . md5(time());
+        return self::$pixapi->album->sets->create($title, $desc)['data'];
     }
 
     /**
@@ -109,7 +119,9 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
 
-        $tempSets = $this->createTempSets();
+        for ($i = 0; $i < 5; $i++) {
+            $tempSets[] = $this->createTempSets();
+        }
         foreach ($tempSets as $set) {
             $expected['title'][] = $set['title'];
             $expected['id'][] = $set['id'];
@@ -198,7 +210,9 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $tempSets = $this->createTempSets();
+        for ($i = 0; $i < 5; $i++) {
+            $tempSets[] = $this->createTempSets();
+        }
         $expected = count($tempSets);
         $actual = 0;
         foreach ($tempSets as $set) {
