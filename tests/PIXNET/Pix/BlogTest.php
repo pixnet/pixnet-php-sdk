@@ -38,4 +38,10 @@ class Pix_BlogTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->blog->notfound;
     }
+
+    public function testSuggestedTags()
+    {
+        $tags = self::$pixapi->blog->suggestedTags();
+        $this->assertEquals(2, count($tags['data']));
+    }
 }
