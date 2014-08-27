@@ -11,6 +11,16 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$test_comments = self::$pixapi->blog->comments->search(['article_id' => 11903807]);
     }
 
+    private function createTempArticle()
+    {
+        return self::$pixapi->blog->articles->create('Emma unit test article', 'unit test body')['data'];
+    }
+
+    private function destroyTempArticle($article)
+    {
+        self::$pixapi->blog->articles->delete($article['id']);
+    }
+
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
