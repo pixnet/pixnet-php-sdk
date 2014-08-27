@@ -52,8 +52,13 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
 
     public function testSearchComment()
     {
-        $comments = self::$pixapi->blog->comments->search('2326055');
-        $this->assertEquals('test 5335', $comments['data']['body']);
+        $article = $this->createTempArticle();
+        $body = "unit test" . md5(time);
+        $comment = self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        $expected = $comment['body'];
+        $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
+        $this->assertEquals($expected, $actual['body']);
+        $this->destroyTempArticle($article);
     }
 
     public function testCreate()
