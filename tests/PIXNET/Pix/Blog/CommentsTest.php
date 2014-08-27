@@ -76,6 +76,14 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         $this->destroyTempArticle($article);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->blog->comments->create('emmatest', '', '');
+    }
+
     public function testLatest()
     {
         $actual = self::$pixapi->blog->comments->latest();
