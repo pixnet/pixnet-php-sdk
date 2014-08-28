@@ -64,4 +64,12 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $this->destroyTempArticle($temp_article['data']);
         $this->assertEquals(0, $temp_article['error']);
     }
+
+    public function testRelated()
+    {
+        $temp_article = $this->createTempArticle();
+        $ret = self::$pixapi->blog->articles->related($temp_article['id']);
+        $this->destroyTempArticle($temp_article);
+        $this->assertEquals(0, $ret['error']);
+    }
 }
