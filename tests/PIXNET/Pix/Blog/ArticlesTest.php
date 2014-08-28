@@ -46,4 +46,15 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $ret = self::$pixapi->blog->articles->delete($temp_article['id']);
         $this->assertEquals(0, $ret['error']);
     }
+
+    public function testUpdate()
+    {
+        $temp_article = $this->createTempArticle();
+        $expected['title'] = "Just Give me a reason";
+        $expected['body'] = "OVER My DeaD BoDy";
+        $ret = self::$pixapi->blog->articles->update($temp_article['id'], $expected['title'], $expected['body'])['data'];
+        $this->destroyTempArticle($temp_article);
+        $this->assertEquals($ret['title'], $expected['title']);
+        $this->assertEquals($ret['body'], $expected['body']);
+    }
 }
