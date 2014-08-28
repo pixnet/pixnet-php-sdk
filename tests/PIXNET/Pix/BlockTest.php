@@ -21,7 +21,7 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
             self::$pixapi->block->delete('emma');
         }
         $actual_all = self::$pixapi->block->create('emma');
-        $actual = $actual_all['data']['user']['name'];
+        $actual = $actual_all['data']['user']['user_name'];
 
         $this->assertEquals('emma', $actual);
     }

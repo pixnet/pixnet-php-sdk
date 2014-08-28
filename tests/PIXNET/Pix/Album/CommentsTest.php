@@ -8,7 +8,12 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
     {
         Authentication::setUpBeforeClass();
         self::$pixapi = Authentication::$pixapi;
-        self::$test_set = self::$pixapi->Album->Sets->search('emmatest')['data'][0];
+        self::$test_set = self::$pixapi->Album->Sets->create('PHP-SDK unit test title', 'PHP-SDK unit test desc', ['cancomment' => 1])['data'];
+    }
+
+    public static function tearDownAfterClass()
+    {
+        self::$pixapi->Album->Sets->delete(self::$test_set['id']);
     }
 
     private function createTempComments()

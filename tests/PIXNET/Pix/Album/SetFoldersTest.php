@@ -32,11 +32,14 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
-        $expected = ['4948779', '4948785'];
+        $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
+        $expected = $tmp_folder['data']['id'];
         $ret = self::$pixapi->album->setfolders->search('emmatest')['data'];
+        self::$pixapi->album->folders->delete($tmp_folder['data']['id']);
         foreach ($ret as $set) {
-            $this->assertTrue(in_array($set['id'], $expected));
+            $actual[] = $set['id'];
         }
+        $this->assertTrue(in_array($expected, $actual));
     }
 
     /**
@@ -49,14 +52,21 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
 
     public function testPosition()
     {
-        $expected = '4948785,4948779';
+        foreach (range(1,5) as $i) {
+            $tmp_folders[] = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body')['data'];
+        }
+        foreach ($tmp_folders as $f) {
+            $f_ids[] = $f['id'];
+        }
+        arsort($f_ids);
+        $expected = implode(',', $f_ids);
         $ret = self::$pixapi->album->setfolders->position($expected)['data'];
         foreach ($ret as $set) {
             $actual[] = $set['id'];
         }
-        $actual = implode(',', $actual);
-        $this->assertEquals($actual, $expected);
-        $expected = '4948779,4948785';
-        $ret = self::$pixapi->album->setfolders->position($expected);
+        foreach ($f_ids as $id) {
+            self::$pixapi->album->folders->delete($id);
+        }
+        $this->assertEquals(implode(',', $actual), $expected);
     }
 }

@@ -4,13 +4,22 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     public static $pixapi;
     public static $test_set;
     public static $test_element;
+    public static $fixture_pics = ['350x200-emmatest.png', '350x250-emmatest.png', '400x500-emmatest.png', '550x200-emmatest.png'];
 
     public static function setUpBeforeClass()
     {
         Authentication::setUpBeforeClass();
         self::$pixapi = Authentication::$pixapi;
-        self::$test_set = self::$pixapi->Album->Sets->search('emmatest')['data'][0];
-        self::$test_element = self::$pixapi->album->sets->elements('emmatest', self::$test_set['id'])['data'][0];
+        self::$test_set = self::$pixapi->Album->Sets->create('PHP-SDK unit test title', 'PHP-SDK unit test desc', ['cancomment' => 1])['data'];
+        $filename = self::$fixture_pics[0];
+        $filename = __DIR__ . '/../../../../fixture/' . $filename;
+        self::$test_element = self::$pixapi->album->elements->create(self::$test_set['id'], $filename)['data'];
+    }
+
+    public static function tearDownAfterClass()
+    {
+        Authentication::tearDownAfterClass();
+        self::$pixapi->Album->Sets->delete(self::$test_set['id']);
     }
 
     private function createTempComments()
