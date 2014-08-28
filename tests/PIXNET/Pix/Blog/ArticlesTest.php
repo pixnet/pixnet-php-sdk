@@ -23,4 +23,10 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $hot = self::$pixapi->blog->articles->hot();
         $this->assertEquals(0, $hot['error']);
     }
+
+    public function testLatest()
+    {
+        $latest = self::$pixapi->blog->articles->latest();
+        $this->assertEquals(0, $latest['error']);
+    }
 }
