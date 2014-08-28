@@ -113,4 +113,14 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $this->destroyTempArticle($temp_article);
         $this->assertEquals($ret['data'][0]['body'], $expected);
     }
+
+    public function testSearch()
+    {
+        $temp_article = $this->createTempArticle();
+        $ret = self::$pixapi->blog->articles->search($temp_article['id']);
+        $this->destroyTempArticle($temp_article);
+        $this->assertEquals($ret['data']['body'], $temp_article['body']);
+        $ret = self::$pixapi->blog->articles->search();
+        $this->assertEquals(0, $ret['error']);
+    }
 }
