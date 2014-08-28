@@ -40,6 +40,14 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $latest['error']);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        self::$pixapi->blog->articles->delete('');
+    }
+
     public function testDelete()
     {
         $temp_article = $this->createTempArticle();
@@ -86,5 +94,23 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $ret = self::$pixapi->blog->articles->related($temp_article['id']);
         $this->destroyTempArticle($temp_article);
         $this->assertEquals(0, $ret['error']);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCommentsException()
+    {
+        self::$pixapi->blog->articles->comments('');
+    }
+
+    public function testComments()
+    {
+        $temp_article = $this->createTempArticle();
+        $expected = time();
+        self::$pixapi->blog->comments->create('emmatest', $temp_article['id'], $expected);
+        $ret = self::$pixapi->blog->articles->comments($temp_article['id']);
+        $this->destroyTempArticle($temp_article);
+        $this->assertEquals($ret['data'][0]['body'], $expected);
     }
 }
