@@ -85,7 +85,11 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testPosition()
     {
-        $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => 4948779])['data'];
+        $tmpFolder = self::$pixapi->Album->folders->create('unit test folder', 'unit test unit test')['data'];
+        for ($i = 0; $i < 5; $i++) {
+            $temp_sets[] = $this->createTempSets(['parent_id' => $tmpFolder['id']]);
+        }
+        $current_albumsets = self::$pixapi->Album->sets->search('emmatest', ['parent_id' => $tmpFolder['id']])['data'];
         $num_of_sets = count($current_albumsets);
         $i = 1;
         foreach ($current_albumsets as $set) {
@@ -93,7 +97,9 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
         ksort($new_order);
         $expected = $new_order;
-        $ret_albumsets = self::$pixapi->Album->sets->position('4948779', implode(',', $new_order))['data'];
+        $ret_albumsets = self::$pixapi->Album->sets->position($tmpFolder['id'], implode(',', $new_order))['data'];
+        $this->destroyTempSets($temp_sets);
+        self::$pixapi->Album->folders->delete($tmpFolder['id']);
         foreach ($ret_albumsets as $set) {
             $actual[] = $set['id'];
         }
@@ -152,9 +158,12 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testElements()
     {
-        // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
-        $expected = ['167691000', '167691006'];
-        $current_elements = self::$pixapi->album->sets->elements('emmatest', 4948710)['data'];
+        $temp_set = $this->createTempSets();
+        $temp_elements = $this->createTempElements($temp_set);
+        $current_elements = self::$pixapi->album->sets->elements('emmatest', $temp_set['id'])['data'];
+        foreach ($temp_elements as $ele) {
+            $expected[] = $ele['id'];
+        }
         foreach ($current_elements as $ele) {
             $actual[] = $ele['id'];
         }
@@ -171,11 +180,11 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testComments()
     {
-        // 以此相簿為測試範本 http://emmatest.pixnet.net/album/set/4948710
-        $comment = self::$pixapi->Album->comments->create('emmatest', 4948710, 'test message')['data'];
-        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', 4948710)['data'][0];
+        $temp_set = $this->createTempSets(['cancomment' => 1, 'parent_id' => 0]);
+        $comment = self::$pixapi->Album->comments->create('emmatest', $temp_set['id'], 'test message')['data'];
+        $current_albumcomments = self::$pixapi->album->sets->comments('emmatest', $temp_set['id'])['data'][0];
+        $this->destroyTempSets([$temp_set]);
         $this->assertEquals($current_albumcomments['id'], $comment['id']);
-        self::$pixapi->Album->comments->delete($current_albumcomments['id']);
     }
 
     /**
@@ -188,16 +197,17 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testUpdate()
     {
+        $temp_set = $this->createTempSets();
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
-        $current_set = self::$pixapi->album->sets->search('emmatest', ['set_id' => 4948710])['data'];
+        $current_set = self::$pixapi->album->sets->search('emmatest', ['set_id' => $temp_set['id']])['data'];
         $current_title = $current_set['title'];
         $current_desc = $current_set['description'];
 
-        $actualset = self::$pixapi->album->sets->update(4948710, $expected_title, $expected_desc)['data'];
+        $actualset = self::$pixapi->album->sets->update($temp_set['id'], $expected_title, $expected_desc)['data'];
+        $this->destroyTempSets([$temp_set]);
         $this->assertEquals($actualset['title'], $expected_title);
         $this->assertEquals($actualset['description'], $expected_desc);
-        self::$pixapi->album->sets->update(4948710, $current_title, $current_desc, ['parent_id' => '4948779']);
     }
 
     /**
