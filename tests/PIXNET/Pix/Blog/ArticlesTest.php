@@ -17,4 +17,10 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->blog->articles->notfound;
     }
+
+    public function testHot()
+    {
+        $hot = self::$pixapi->blog->articles->hot();
+        $this->assertEquals(0, $hot['error']);
+    }
 }
