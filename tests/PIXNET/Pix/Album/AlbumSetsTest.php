@@ -161,6 +161,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $temp_set = $this->createTempSets();
         $temp_elements = $this->createTempElements($temp_set);
         $current_elements = self::$pixapi->album->sets->elements('emmatest', $temp_set['id'])['data'];
+        $this->destroyTempSets([$temp_set]);
         foreach ($temp_elements as $ele) {
             $expected[] = $ele['id'];
         }
