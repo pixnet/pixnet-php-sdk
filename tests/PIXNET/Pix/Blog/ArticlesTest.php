@@ -9,6 +9,16 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         self::$pixapi = Authentication::$pixapi;
     }
 
+    private function createTempArticle()
+    {
+        return self::$pixapi->blog->articles->create('Emma unit test article', 'unit test body')['data'];
+    }
+
+    private function destroyTempArticle($article)
+    {
+        self::$pixapi->blog->articles->delete($article['id']);
+    }
+
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
