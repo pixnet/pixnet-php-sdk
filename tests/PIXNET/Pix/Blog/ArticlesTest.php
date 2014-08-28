@@ -47,6 +47,13 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $ret['error']);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testUpdateException()
+    {
+        self::$pixapi->blog->articles->update('','','');
+    }
     public function testUpdate()
     {
         $temp_article = $this->createTempArticle();
