@@ -39,4 +39,11 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $latest = self::$pixapi->blog->articles->latest();
         $this->assertEquals(0, $latest['error']);
     }
+
+    public function testDelete()
+    {
+        $temp_article = $this->createTempArticle();
+        $ret = self::$pixapi->blog->articles->delete($temp_article['id']);
+        $this->assertEquals(0, $ret['error']);
+    }
 }
