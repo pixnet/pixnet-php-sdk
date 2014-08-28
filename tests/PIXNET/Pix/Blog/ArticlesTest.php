@@ -57,4 +57,11 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($ret['title'], $expected['title']);
         $this->assertEquals($ret['body'], $expected['body']);
     }
+
+    public function testCreate()
+    {
+        $temp_article = self::$pixapi->blog->articles->create('Emma unit test article', 'unit test body');
+        $this->destroyTempArticle($temp_article['data']);
+        $this->assertEquals(0, $temp_article['error']);
+    }
 }
