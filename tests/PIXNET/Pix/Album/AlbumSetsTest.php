@@ -17,7 +17,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         foreach (self::$fixture_pics as $filename) {
             $path = __DIR__ . '/../../../fixture/';
-            $tempElements[] = self::$pixapi->album->elements->create($set['id'], $path . $filename, ['title' => $filename]);
+            $tempElements[] = self::$pixapi->album->elements->create($set['id'], $path . $filename, ['title' => $filename])['data'];
         }
         return $tempElements;
     }
@@ -25,11 +25,11 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     /**
      * 產生測試用的相簿
      */
-    private function createTempSets()
+    private function createTempSets($options = ['parent_id' => 0])
     {
         $title = "PHP-SDK-TEST-TITLE-" . sha1(time());
         $desc = "PHP-SDK-TEST-DESC-" . md5(time());
-        return self::$pixapi->album->sets->create($title, $desc)['data'];
+        return self::$pixapi->album->sets->create($title, $desc, $options)['data'];
     }
 
     /**
