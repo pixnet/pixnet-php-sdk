@@ -50,4 +50,12 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         }
         $this->destroyTempSet();
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        $element = self::$pixapi->album->elements->create('', '');
+    }
 }
