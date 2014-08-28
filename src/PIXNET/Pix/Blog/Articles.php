@@ -69,7 +69,7 @@ class Pix_Blog_Articles extends PixAPI
         );
         $response = $this->query('blog/articles/' . $article_id . '/comments', $parameters, 'GET');
 
-        return $this->getResult($response, 'article');
+        return $this->getResult($response, 'comments');
     }
 
     public function create($title, $body, $options = array())
