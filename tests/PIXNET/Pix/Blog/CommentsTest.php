@@ -90,9 +90,6 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), '', '');
     }
 
-    /**
-     * @group gulp
-     */
     public function testReply()
     {
         $article = $this->createTempArticle();
