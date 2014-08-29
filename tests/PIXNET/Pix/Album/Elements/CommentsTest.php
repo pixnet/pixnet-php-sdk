@@ -26,7 +26,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     {
         $comments = [];
         for ($i = 0; $i < 1; $i++) {
-            $comments[$i] = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], 'test message')['data'];
+            $comments[$i] = self::$pixapi->album->elements->comments->create(self::$pixapi->getUserName(), self::$test_element['id'], 'test message')['data'];
         }
         return $comments;
     }
@@ -63,7 +63,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', [])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), [])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -90,7 +90,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', ['set_id' => self::$test_set['id']])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), ['set_id' => self::$test_set['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -114,7 +114,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         $expected = [];
         $expected['body'] = $tempcomments['body'];
         $expected['id'] = $tempcomments['id'];
-        $current = self::$pixapi->album->elements->comments->search('emmatest', ['comment_id' => $tempcomments['id']])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), ['comment_id' => $tempcomments['id']])['data'];
         $this->destoryTempComments([$current]);
         $this->assertEquals($expected['body'], $current['body']);
         $this->assertEquals($expected['id'], $current['id']);
@@ -129,7 +129,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search('emmatest', ['element_id' => self::$test_element['id']])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), ['element_id' => self::$test_element['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -159,7 +159,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     {
         for ($i = 0; $i < 1; $i++) {
             $body = md5($i);
-            $comment = self::$pixapi->album->elements->comments->create('emmatest', self::$test_element['id'], $body)['data'];
+            $comment = self::$pixapi->album->elements->comments->create(self::$pixapi->getUserName(), self::$test_element['id'], $body)['data'];
             $this->assertEquals($body, $comment['body']);
             self::$pixapi->album->elements->comments->delete($comment['id']);
         }

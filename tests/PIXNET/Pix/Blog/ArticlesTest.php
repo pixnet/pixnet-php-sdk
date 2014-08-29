@@ -116,7 +116,7 @@ class Pix_Blog_ArticlesTest extends PHPUnit_Framework_TestCase
     {
         $temp_article = $this->createTempArticle();
         $expected = time();
-        self::$pixapi->blog->comments->create('emmatest', $temp_article['id'], $expected);
+        self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $temp_article['id'], $expected);
         $ret = self::$pixapi->blog->articles->comments($temp_article['id']);
         $this->destroyTempArticle($temp_article);
         $this->assertEquals($ret['data'][0]['body'], $expected);

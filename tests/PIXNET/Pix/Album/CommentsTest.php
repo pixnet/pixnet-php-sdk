@@ -20,7 +20,7 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
     {
         $comments = [];
         for ($i = 0; $i < 1; $i++) {
-            $comments[$i] = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], 'test message')['data'];
+            $comments[$i] = self::$pixapi->Album->comments->create(self::$pixapi->getUserName(), self::$test_set['id'], 'test message')['data'];
         }
         return $comments;
     }
@@ -50,10 +50,10 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
 
     public function testSearchComment()
     {
-        $tempcomment = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], 'test message')['data'];
+        $tempcomment = self::$pixapi->Album->comments->create(self::$pixapi->getUserName(), self::$test_set['id'], 'test message')['data'];
         $expected['body'] = $tempcomment['body'];
         $expected['id'] = $tempcomment['id'];
-        $current = self::$pixapi->Album->comments->search('emmatest', ['comment_id' => $tempcomment['id']])['data'];
+        $current = self::$pixapi->Album->comments->search(self::$pixapi->getUserName(), ['comment_id' => $tempcomment['id']])['data'];
         $this->assertEquals($current['body'], $expected['body']);
         $this->assertEquals($current['id'], $expected['id']);
         $this->destoryTempComments([$tempcomment]);
@@ -68,7 +68,7 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->Album->comments->search('emmatest', ['set_id' => self::$test_set['id']])['data'];
+        $current = self::$pixapi->Album->comments->search(self::$pixapi->getUserName(), ['set_id' => self::$test_set['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -98,7 +98,7 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
     {
         for ($i = 0; $i < 5; $i++) {
             $body = md5($i);
-            $comment = self::$pixapi->Album->comments->create('emmatest', self::$test_set['id'], $body)['data'];
+            $comment = self::$pixapi->Album->comments->create(self::$pixapi->getUserName(), self::$test_set['id'], $body)['data'];
             $this->assertEquals($body, $comment['body']);
             self::$pixapi->Album->comments->delete($comment['id']);
         }

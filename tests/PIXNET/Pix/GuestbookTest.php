@@ -20,7 +20,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
      */
     public function testCreate()
     {
-        $actual = self::$pixapi->guestbook->create('emmatest', 'testtitle', 'testbody');
+        $actual = self::$pixapi->guestbook->create(self::$pixapi->getUserName(), 'testtitle', 'testbody');
         self::$guestbook_id = $actual['data']['id'];
 
         $this->assertEquals('testtitle', $actual['data']['title']);

@@ -42,11 +42,11 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     {
         $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
         $expected = $tmp_folder['data']['id'];
-        $ret = self::$pixapi->album->folders->search('emmatest')['data'];
+        $ret = self::$pixapi->album->folders->search(self::$pixapi->getUserName())['data'];
         $actual = $ret[0]['id'];
         $this->assertEquals($expected, $actual);
 
-        $ret = self::$pixapi->album->folders->search('emmatest', ['folder_id' => $expected])['data'];
+        $ret = self::$pixapi->album->folders->search(self::$pixapi->getUserName(), ['folder_id' => $expected])['data'];
         $actual = $ret['id'];
         $this->assertEquals($expected, $actual);
         self::$pixapi->album->folders->delete($tmp_folder['data']['id']);

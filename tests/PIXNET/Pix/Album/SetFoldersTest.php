@@ -34,7 +34,7 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
     {
         $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
         $expected = $tmp_folder['data']['id'];
-        $ret = self::$pixapi->album->setfolders->search('emmatest')['data'];
+        $ret = self::$pixapi->album->setfolders->search(self::$pixapi->getUserName())['data'];
         self::$pixapi->album->folders->delete($tmp_folder['data']['id']);
         foreach ($ret as $set) {
             $actual[] = $set['id'];
