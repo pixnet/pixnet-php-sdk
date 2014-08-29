@@ -18,10 +18,10 @@ class Pix_BlogTest extends PHPUnit_Framework_TestCase
     public function testInfo()
     {
         $actual = self::$pixapi->blog->info()['data'];
-        $this->assertEquals('emmatest的部落格', $actual['name']);
+        $this->assertEquals(self::$pixapi->getUserName() . '的部落格', $actual['name']);
 
         $actual = self::$pixapi->blog->info(self::$pixapi->getUserName())['data'];
-        $this->assertEquals('emmatest的部落格', $actual['name']);
+        $this->assertEquals(self::$pixapi->getUserName() . '的部落格', $actual['name']);
     }
 
     public function testSiteCategories()

@@ -41,7 +41,7 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         $article = $this->createTempArticle();
         for ($i = 0; $i < 5; $i++) {
             $body = "unit test" . md5(time);
-            self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+            self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
         }
         $actual = self::$pixapi->blog->comments->search(['article_id' => $article['id']]);
         $this->assertEquals($i, $actual['total']);
@@ -50,15 +50,21 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
 
     public function testSearchAll()
     {
+        $article = $this->createTempArticle();
+        for ($i = 0; $i < 5; $i++) {
+            $body = "unit test" . md5(time);
+            self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body);
+        }
         $comments = self::$pixapi->blog->comments->search();
-        $this->assertEquals(35, $comments['total']);
+        $this->destroyTempArticle($article);
+        $this->assertEquals($i, $comments['total']);
     }
 
     public function testSearchComment()
     {
         $article = $this->createTempArticle();
         $body = "unit test" . md5(time);
-        $comment = self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        $comment = self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
         $expected = $comment['body'];
         $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
         $this->assertEquals($expected, $actual['body']);
@@ -69,7 +75,7 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
     {
         $article = $this->createTempArticle();
         $body = "unit test";
-        $comment = self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        $comment = self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
         $expected = $comment['body'];
         $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
         $this->assertEquals($expected, $actual['body']);
@@ -81,14 +87,17 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateException()
     {
-        self::$pixapi->blog->comments->create('emmatest', '', '');
+        self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), '', '');
     }
 
+    /**
+     * @group gulp
+     */
     public function testReply()
     {
         $article = $this->createTempArticle();
         $body = "unit test";
-        $comment = self::$pixapi->blog->comments->create('emmatest', $article['id'], $body)['data'];
+        $comment = self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
         $expected = $comment['body'];
         $reply_body = "reply unit test";
         $reply = self::$pixapi->blog->comments->reply($comment['id'], $reply_body)['data'];
