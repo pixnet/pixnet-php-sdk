@@ -11,7 +11,7 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
 
     private function createTempArticle()
     {
-        return self::$pixapi->blog->articles->create('Emma unit test article', 'unit test body')['data'];
+        return self::$pixapi->blog->articles->create('Emma unit test article', 'unit test body', ['cancomment' => 1])['data'];
     }
 
     private function destroyTempArticle($article)
