@@ -23,13 +23,11 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     private function createTempSet()
     {
         self::$tempSet = self::$pixapi->album->sets->create('emmatest title', 'emmatest description');
-        echo "Temp Set " . self::$tempSet['data']['id'] . " created." . PHP_EOL;
     }
 
     private function destroyTempSet()
     {
         $ret = self::$pixapi->album->sets->delete(self::$tempSet['data']['id']);
-        echo "Temp Set " . self::$tempSet['data']['id'] . " destroyed." . PHP_EOL;
     }
 
     private function createTempElements()
