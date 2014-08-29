@@ -1,7 +1,10 @@
 <?php
 require_once(__DIR__ . '/bootstrap.php');
 require_once(__DIR__ . '/include/checkAuth.php');
-$sets = $pixapi->album->sets->search($pixapi->getUserName());
+if ('' != ($_POST['set_id'])) {
+    $result = $pixapi->album->sets->delete($_POST['set_id']);
+}
+$sets = $pixapi->album->sets->search($pixapi->getUserName())['data'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,12 +29,16 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName());
         <label class="col-sm-2 control-label" for="query">欲刪除的相簿 id</label>
         <div class="col-sm-5">
         <select name="set_id" class="form-control">
+        <?php if (!empty($sets)) { ?>
         <?php foreach ($sets as $set) { ?>
             <?php if ($set['id'] == $_POST['set_id']) { ?>
             <option selected value="<?= $set['id']?>"><?= $set['title']?></option>
             <?php } else { ?>
             <option value="<?= $set['id']?>"><?= $set['title']?></option>
             <?php } ?>
+        <?php } ?>
+        <?php } else { ?>
+            <option disabled>無相簿可供測試</option>
         <?php } ?>
         </select>
         </div>
@@ -45,7 +52,7 @@ $sets = $pixapi->album->sets->search($pixapi->getUserName());
         $pixapi->album->sets->delete(<?= htmlspecialchars($_POST['set_id'])?>, $options)
     </pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->album->sets->delete($_POST['set_id'])); ?></pre>
+    <pre><?php print_r($result); ?></pre>
     <?php }?>
 </div>
 </body>
