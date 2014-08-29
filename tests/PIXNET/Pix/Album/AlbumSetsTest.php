@@ -89,7 +89,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         for ($i = 0; $i < 5; $i++) {
             $temp_sets[] = $this->createTempSets(['parent_id' => $tmpFolder['id']]);
         }
-        $current_albumsets = self::$pixapi->Album->sets->search('self::$pixapi->getUserName()', ['parent_id' => $tmpFolder['id']])['data'];
+        $current_albumsets = self::$pixapi->Album->sets->search(self::$pixapi->getUserName(), ['parent_id' => $tmpFolder['id']])['data'];
         $num_of_sets = count($current_albumsets);
         $i = 1;
         foreach ($current_albumsets as $set) {
@@ -132,7 +132,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
             $expected['title'][] = $set['title'];
             $expected['id'][] = $set['id'];
         }
-        $current = self::$pixapi->Album->Sets->search('self::$pixapi->getUserName()')['data'];
+        $current = self::$pixapi->Album->Sets->search(self::$pixapi->getUserName())['data'];
         foreach ($current as $set) {
             $actual[] = $set['title'];
         }
@@ -141,7 +141,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         }
 
         foreach ($expected['id'] as $set_id) {
-            $ret = self::$pixapi->album->sets->search('self::$pixapi->getUserName()', ['set_id' => $set_id])['data'];
+            $ret = self::$pixapi->album->sets->search(self::$pixapi->getUserName(), ['set_id' => $set_id])['data'];
             $this->assertEquals($set_id, $ret['id']);
         }
 
@@ -160,7 +160,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     {
         $temp_set = $this->createTempSets();
         $temp_elements = $this->createTempElements($temp_set);
-        $current_elements = self::$pixapi->album->sets->elements('self::$pixapi->getUserName()', $temp_set['id'])['data'];
+        $current_elements = self::$pixapi->album->sets->elements(self::$pixapi->getUserName(), $temp_set['id'])['data'];
         $this->destroyTempSets([$temp_set]);
         foreach ($temp_elements as $ele) {
             $expected[] = $ele['id'];
@@ -182,8 +182,8 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
     public function testComments()
     {
         $temp_set = $this->createTempSets(['cancomment' => 1, 'parent_id' => 0]);
-        $comment = self::$pixapi->Album->comments->create('self::$pixapi->getUserName()', $temp_set['id'], 'test message')['data'];
-        $current_albumcomments = self::$pixapi->album->sets->comments('self::$pixapi->getUserName()', $temp_set['id'])['data'][0];
+        $comment = self::$pixapi->Album->comments->create(self::$pixapi->getUserName(), $temp_set['id'], 'test message')['data'];
+        $current_albumcomments = self::$pixapi->album->sets->comments(self::$pixapi->getUserName(), $temp_set['id'])['data'][0];
         $this->destroyTempSets([$temp_set]);
         $this->assertEquals($current_albumcomments['id'], $comment['id']);
     }
@@ -201,7 +201,7 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
         $temp_set = $this->createTempSets();
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
-        $current_set = self::$pixapi->album->sets->search('self::$pixapi->getUserName()', ['set_id' => $temp_set['id']])['data'];
+        $current_set = self::$pixapi->album->sets->search(self::$pixapi->getUserName(), ['set_id' => $temp_set['id']])['data'];
         $current_title = $current_set['title'];
         $current_desc = $current_set['description'];
 
