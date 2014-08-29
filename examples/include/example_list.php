@@ -95,6 +95,7 @@ $examples_list = array(
         array(
             'name' => '相片',
             'examples' => array(
+                '新增相片' => '440_album_element_create.php',
             )
         ),
         array(
