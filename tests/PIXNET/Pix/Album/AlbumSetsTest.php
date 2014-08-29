@@ -85,6 +85,9 @@ class Pix_Album_SetsTest extends PHPUnit_Framework_TestCase
 
     public function testPosition()
     {
+        if (!self::$pixapi->user->isVip()) {
+            return;
+        }
         $tmpFolder = self::$pixapi->Album->folders->create('unit test folder', 'unit test unit test')['data'];
         for ($i = 0; $i < 5; $i++) {
             $temp_sets[] = $this->createTempSets(['parent_id' => $tmpFolder['id']]);

@@ -25,4 +25,9 @@ class Pix_User extends PixAPI
         $response = $this->query('users', array($username), 'URI');
         return $this->getResult($response, 'user');
     }
+
+    public function isVip()
+    {
+        return (bool) $this->query('account')['data']['is_vip'];
+    }
 }

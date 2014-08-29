@@ -32,6 +32,9 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
+        if (!self::$pixapi->user->isVip()) {
+            return;
+        }
         $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
         $expected = $tmp_folder['data']['id'];
         $ret = self::$pixapi->album->setfolders->search(self::$pixapi->getUserName())['data'];
@@ -52,6 +55,9 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
 
     public function testPosition()
     {
+        if (!self::$pixapi->user->isVip()) {
+            return;
+        }
         foreach (range(1,5) as $i) {
             $tmp_folders[] = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body')['data'];
         }
