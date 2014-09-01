@@ -15,6 +15,32 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    private function createTempFriendships()
+    {
+        for ($i = 2; $i < 4; $i++) {
+            $friendships[] = self::$pixapi->friend->friendships->create('emmatest' . $i)['data'];
+        }
+        return $friendships;
+    }
+
+    private function destroyTempFriendships($friendships)
+    {
+        foreach ($friendships as $f) {
+            self::$pixapi->friend->friendships->delete($f['user_name']);
+            self::$pixapi->friend->subscriptions->delete($f['user_name']);
+        }
+    }
+
+    private function createTempGroup()
+    {
+        return self::$pixapi->friend->groups->create(__METHOD__)['data'];
+    }
+
+    private function destroyTempGroup($group)
+    {
+        return self::$pixapi->friend->groups->delete($group['id']);
+    }
+
     /**
      * @expectedException PixAPIException
      */
