@@ -25,7 +25,10 @@ class Pix_FriendTest extends PHPUnit_Framework_TestCase
 
     public function testNews()
     {
+        self::$pixapi->friend->friendships->create('emmatest2');
         $actual_all = self::$pixapi->friend->news()['data'];
+        self::$pixapi->friend->friendships->delete('emmatest2');
+        self::$pixapi->friend->subscriptions->delete('emmatest2');
         foreach ($actual_all as $news) {
             $actual = array(
                 'content_type'      => $news['content_type'],
