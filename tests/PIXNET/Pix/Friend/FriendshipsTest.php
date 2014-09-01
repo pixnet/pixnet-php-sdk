@@ -84,8 +84,6 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     */
     public function testCreate()
     {
         $actual_all = self::$pixapi->friend->friendships->create('emmatest4')['data'];
@@ -106,8 +104,6 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->friend->friendships->create('');
     }
 
-    /**
-     */
     public function testAppendGroup()
     {
         $friendships = self::$pixapi->friend->friendships->search()['data'];
