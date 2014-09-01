@@ -89,13 +89,13 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $actual_all = self::$pixapi->friend->friendships->create('emmatest4')['data'];
+        self::$pixapi->friend->friendships->delete('emmatest4')['data'];
 
         $actual = $actual_all['user_name'];
 
         $expected = 'emmatest4';
 
         $this->assertEquals($expected, $actual);
-        $delete = self::$pixapi->friend->friendships->delete('emmatest4')['data'];
     }
 
     /**
