@@ -15,6 +15,16 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
+    private function createTempGroup()
+    {
+        return self::$pixapi->friend->groups->create(__METHOD__)['data'];
+    }
+
+    private function destroyTempGroup($group)
+    {
+        return self::$pixapi->friend->groups->delete($group['id']);
+    }
+
     /**
      * @expectedException PixAPIException
      */
