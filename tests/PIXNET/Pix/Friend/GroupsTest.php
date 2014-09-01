@@ -35,16 +35,15 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
+        $temp_group = $this->createTempGroup();
         $actual_all = self::$pixapi->friend->groups->search();
+        $this->destroyTempGroup($temp_group);
 
         foreach ($actual_all['data'] as $group) {
             $actual[] = $group['name'];
         }
 
-        $expected = [
-           'pixnet',
-           'Emma'
-        ];
+        $expected = [$temp_group['name']];
 
         $this->assertEquals($expected, $actual);
     }
@@ -120,15 +119,9 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $test_group = self::$pixapi->friend->groups->create('test-delete');
+        $test_group = self::$pixapi->friend->groups->create('unit test ' . __METHOD__);
         $actual = self::$pixapi->friend->groups->delete($test_group['data']['id']);
-
-        $groups = self::$pixapi->friend->groups->search();
-        foreach ($groups['data'] as $group) {
-            $data[] = $group['id'];
-        }
-
-        $this->assertFalse(in_array($test_group['data']['id'], $data));
+        $this->assertEquals(0, $actual['error']);
     }
 
     /**
