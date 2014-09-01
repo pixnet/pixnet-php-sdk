@@ -13,4 +13,13 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
     {
         Authentication::tearDownAfterClass();
     }
+
+    /**
+     * @expectedException PixAPIException
+     * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
+     */
+    public function testSubClassNotFoundException()
+    {
+        $actual = self::$pixapi->blog->articles->notfound;
+    }
 }
