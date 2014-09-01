@@ -51,7 +51,9 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
+        $temp_friendships = $this->createTempFriendships();
         $actual_all = self::$pixapi->friend->friendships->search()['data'];
+        $this->destroyTempFriendships($temp_friendships);
 
         foreach ($actual_all as $key => $detail) {
             $actual[$key] = array(
@@ -106,23 +108,14 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testAppendGroup()
     {
-        $friendships = self::$pixapi->friend->friendships->search()['data'];
-        $name = $friendships[1]['user_name'];
-        $groups = self::$pixapi->friend->groups->search()['data'];
-        $group_id = $groups[0]['id'];
-        $actual_all = self::$pixapi->friend->friendships->appendGroup($name, $group_id)['data'];
-        $actual = array(
-            'name'     => $actual_all['user_name'],
-            'group_id' => $actual_all['groups'][0]['id']
-        );
-
-        $expected = array(
-            'name'     => $name,
-            'group_id' => $group_id
-        );
-
-        $this->assertEquals($expected, $actual);
-        self::$pixapi->friend->friendships->removeGroup($name, $group_id)['data'];
+        $friendships = $this->createTempFriendships();
+        $group = $this->createTempGroup();
+        foreach ($friendships as $f) {
+            $expected = self::$pixapi->friend->friendships->appendGroup($f['user_name'], $group['id']);
+            $this->assertEquals($expected['data']['groups'][0]['id'], $group['id']);
+        }
+        $this->destroyTempGroup($group);
+        $this->destroyTempFriendships($friendships);
     }
 
     /**
@@ -147,23 +140,20 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testRemoveGroup()
     {
-        $friendships = self::$pixapi->friend->friendships->search()['data'];
-        $name = $friendships[1]['user_name'];
-        $groups = self::$pixapi->friend->groups->search()['data'];
-        $group_id = $groups[0]['id'];
-
-        $actual_all = self::$pixapi->friend->friendships->removeGroup($name, $group_id)['data'];
-        $actual = array(
-            'name'     => $actual_all['user_name'],
-            'group_id' => $actual_all['groups'][0]['id']
-        );
-
-        $expected = array(
-            'name'     => $name,
-            'group_id' => null
-        );
-
-        $this->assertEquals($expected, $actual);
+        $friendships = $this->createTempFriendships();
+        $group = $this->createTempGroup();
+        foreach ($friendships as $f) {
+            $expected = self::$pixapi->friend->friendships->appendGroup($f['user_name'], $group['id']);
+        }
+        foreach ($friendships as $f) {
+            $actual = self::$pixapi->friend->friendships->removeGroup($f['user_name'], $group['id']);
+        }
+        $actual_friendships = self::$pixapi->friend->friendships->search()['data'];
+        foreach ($actual_friendships as $f) {
+            $this->assertTrue(empty($f['groups']));
+        }
+        $this->destroyTempGroup($group);
+        $this->destroyTempFriendships($friendships);
     }
 
     /**
@@ -186,17 +176,11 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $actual_all = self::$pixapi->friend->friendships->create('emmatest4')['data'];
-        $delete = self::$pixapi->friend->friendships->delete('emmatest4')['data'];
-
-        $actual_all = self::$pixapi->friend->friendships->search()['data'];
-        foreach ($actual_all as $detail) {
-            $actual[] = $detail['user_name'];
-        }
-
-        $this->assertFalse(in_array('emmatest4', $actual));
-
-
+        self::$pixapi->friend->friendships->create('emmatest4');
+        self::$pixapi->friend->friendships->delete('emmatest4');
+        self::$pixapi->friend->subscriptions->delete('emmatest4');
+        $actual = self::$pixapi->friend->friendships->search();
+        $this->assertEquals(0, $actual['total']);
     }
 
     /**
