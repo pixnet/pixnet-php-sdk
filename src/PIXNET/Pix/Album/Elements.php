@@ -40,4 +40,30 @@ class Pix_Album_Elements extends PixAPI
         $response = $this->query('album/elements', $parameters, 'POST');
         return $this->getResult($response, 'element');
     }
+
+    public function search($name, $options = [])
+    {
+        if ((empty($options['set_id']) and empty($options['element_id'])) or empty($name)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        if (isset($options['set_id'])) {
+            $parameters = $this->mergeParameters(
+                ['set_id' => $set_id, 'user' => $name],
+                $options,
+                ['page', 'per_page', 'with_detail', 'trim_user', 'iframe_width', 'iframe_heigh'],
+                ['type', 'password', 'use_iframe']
+            );
+            $response = $this->query('album/elements', $parameters, 'GET');
+            return $this->getResult($response, 'elements');
+        } else {
+            $parameters = $this->mergeParameters(
+                ['user' => $name],
+                $options,
+                ['page', 'per_page', 'with_detail', 'trim_user', 'iframe_width', 'iframe_heigh'],
+                ['type', 'password', 'use_iframe']
+            );
+            $response = $this->query('album/elements/' . $options['element_id'], $parameters, 'GET');
+            return $this->getResult($response, 'elements');
+        }
+    }
 }
