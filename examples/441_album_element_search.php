@@ -6,10 +6,6 @@ $sets = $pixapi->album->sets->search($name)['data'];
 if (count($sets) == 0) {
     $sets[] = ['id' => '" disabled="disabled', 'title' => '無相簿可供測試'];
 }
-if (isset($_FILES['file']) and !$_FILES['file']['error']) {
-    $file = $_FILES['file'];
-    $tmp_name = $file['tmp_name'];
-}
 ?>
 <!DOCTYPE html>
 <html>
