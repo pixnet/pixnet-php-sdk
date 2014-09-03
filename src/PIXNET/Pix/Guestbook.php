@@ -10,6 +10,7 @@ class Pix_Guestbook extends Pix_Comments
     {
         $this->client = $client;
         $this->setApiPath('guestbook');
+        $this->setResponseKey('article');
     }
 
     public function search($options = array())
