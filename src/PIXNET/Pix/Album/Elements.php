@@ -48,7 +48,7 @@ class Pix_Album_Elements extends PixAPI
         }
         if (isset($options['set_id'])) {
             $parameters = $this->mergeParameters(
-                ['set_id' => $set_id, 'user' => $name],
+                ['set_id' => $options['set_id'], 'user' => $name],
                 $options,
                 ['page', 'per_page', 'with_detail', 'trim_user', 'iframe_width', 'iframe_heigh'],
                 ['type', 'password', 'use_iframe']
