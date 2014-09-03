@@ -66,4 +66,19 @@ class Pix_Album_Elements extends PixAPI
             return $this->getResult($response, 'elements');
         }
     }
+
+    public function update($element_id, $options = [])
+    {
+        if (empty($element_id)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            [],
+            $options,
+            ['set_id'],
+            ['title', 'description', 'tags', 'latitude', 'longitude', 'video_thumb_type']
+        );
+        $response = $this->query('album/elements/' . $element_id, $parameters, 'POST');
+        return $this->getResult($response, 'elements');
+    }
 }
