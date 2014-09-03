@@ -7,6 +7,7 @@
 abstract class Pix_Comments extends PixAPI
 {
     private $api_path = '';
+    private $response_key = 'comment';
 
     /**
       * @codeCoverageIgnore
@@ -26,6 +27,11 @@ abstract class Pix_Comments extends PixAPI
         $this->api_path = $name;
     }
 
+    public function setResponseKey($key)
+    {
+        $this->response_key = $key;
+    }
+
     public function delete($comment_id)
     {
         if ('' == $comment_id) {
@@ -41,7 +47,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/open', array(), 'POST');
-        return $this->getResult($response, 'comment');
+        return $this->getResult($response, $this->response_key);
     }
 
     public function close($comment_id)
@@ -50,7 +56,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/close', array(), 'POST');
-        return $this->getResult($response, 'comment');
+        return $this->getResult($response, $this->response_key);
     }
 
     public function markSpam($comment_id, $options = array())
@@ -59,7 +65,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_spam', array(), 'POST');
-        return $this->getResult($response, 'comment');
+        return $this->getResult($response, $this->response_key);
     }
 
     public function markHam($comment_id)
@@ -68,7 +74,7 @@ abstract class Pix_Comments extends PixAPI
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_ham', array(), 'POST');
-        return $this->getResult($response, 'comment');
+        return $this->getResult($response, $this->response_key);
     }
 
     public function latest()
