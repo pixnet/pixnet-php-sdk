@@ -81,4 +81,13 @@ class Pix_Album_Elements extends PixAPI
         $response = $this->query('album/elements/' . $element_id, $parameters, 'POST');
         return $this->getResult($response, 'elements');
     }
+
+    public function delete($element_id)
+    {
+        if (empty($element_id)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('album/elements/' . $element_id, [], 'DELETE');
+        return $this->getResult($response, 'elements');
+    }
 }
