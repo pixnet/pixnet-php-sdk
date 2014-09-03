@@ -105,4 +105,19 @@ class Pix_Album_Elements extends PixAPI
         $response = $this->query('album/elements/position', $parameters, 'POST');
         return $this->getResult($response, 'elements');
     }
+
+    public function nearby($username, $lat, $lon, $options = [])
+    {
+        if (empty($username) or empty($lat) or empty($lon)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $parameters = $this->mergeParameters(
+            ['user' => $name, 'lat' => $lat, 'lon' => $lon],
+            $options,
+            ['page', 'per_page', 'with_detail', 'trim_user', 'distance_min', 'distance_max'],
+            ['type']
+        );
+        $response = $this->query('album/elements/nearby', $parameters, 'GET');
+        return $this->getResult($response, 'elements');
+    }
 }
