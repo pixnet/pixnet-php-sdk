@@ -13,7 +13,7 @@ if (!isset($_GET['set_id'])) {
     $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
 }
 
-$element_data = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
+$element_data = $pixapi->album->sets->elements($name, $current_set['id']);
 if ($element_data['total']) {
     $elements = $element_data['data'];
     foreach ($elements as $k => $e) {
