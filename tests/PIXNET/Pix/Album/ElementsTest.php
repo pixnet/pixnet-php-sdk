@@ -56,4 +56,12 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     {
         $element = self::$pixapi->album->elements->create('', '');
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        $element = self::$pixapi->album->elements->search('');
+    }
 }
