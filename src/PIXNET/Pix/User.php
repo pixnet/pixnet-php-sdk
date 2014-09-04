@@ -36,6 +36,6 @@ class Pix_User extends PixAPI
         $response = $this->query('account');
         $is_vip = $this->getResult($response, 'account')['data']['is_vip'];
         $this->setSession('is_vip', $is_vip);
-        return $is_vip
+        return $is_vip;
     }
 }
