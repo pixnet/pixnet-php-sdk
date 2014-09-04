@@ -43,7 +43,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
         if (!self::$pixapi->user->isVip()) {
             return;
         }
-        self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
+        $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
         $expected = $tmp_folder['data']['id'];
         $ret = self::$pixapi->album->folders->search(self::$pixapi->getUserName())['data'];
         $actual = $ret[0]['id'];
