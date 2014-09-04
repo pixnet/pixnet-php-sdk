@@ -96,6 +96,12 @@ $examples_list = array(
             'name' => '相片',
             'examples' => array(
                 '新增相片' => '440_album_element_create.php',
+                '搜尋相片（影音）' => '441_album_element_search.php',
+                '搜尋單一相片（影音）' => '442_album_element_search.php',
+                '修改單一相片（影音）' => '443_album_element_modify.php',
+                '刪除單一相片（影音）' => '444_album_element_delete.php',
+                '調整相片（影音）順序' => '445_album_element_position.php',
+                '搜尋附近的相片（影音）' => '446_album_element_nearby.php'
             )
         ),
         array(
