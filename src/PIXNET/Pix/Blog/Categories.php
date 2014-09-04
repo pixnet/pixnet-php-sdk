@@ -16,15 +16,17 @@ class Pix_Blog_Categories extends PixAPI
         throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
-    public function search($category_id = '', $is_folder = false)
+    public function search($name, $options = [])
     {
-        if ('' != $category_id) {
-            $parameters = array(
-                'type' => ($is_folder) ? 'folder' : 'category',
-            );
-            $response = $this->query('blog/categories/' . $category_id, $parameters, 'GET');
-            return $this->getResult($response, 'category');
+        if ('' == $name) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
+        $parameters = $this->mergeParameters(
+            array('name' => $name, 'type' => 'category'),
+            $options,
+            array('show_index', 'site_category_id', 'site_category_done'),
+            array('description')
+        );
         $response = $this->query('blog/categories');
         return $this->getResult($response, 'categories');
     }
