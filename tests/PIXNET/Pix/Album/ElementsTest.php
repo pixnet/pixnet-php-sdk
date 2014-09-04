@@ -152,4 +152,26 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     {
         self::$pixapi->album->elements->position('', '');
     }
+
+    public function testNearby()
+    {
+        $tempSet = $this->createTempSet();
+        $tempElements = $this->createTempElements($tempSet);
+        foreach ($tempElements as $ele) {
+            $lat = 25.058173;
+            $lon = 121.535304;
+            self::$pixapi->album->elements->update($ele['data']['id'], ['latitude' => $lat, 'longitude' => $lon]);
+        }
+        $elements = self::$pixapi->album->elements->nearby(self::$pixapi->getUserName(), 25.058172, 121.535304, ['distance_max' => 50000]);
+        $this->assertEquals(4, $elements['total']);
+        $this->destroyTempSet($tempSet);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testNearbyException()
+    {
+        self::$pixapi->album->elements->nearby('', 25.058172, 121.535304, ['distance_max' => 50000]);
+    }
 }
