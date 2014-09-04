@@ -39,15 +39,19 @@ if ('' != $query) {
 
           <select class="form-control" id="query" name="query">
           <?php
-          $categories = $pixapi->blog->categories->search()['data'];
-          foreach ($categories as $categorie) {
+          $categories = $pixapi->blog->categories->search('emmatest');
+          if ($categories['total'] > 1) {
+          foreach ($categories['data'] as $categorie) {
             if ($categorie['id'] > 0) {
           ?>
               <option value="<?= $categorie['id'] ?>##<?= $categorie['type'] ?>" <?= ($query == $categorie['id']) ? 'selected' : ''; ?>><?= $categorie['name'] ?></option>
           <?php
             }
           }
+          } else {
           ?>
+              <option disabled>無分類可供測試</option>
+          <?php }?>
           </select>
       </div>
       <button type="submit" class="btn btn-danger">刪除</button>
