@@ -21,14 +21,21 @@ class Pix_Blog_Categories extends PixAPI
         if ('' == $name) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
+        if (isset($options['category_id']) and is_numeric($options['category_id'])) {
+            $api['path'] = 'blog/categories/' . $options['category_id'];
+            $api['response'] = 'category';
+        } else {
+            $api['path'] = 'blog/categories';
+            $api['response'] = 'categories';
+        }
         $parameters = $this->mergeParameters(
             array('name' => $name, 'type' => 'category'),
             $options,
             array('show_index', 'site_category_id', 'site_category_done'),
             array('description')
         );
-        $response = $this->query('blog/categories');
-        return $this->getResult($response, 'categories');
+        $response = $this->query($api['path']);
+        return $this->getResult($response, $api['response']);
     }
 
     public function create($name, $is_folder = false, $options = array())
