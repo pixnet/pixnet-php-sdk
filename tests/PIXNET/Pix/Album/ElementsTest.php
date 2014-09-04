@@ -84,4 +84,25 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         }
         $this->destroyTempSet();
     }
+
+    public function testUpdate()
+    {
+        $this->createTempSet();
+        $this->createTempElements();
+        foreach (self::$tempElements as $ele) {
+            $new_title = __METHOD__ . " " . time();
+            self::$pixapi->album->elements->update($ele['data']['id'], ['title' => $new_title]);
+            $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['element_id' => $ele['data']['id']]);
+            $this->assertEquals($new_title, $elements['data']['title']);
+        }
+        $this->destroyTempSet();
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testUpdateException()
+    {
+        self::$pixapi->album->elements->update('', []);
+    }
 }
