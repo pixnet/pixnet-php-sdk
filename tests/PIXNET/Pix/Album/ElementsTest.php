@@ -2,8 +2,6 @@
 class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
 {
     public static $pixapi;
-    public static $tempSet;
-    public static $tempElements;
     public static $fixture_pics = ['350x200-emmatest.png', '350x250-emmatest.png', '400x500-emmatest.png', '550x200-emmatest.png'];
 
     public static function setUpBeforeClass()
@@ -22,31 +20,32 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
 
     private function createTempSet()
     {
-        self::$tempSet = self::$pixapi->album->sets->create('emmatest title', 'emmatest description');
+        return self::$pixapi->album->sets->create('emmatest title', 'emmatest description');
     }
 
-    private function destroyTempSet()
+    private function destroyTempSet($set)
     {
-        $ret = self::$pixapi->album->sets->delete(self::$tempSet['data']['id']);
+        self::$pixapi->album->sets->delete($set['data']['id']);
     }
 
-    private function createTempElements()
+    private function createTempElements($set)
     {
         foreach (self::$fixture_pics as $filename) {
             $filename = __DIR__ . '/../../../fixture/' . $filename;
-            self::$tempElements[] = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
+            $tempElements[] = self::$pixapi->album->elements->create($set['data']['id'], $filename);
         }
+        return $tempElements;
     }
 
     public function testCreate()
     {
-        $this->createTempSet();
+        $tempSet = $this->createTempSet();
         foreach (self::$fixture_pics as $filename) {
             $filename = __DIR__ . '/../../../fixture/' . $filename;
-            $element = self::$pixapi->album->elements->create(self::$tempSet['data']['id'], $filename);
+            $element = self::$pixapi->album->elements->create($tempSet['data']['id'], $filename);
             $this->assertEquals($element['error'], 0);
         }
-        $this->destroyTempSet();
+        $this->destroyTempSet($tempSet);
     }
 
     /**
@@ -67,35 +66,35 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
 
     public function testSearchBySet()
     {
-        $this->createTempSet();
-        $this->createTempElements();
-        $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['set_id' => self::$tempSet['data']['id']]);
-        $this->destroyTempSet();
+        $tempSet = $this->createTempSet();
+        $this->createTempElements($tempSet);
+        $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['set_id' => $tempSet['data']['id']]);
+        $this->destroyTempSet($tempSet);
         $this->assertEquals(4, $elements['total']);
     }
 
     public function testSearchByElement()
     {
-        $this->createTempSet();
-        $this->createTempElements();
-        foreach (self::$tempElements as $ele) {
+        $tempSet = $this->createTempSet();
+        $tempElements = $this->createTempElements($tempSet);
+        foreach ($tempElements as $ele) {
             $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['element_id' => $ele['data']['id']]);
             $this->assertEquals($ele['total'], $elements['total']);
         }
-        $this->destroyTempSet();
+        $this->destroyTempSet($tempSet);
     }
 
     public function testUpdate()
     {
-        $this->createTempSet();
-        $this->createTempElements();
-        foreach (self::$tempElements as $ele) {
+        $tempSet = $this->createTempSet();
+        $tempElements = $this->createTempElements($tempSet);
+        foreach ($tempElements as $ele) {
             $new_title = __METHOD__ . " " . time();
             self::$pixapi->album->elements->update($ele['data']['id'], ['title' => $new_title]);
             $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['element_id' => $ele['data']['id']]);
             $this->assertEquals($new_title, $elements['data']['title']);
         }
-        $this->destroyTempSet();
+        $this->destroyTempSet($tempSet);
     }
 
     /**
@@ -106,15 +105,18 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->elements->update('', []);
     }
 
+    /**
+     * @group gulp
+     */
     public function testDelete()
     {
-        $this->createTempSet();
-        $this->createTempElements();
-        foreach (self::$tempElements as $ele) {
+        $tempSet = $this->createTempSet();
+        $tempElements = $this->createTempElements($tempSet);
+        foreach ($tempElements as $ele) {
             $ret = self::$pixapi->album->elements->delete($ele['data']['id']);
             $this->assertEquals(0, $ret['error']);
         }
-        $this->destroyTempSet();
+        $this->destroyTempSet($tempSet);
     }
 
     /**
