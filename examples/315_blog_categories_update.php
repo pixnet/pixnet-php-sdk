@@ -19,6 +19,12 @@ if ($query2 != '') {
     $options = array('description' => $description, 'show_index' => $argv2, 'site_category_id' => $argv3, 'site_category_done' => $argv4);
     $response = $pixapi->blog->categories->update($query, $query2, $isFolder, $options);
 }
+
+$row_data = $pixapi->blog->categories->search($pixapi->getUserName());
+if ($row_data['total'] > 1) {
+    $categories = $row_data['data'];
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,24 +55,24 @@ if ($query2 != '') {
     <div class="panel panel-primary">
       <div class="panel-heading"><a href="#execute" name="execute">實際測試</a></div>
       <div class="panel-body">
-       <?php
-       $category = $pixapi->blog->categories->search($query, $isFolder)['data'];
-       ?>
         <form action="#execute" class="form-horizontal" role="form" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label" for="query">準備修改的分類</label>
             <div class="col-sm-4"><select class="form-control" id="query" name="query" onchange="location.href=this.options[this.selectedIndex].value">
+              <?php if (isset($categories)) { ?>
               <option value="">請選擇</option>
               <?php
-              $categories = $pixapi->blog->categories->search()['data'];
-              foreach ($categories as $categorie) {
-                if ($categorie['id'] > 0) {
+                  foreach ($categories as $categorie) {
+                    if ($categorie['id'] > 0) {
               ?>
                   <option value="?query=<?= $categorie['id'] ?>&type=<?= $categorie['type'] ?>" <?= ($query == $categorie['id']) ? 'selected' : ''; ?>><?= $categorie['name'] ?></option>
               <?php
-                }
-              }
+                    }
+                  }
+              } else {
               ?>
+              <option disabled>無分類可供測試</option>
+              <?php } ?>
               </select>
               </div>
           </div>
