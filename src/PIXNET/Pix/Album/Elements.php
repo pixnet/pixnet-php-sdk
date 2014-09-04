@@ -63,7 +63,7 @@ class Pix_Album_Elements extends PixAPI
                 ['type', 'password', 'use_iframe']
             );
             $response = $this->query('album/elements/' . $options['element_id'], $parameters, 'GET');
-            return $this->getResult($response, 'elements');
+            return $this->getResult($response, 'element');
         }
     }
 
