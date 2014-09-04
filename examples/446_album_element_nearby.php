@@ -55,7 +55,7 @@ if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat']))
             <input class="form-control" name="lon" value="121.535304"> 
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">修改相片（影音）順序</button>
+      <button type="submit" class="btn btn-primary">搜尋附近的相片（影音）</button>
     </form>
     <?php if (isset($result)) {?>
     <h3>實際執行</h3>
