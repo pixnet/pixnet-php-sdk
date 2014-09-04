@@ -105,9 +105,6 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->album->elements->update('', []);
     }
 
-    /**
-     * @group gulp
-     */
     public function testDelete()
     {
         $tempSet = $this->createTempSet();
@@ -125,5 +122,34 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     public function testDeleteException()
     {
         self::$pixapi->album->elements->delete('');
+    }
+
+    public function testPosition()
+    {
+        $tempSet = $this->createTempSet();
+        $tempElements = $this->createTempElements($tempSet);
+        foreach ($tempElements as $ele) {
+            $id[] = $ele['data']['id'];
+        }
+        arsort($id);
+        $ids = implode(',', $id);
+        $ret = self::$pixapi->album->elements->position($tempSet['data']['id'], $ids);
+        $actual = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['set_id' => $tempSet['data']['id']]);
+        foreach ($actual['data'] as $ele) {
+            $new_order[$ele['id']] = $ele['position'];
+        }
+        $i = 0;
+        foreach ($actual['data'] as $ele) {
+            $this->assertEquals($new_order[$ele['id']], $i++);
+        }
+        $this->destroyTempSet($tempSet);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testPositionException()
+    {
+        self::$pixapi->album->elements->position('', '');
     }
 }
