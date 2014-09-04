@@ -14,7 +14,7 @@ if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat']))
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">調整相片（影音）順序</h1>
+    <h1 class="page-header">搜尋附近的相片（影音）</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->elements->nearby($set_id, $ids);</pre>
     <div class="well">

@@ -21,7 +21,7 @@ if (count($sets) == 0) {
 <body>
 <div class="container">
     <?php require_once(__DIR__ . '/include/top.php'); ?>
-    <h1 class="page-header">修改單一相片（影音）</h1>
+    <h1 class="page-header">刪除單一相片（影音）</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->elements->update($element_id, $options);</pre>
     <div class="well">
