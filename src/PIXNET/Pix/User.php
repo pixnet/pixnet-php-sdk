@@ -26,9 +26,16 @@ class Pix_User extends PixAPI
         return $this->getResult($response, 'user');
     }
 
-    public function isVip()
+    public function isVip($cache = true)
     {
+        $this->debug(__METHOD__);
+        $is_vip = $this->getSession('is_vip');
+        if ('' != $is_vip and $cache) {
+            return $is_vip;
+        }
         $response = $this->query('account');
-        return $this->getResult($response, 'account')['data']['is_vip'];
+        $is_vip = $this->getResult($response, 'account')['data']['is_vip'];
+        $this->setSession('is_vip', $is_vip);
+        return $is_vip
     }
 }
