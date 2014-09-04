@@ -65,4 +65,30 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($new_name, $actual_category['data']['name']);
         self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
     }
+
+    public function testPosition()
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $name = __METHOD__ . " test" . $i;
+            $tmp_categories[$i] = self::$pixapi->blog->categories->create($name)['data'];
+            $ids[] = $tmp_categories[$i]['id'];
+        }
+        arsort($ids);
+        $i = 0;
+        foreach ($ids as $id) {
+            $order[$id] = $i++;
+        }
+        $new_position = implode(',', $ids);
+        $tmp = self::$pixapi->blog->categories->position($new_position);
+        $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName())['data'];
+        foreach ($tmp_categories as $cat) {
+            self::$pixapi->blog->categories->delete($cat['id']);
+        }
+        foreach ($categories as $cat) {
+            if ($cat['id'] > 0) {
+                $new_order[$cat['id']] = $cat['order'];
+            }
+        }
+        $this->assertEquals($order, $new_order);
+    }
 }
