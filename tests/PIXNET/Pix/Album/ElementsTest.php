@@ -105,4 +105,23 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     {
         self::$pixapi->album->elements->update('', []);
     }
+
+    public function testDelete()
+    {
+        $this->createTempSet();
+        $this->createTempElements();
+        foreach (self::$tempElements as $ele) {
+            $ret = self::$pixapi->album->elements->delete($ele['data']['id']);
+            $this->assertEquals(0, $ret['error']);
+        }
+        $this->destroyTempSet();
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        self::$pixapi->album->elements->delete('');
+    }
 }
