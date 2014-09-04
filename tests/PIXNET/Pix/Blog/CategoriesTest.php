@@ -31,10 +31,19 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->categories->search('');
     }
 
-    public function testSearch()
+    public function testSearchAll()
     {
         $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
         $this->assertGreaterThanOrEqual(1, $categories['total']);
+    }
+
+    public function testSearchOne()
+    {
+        $expected = __METHOD__ . " test";
+        $tmp_category = self::$pixapi->blog->categories->create($expected);
+        $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName(), ['category_id' => $tmp_category['data']['id']]);
+        self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
+        $this->assertEquals($expected, $categories['data']['name']);
     }
 
     public function testCreate()
