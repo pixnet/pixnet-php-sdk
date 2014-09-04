@@ -73,4 +73,15 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
         $this->destroyTempSet();
         $this->assertEquals(4, $elements['total']);
     }
+
+    public function testSearchByElement()
+    {
+        $this->createTempSet();
+        $this->createTempElements();
+        foreach (self::$tempElements as $ele) {
+            $elements = self::$pixapi->album->elements->search(self::$pixapi->getUserName(), ['element_id' => $ele['data']['id']]);
+            $this->assertEquals($ele['total'], $elements['total']);
+        }
+        $this->destroyTempSet();
+    }
 }
