@@ -28,7 +28,7 @@ if ('' != $query) {
 
           <select class="form-control" id="query" name="query">
           <?php
-          $categories = $pixapi->blog->categories->search()['data'];
+          $categories = $pixapi->blog->categories->search($pixapi->getUserName())['data'];
           foreach ($categories as $categorie) {
             if ($categorie['id'] > 0) {
           ?>
@@ -47,7 +47,7 @@ if ('' != $query) {
     <h3>執行</h3>
     <pre>$pixapi->blog->categories->search(<?= $query; ?>, <? var_export($isFolder)?>);</pre>
     <h3>執行結果</h3>
-    <pre><?php print_r($pixapi->blog->categories->search($query, $isFolder)); ?></pre>
+    <pre><?php print_r($pixapi->blog->categories->search($pixapi->getUserName(), $query, $isFolder)); ?></pre>
     <?php
         }
     ?>
