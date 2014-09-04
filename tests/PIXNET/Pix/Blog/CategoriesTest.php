@@ -22,4 +22,18 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->blog->articles->notfound;
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testSearchException()
+    {
+        self::$pixapi->blog->categories->search('');
+    }
+
+    public function testSearch()
+    {
+        $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
+        $this->assertGreaterThanOrEqual(1, $categories['total']);
+    }
 }
