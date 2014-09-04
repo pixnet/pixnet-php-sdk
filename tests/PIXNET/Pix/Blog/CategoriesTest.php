@@ -115,4 +115,21 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($order, $new_order);
     }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testDeleteException()
+    {
+        self::$pixapi->blog->categories->delete('');
+    }
+
+    public function testDelete()
+    {
+        $expected = __METHOD__ . " test";
+        $tmp_category = self::$pixapi->blog->categories->create($expected);
+        self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
+        $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
+        $this->assertEquals(1, $categories['total']);
+    }
 }
