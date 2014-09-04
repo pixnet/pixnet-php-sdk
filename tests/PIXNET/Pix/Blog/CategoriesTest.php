@@ -36,4 +36,13 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
         $this->assertGreaterThanOrEqual(1, $categories['total']);
     }
+
+    public function testCreate()
+    {
+        $expected = __METHOD__ . " test";
+        $tmp_category = self::$pixapi->blog->categories->create($expected);
+        $actual = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
+        self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
+        $this->assertEquals(2, $actual['total']);
+    }
 }
