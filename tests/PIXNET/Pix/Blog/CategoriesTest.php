@@ -54,4 +54,15 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
         $this->assertEquals(2, $actual['total']);
     }
+
+    public function testUpdate()
+    {
+        $expected = __METHOD__ . " test";
+        $tmp_category = self::$pixapi->blog->categories->create($expected);
+        $new_name = "test " . __METHOD__;
+        self::$pixapi->blog->categories->update($tmp_category['data']['id'], $new_name);
+        $actual_category = self::$pixapi->blog->categories->search(self::$pixapi->getUserName(), ['category_id' => $tmp_category['data']['id']]);
+        $this->assertEquals($new_name, $actual_category['data']['name']);
+        self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
+    }
 }
