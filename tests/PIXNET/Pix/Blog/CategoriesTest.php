@@ -46,6 +46,14 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $categories['data']['name']);
     }
 
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->blog->categories->create('');
+    }
+
     public function testCreate()
     {
         $expected = __METHOD__ . " test";
@@ -53,6 +61,14 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->blog->categories->search(self::$pixapi->getUserName());
         self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
         $this->assertEquals(2, $actual['total']);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testUpdateException()
+    {
+        self::$pixapi->blog->categories->update($tmp_category['data']['id'], '');
     }
 
     public function testUpdate()
@@ -64,6 +80,14 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
         $actual_category = self::$pixapi->blog->categories->search(self::$pixapi->getUserName(), ['category_id' => $tmp_category['data']['id']]);
         $this->assertEquals($new_name, $actual_category['data']['name']);
         self::$pixapi->blog->categories->delete($tmp_category['data']['id']);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testPositionException()
+    {
+        self::$pixapi->blog->categories->position('');
     }
 
     public function testPosition()
