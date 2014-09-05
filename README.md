@@ -59,8 +59,9 @@ Twitter: @pixnetapi
 ###部落格
 ```php
 - 列出部落格資訊 $pixapi->blog->info();
-- 查詢其他部落格公開資訊 $pixapi->blog->info($name);
+- 查詢其他部落格公開資訊 $pixapi->blog->info($username);
 - 取得部落格全站分類 $pixapi->blog->siteCategories();
+- 取得建議標籤 $pixapi->blog->suggestedTags($username = '');
 ```
 ####部落格分類
 ```php
