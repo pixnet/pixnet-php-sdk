@@ -17,7 +17,7 @@ if ('' != $_GET['logout']) {
 </head>
 <body>
 <div class="container">
-    <h1 class="page-header">Getting started</h1>
+    <h1 class="page-header">PIXNET PHP SDK Getting started</h1>
     <?php if (file_exists(__DIR__ . '/init.inc.php')) { ?>
     <?php if ($pixapi->checkAuth()) { ?>
     <div class="alert alert-success">已經取得使用者授權，您登入的是<?= $pixapi->getUserName(); ?> <a href="?logout=1">登出</a></div>
