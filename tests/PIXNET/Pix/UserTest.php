@@ -35,4 +35,10 @@ class Pix_UserTest extends PHPUnit_Framework_TestCase
     {
         $actual = self::$pixapi->user->notfound;
     }
+
+    public function testIsVip()
+    {
+        $this->assertEquals(1, self::$pixapi->user->isVip(false));
+        $this->assertEquals(1, self::$pixapi->user->isVip());
+    }
 }
