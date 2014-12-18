@@ -13,7 +13,7 @@ class Pix_Album_ElementsTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
-    public function testGet()
+    public function testGetException()
     {
         self::$pixapi->album->elements->test->test();
     }

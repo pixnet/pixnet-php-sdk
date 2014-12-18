@@ -49,7 +49,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
-    public function testGet()
+    public function testGetException()
     {
         self::$pixapi->album->elements->comments->test->test();
     }

@@ -33,7 +33,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
-    public function testGet()
+    public function testGetException()
     {
         self::$pixapi->album->folders->test->test();
     }

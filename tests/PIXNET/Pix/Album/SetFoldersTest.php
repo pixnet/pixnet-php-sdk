@@ -25,7 +25,7 @@ class Pix_Album_SetFoldersTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException PixAPIException
      */
-    public function testGet()
+    public function testGetException()
     {
         self::$pixapi->album->setfolders->test->test();
     }
