@@ -32,14 +32,6 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @expectedException PixAPIException
-     */
-    public function testCreateException()
-    {
-        self::$pixapi->album->comments->create('', '', '');
-    }
-
     public function testCreate()
     {
         for ($i = 0; $i < 5; $i++) {
@@ -48,6 +40,14 @@ class Pix_Album_commentsTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($body, $comment['body']);
             self::$pixapi->Album->comments->delete($comment['id']);
         }
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->comments->create('', '', '');
     }
 
     /**

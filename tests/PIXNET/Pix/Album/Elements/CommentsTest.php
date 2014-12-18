@@ -38,6 +38,24 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    public function testCreate()
+    {
+        for ($i = 0; $i < 1; $i++) {
+            $body = md5($i);
+            $comment = self::$pixapi->album->elements->comments->create(self::$pixapi->getUserName(), self::$test_element['id'], $body)['data'];
+            $this->assertEquals($body, $comment['body']);
+            self::$pixapi->album->elements->comments->delete($comment['id']);
+        }
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->album->elements->comments->create('', '', '');
+    }
+
     /**
      * @expectedException PixAPIException
      */
@@ -145,24 +163,6 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
         }
 
         $this->destoryTempComments($current);
-    }
-
-    /**
-     * @expectedException PixAPIException
-     */
-    public function testCreateException()
-    {
-        self::$pixapi->album->elements->comments->create('', '', '');
-    }
-
-    public function testCreate()
-    {
-        for ($i = 0; $i < 1; $i++) {
-            $body = md5($i);
-            $comment = self::$pixapi->album->elements->comments->create(self::$pixapi->getUserName(), self::$test_element['id'], $body)['data'];
-            $this->assertEquals($body, $comment['body']);
-            self::$pixapi->album->elements->comments->delete($comment['id']);
-        }
     }
 
     /**

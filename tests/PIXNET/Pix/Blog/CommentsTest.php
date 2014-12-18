@@ -19,6 +19,25 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         self::$pixapi->blog->articles->delete($article['id']);
     }
 
+    public function testCreate()
+    {
+        $article = $this->createTempArticle();
+        $body = "unit test";
+        $comment = self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
+        $expected = $comment['body'];
+        $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
+        $this->assertEquals($expected, $actual['body']);
+        $this->destroyTempArticle($article);
+    }
+
+    /**
+     * @expectedException PixAPIException
+     */
+    public function testCreateException()
+    {
+        self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), '', '');
+    }
+
     /**
      * @expectedException PixAPIException
      * @expectedExceptionCode PixAPIException::CLASS_NOT_FOUND
@@ -69,25 +88,6 @@ class Pix_Blog_CommentsTest extends PHPUnit_Framework_TestCase
         $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
         $this->assertEquals($expected, $actual['body']);
         $this->destroyTempArticle($article);
-    }
-
-    public function testCreate()
-    {
-        $article = $this->createTempArticle();
-        $body = "unit test";
-        $comment = self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), $article['id'], $body)['data'];
-        $expected = $comment['body'];
-        $actual = self::$pixapi->blog->comments->search($comment['id'])['data'];
-        $this->assertEquals($expected, $actual['body']);
-        $this->destroyTempArticle($article);
-    }
-
-    /**
-     * @expectedException PixAPIException
-     */
-    public function testCreateException()
-    {
-        self::$pixapi->blog->comments->create(self::$pixapi->getUserName(), '', '');
     }
 
     public function testReply()
