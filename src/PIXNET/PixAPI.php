@@ -284,7 +284,7 @@ class PixAPI
         }
         $url = self::PIXNET_API . $api;
         $response = $this->client->query($url, $parameters, $method, $http_headers, true);
-        if (!$response['result'] or 200 != $response['code'] or 0 < $response['result']['error']) {
+        if (!$response['result'] or 200 != $response['code'] or (isset($response['result']['error']) and 0 < $response['result']['error'])) {
             if (!isset($response['result']['message'])) {
                 throw new PixAPIException(sprintf('API Service error httpcode:%s reponse:%s', $response['code'], json_encode($response)), PixAPIException::API_ERROR);
             }
