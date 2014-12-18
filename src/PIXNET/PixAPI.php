@@ -286,13 +286,14 @@ class PixAPI
         $response = $this->client->query($url, $parameters, $method, $http_headers, true);
         if (!$response['result'] or 200 != $response['code'] or (isset($response['result']['error']) and 0 < $response['result']['error'])) {
             if (!isset($response['result']['message'])) {
-                throw new PixAPIException(sprintf('API Service error httpcode:%s reponse:%s', $response['code'], json_encode($response)), PixAPIException::API_ERROR);
+                $response['result']['message'] = json_encode($response);
             }
             self::$error_message = sprintf(
                 'httpcode:%s error:%s',
                 $response['code'],
                 $response['result']['message']
             );
+            throw new PixAPIException(sprintf('API Service error httpcode:%s error:%s', $response['code'], $response['result']['message']), PixAPIException::API_ERROR);
         }
         $response['result']['http_code'] = $response['code'];
         return $response['result'];
