@@ -41,7 +41,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     public function testSearch()
     {
         if (!self::$pixapi->user->isVip()) {
-            return;
+            $this->markTestSkipped('Only VIPs need this test');
         }
         $tmp_folder = self::$pixapi->album->folders->create('PHP-SDK unit test title', 'PHP-SDK unit test body');
         $expected = $tmp_folder['data']['id'];
@@ -66,7 +66,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         if (!self::$pixapi->user->isVip()) {
-            return;
+            $this->markTestSkipped('Only VIPs need this test');
         }
         $expected_title = 'PIXNET_SDK_TITLE';
         $expected_desc = 'PIXNET_SDK_DESC';
@@ -87,7 +87,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     public function testDelete()
     {
         if (!self::$pixapi->user->isVip()) {
-            return;
+            $this->markTestSkipped('Only VIPs need this test');
         }
         $expected_title = 'PIXNET_SDK_TITLE';
         $expected_desc = 'PIXNET_SDK_DESC';
@@ -116,7 +116,7 @@ class Pix_FoldersTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         if (!self::$pixapi->user->isVip()) {
-            return;
+            $this->markTestSkipped('Only VIPs need this test');
         }
         $expected_title = "unit test title";
         $expected_desc = "unit test description";
