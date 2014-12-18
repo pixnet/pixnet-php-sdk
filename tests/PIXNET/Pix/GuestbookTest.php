@@ -135,7 +135,7 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
         self::$pixapi->guestbook->delete(self::$guestbook_id);
         $actual = self::$pixapi->guestbook->search();
 
-        $this->assertEquals(0, $actual['total']);
+        $this->assertEquals(0, $actual['data']['total']);
     }
 
     /**
