@@ -15,9 +15,6 @@ class Pix_Guestbook_Test extends PHPUnit_Framework_TestCase
         Authentication::tearDownAfterClass();
     }
 
-    /**
-     * @group test
-     */
     public function testCreate()
     {
         $actual = self::$pixapi->guestbook->create(self::$pixapi->getUserName(), 'testtitle', 'testbody');
