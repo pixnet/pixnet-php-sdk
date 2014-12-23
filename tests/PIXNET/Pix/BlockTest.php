@@ -55,9 +55,8 @@ class Pix_Block_Test extends PHPUnit_Framework_TestCase
      */
     public function testDelete()
     {
-        self::$pixapi->block->delete('emma');
-        $actual = self::$pixapi->block->search()['data'];
-        $this->assertNull($actual);
+        $actual = self::$pixapi->block->delete('emma');
+        $this->assertEquals($actual['error'], 0);
     }
 
     /**
