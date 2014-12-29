@@ -38,4 +38,14 @@ class Pix_User extends PixAPI
         $this->setSession('is_vip', $is_vip);
         return $is_vip;
     }
+
+    public function cellphoneVerification()
+    {
+        $response = $this->query('account/cellphone_verification');
+        $result = $this->getResult($response, 'account');
+        if (1 == $result['cellphone_verified']) {
+            return true;
+        }
+        return false;
+    }
 }
