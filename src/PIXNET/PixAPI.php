@@ -497,6 +497,7 @@ class PixAPI
             'index/rate',
             'index/now',
             'account',
+            'account/cellphone_verification',
             'users',
             'blog',
             'blog/categories',
