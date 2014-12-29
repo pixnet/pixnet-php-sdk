@@ -236,7 +236,8 @@ $examples_list = array(
             'name' => '資訊',
             'examples' => array(
                 '取得使用者資訊' => '201_user_info.php',
-                '查詢其他使用者公開資訊' => '202_user_info.php'
+                '查詢其他使用者公開資訊' => '202_user_info.php',
+                '檢查使用者手機驗證狀態' => '203_user_cellphone_verification.php'
             )
         )
     ),
