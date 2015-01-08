@@ -1,7 +1,7 @@
 <?php $script_name = end(explode('/', $_SERVER["SCRIPT_NAME"])); ?>
 <?php $item_count = 0; ?>
 <div class="btn-group">
-    <a class="btn btn-primary" href="./#tab<?= $_GET['tab']; ?>">回範例列表</a>
+    <a class="btn btn-primary" href="../#tab<?= $_GET['tab']; ?>">回範例列表</a>
     <div class="btn-group">
         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
         範例選單
@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <?php if (count($example['examples']) > 0) {?>
                             <?php foreach ($example['examples'] as $apiname => $url) { ?>
-                            <li><a href="<?= $url ?>?tab=<?= $_GET['tab']?>"><?= $apiname ?></a></li>
+                            <li><a href="../<?= $url ?>?tab=<?= $_GET['tab']?>"><?= $apiname ?></a></li>
                             <?php } ?>
                         <?php } else { ?>
                             <li class="disabled"><a href="#">建置中</a></li>
