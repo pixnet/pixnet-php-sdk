@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 $id = $_GET['id'];
 if ('' != $id) {
     $data = $pixapi->blog->articles->search($id)['data'];
@@ -9,11 +9,11 @@ if ('' != $id) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">修改文章</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->articles->update($article_id, $title, $body, $options);</pre>

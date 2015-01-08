@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat'])) {
     $options = ['distance_max' => 50000];
     $result = $pixapi->album->elements->nearby($_POST['username'],$_POST['lat'],$_POST['lon'], $options);
@@ -9,11 +9,11 @@ if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat']))
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">搜尋附近的相片（影音）</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->elements->nearby($set_id, $ids);</pre>
@@ -52,7 +52,7 @@ if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat']))
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">經度</label>
         <div class="col-sm-5">
-            <input class="form-control" name="lon" value="121.535304"> 
+            <input class="form-control" name="lon" value="121.535304">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">搜尋附近的相片（影音）</button>

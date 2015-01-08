@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 
 $user = $pixapi->user->info();
 $num = 0;
@@ -36,11 +36,11 @@ if ($query and $query2) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">離開訂閱群組</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->friend->subscriptions->leaveSubscriptionGroup($name, $options = array());</pre>

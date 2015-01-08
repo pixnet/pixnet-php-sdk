@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 if (!empty($_POST['series']) and isset($_POST['folder_id'])) {
     $i = 0;
@@ -22,11 +22,11 @@ if (isset($_GET['folder_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">修改相簿資料夾內的相簿順序</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->sets->position($parent_id, $ids);</pre>

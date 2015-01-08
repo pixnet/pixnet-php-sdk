@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
 if (isset($_POST['series']) and isset($_POST['element_id'])) {
@@ -23,11 +23,11 @@ if (isset($_GET['set_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">調整相片（影音）順序</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->elements->position($set_id, $ids);</pre>

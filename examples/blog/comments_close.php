@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 $query = $_POST['query'];
 $comments = $pixapi->blog->comments->search();
 if ($comments['total'] > 0) {
@@ -16,11 +16,11 @@ if ($comments['total'] > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">將留言設為悄悄話</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->blog->comments->close($id);</pre>

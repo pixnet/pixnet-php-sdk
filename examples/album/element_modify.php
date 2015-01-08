@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/bootstrap.php');
-require_once(__DIR__ . '/include/checkAuth.php');
+require_once(__DIR__ . '/../bootstrap.php');
+require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 if (isset($_GET['set_id'])) {
     $elements = $pixapi->album->elements->search($name, ['set_id' => $_GET['set_id']])['data'];
@@ -18,11 +18,11 @@ if (count($sets) == 0) {
 <!DOCTYPE html>
 <html>
 <head>
-<?php require_once(__DIR__ . '/include/header.php'); ?>
+<?php require_once(__DIR__ . '/../include/header.php'); ?>
 </head>
 <body>
 <div class="container">
-    <?php require_once(__DIR__ . '/include/top.php'); ?>
+    <?php require_once(__DIR__ . '/../include/top.php'); ?>
     <h1 class="page-header">修改單一相片（影音）</h1>
     <h3>呼叫方式</h3>
     <pre>$pixapi->album->elements->update($element_id, $options);</pre>
