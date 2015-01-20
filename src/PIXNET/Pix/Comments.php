@@ -32,47 +32,50 @@ abstract class Pix_Comments extends PixAPI
         $this->response_key = $key;
     }
 
-    public function delete($comment_id)
+    private function getCommentId($input)
     {
-        if ('' == $comment_id) {
+        if ('' == $input or (is_array($input) and count($input) == 0)) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
+
+        if (is_array($input)) {
+            return implode(',', $input);
+        }
+
+        return intval($input);
+    }
+
+    public function delete($comment_id)
+    {
+        $comment_id = $this->getCommentId($comment_id);
         $response = $this->query($this->api_path . '/' . $comment_id, array(), 'DELETE');
         return $response;
     }
 
     public function open($comment_id)
     {
-        if ('' == $comment_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
+        $comment_id = $this->getCommentId($comment_id);
         $response = $this->query($this->api_path . '/' . $comment_id . '/open', array(), 'POST');
         return $this->getResult($response, $this->response_key);
     }
 
     public function close($comment_id)
     {
-        if ('' == $comment_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
+        $comment_id = $this->getCommentId($comment_id);
         $response = $this->query($this->api_path . '/' . $comment_id . '/close', array(), 'POST');
         return $this->getResult($response, $this->response_key);
     }
 
     public function markSpam($comment_id, $options = array())
     {
-        if ('' == $comment_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
+        $comment_id = $this->getCommentId($comment_id);
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_spam', array(), 'POST');
         return $this->getResult($response, $this->response_key);
     }
 
     public function markHam($comment_id)
     {
-        if ('' == $comment_id) {
-            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
-        }
+        $comment_id = $this->getCommentId($comment_id);
         $response = $this->query($this->api_path . '/' . $comment_id . '/mark_ham', array(), 'POST');
         return $this->getResult($response, $this->response_key);
     }
