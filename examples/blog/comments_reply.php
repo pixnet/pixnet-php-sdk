@@ -16,7 +16,7 @@ require_once(__DIR__ . '/../include/checkAuth.php');
     <div class="well">
         <p>必填參數</p>
         <ul>
-            <li><p>id</p><p>留言的 id</p></li>
+            <li><p>id</p><p>留言的 id eg: 123456 or [123456,556678]</p></li>
             <li><p>body</p><p>留言內容，文字</p></li>
         </ul>
     </div>
