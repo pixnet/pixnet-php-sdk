@@ -2,10 +2,11 @@
 require_once(__DIR__ . '/../bootstrap.php');
 require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
-$sets = $pixapi->album->sets->search($name)['data'];
-foreach ($sets as $k => $set) {
+$sets = $pixapi->album->sets->search($name);
+if ($sets['total'] > 0) {
+foreach ($sets['data'] as $k => $set) {
     $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
-    $sets[$k]['title'] .= " ( $count )";
+    $sets['data'][$k]['title'] .= " ( $count )";
 }
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
@@ -19,6 +20,7 @@ if ($element_data['total']) {
         $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
         $elements[$k]['title'] .= " ( $count )";
     }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -51,13 +53,17 @@ if ($element_data['total']) {
         <label class="col-sm-2 control-label" for="query">請選擇相簿</label>
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id" onchange="updateElement(this.options[this.selectedIndex].value)">
-                <?php foreach ($sets as $set) { ?>
+        <?php if ($sets['total'] > 0) { ?>
+                <?php foreach ($sets['data'] as $set) { ?>
                     <?php if ($set['id'] == $current_set['id']) {?>
                 <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
                     <?php } else {?>
                 <option value="<?= $set['id']?>"><?= $set['title']?></option>
                     <?php } ?>
                 <?php } ?>
+        <?php } else { ?>
+                <option disabled>無相簿可供測試</option>
+        <?php } ?>
             </select>
         </div>
       </div>
