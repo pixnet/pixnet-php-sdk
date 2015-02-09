@@ -9,7 +9,7 @@ if ($sets['total'] > 0) {
         $sets['data'][$k]['title'] .= " ( $count )";
     }
     if (!isset($_GET['set_id'])) {
-        $current_set = $sets[0];
+        $current_set = $sets['data'][0];
     } else {
         $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
     }
