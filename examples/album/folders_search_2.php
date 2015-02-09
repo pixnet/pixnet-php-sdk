@@ -28,7 +28,7 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
         <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']?$_POST['name']:$pixapi->getUserName()?>">
         <select name="folder_id" class="form-control">
     <?php if ($folders['total'] > 0) {?>
-        <?php foreach ($folders as $folder) { ?>
+        <?php foreach ($folders['data'] as $folder) { ?>
             <?php if ($folder['id'] == $_POST['folder_id']) { ?>
             <option selected value="<?= $folder['id']?>"><?= $folder['title']?></option>
             <?php } else { ?>
