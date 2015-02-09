@@ -384,6 +384,7 @@ class PixAPI
     public function getResult($response, $key)
     {
         $this->debug(__METHOD__);
+        $response['data'] = [];
         if (!isset($response['total'])) {
             if (is_array($response[$key])) {
                 $keys = array_keys($response[$key]);
