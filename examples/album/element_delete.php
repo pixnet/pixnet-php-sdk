@@ -41,9 +41,9 @@ if (count($sets) == 0) {
             <?php } ?>
             <?php foreach ($sets as $set) { ?>
                 <?php if ($set['id'] == $_GET['set_id']) { ?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
                 <?php } else { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
             <?php } ?>
             </select>
@@ -55,7 +55,7 @@ if (count($sets) == 0) {
             <select class="form-control" name="element_id">
             <?php if (isset($elements)) { ?>
                 <?php foreach ($elements as $element) { ?>
-                <option value="<?= $element['id']?>"><?= $element['title']?></option>
+                <option value="<?= $element['id'] ?>"><?= $element['title'] ?></option>
                 <?php } ?>
             <?php } else { ?>
                 <option disabled>無相片可供測試</option>
@@ -65,14 +65,14 @@ if (count($sets) == 0) {
       </div>
       <button type="submit" class="btn btn-primary">刪除相片（影音）資訊</button>
     </form>
-    <?php if (isset($result)) {?>
+    <?php if (isset($result)) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->delete(<?= $current_element['id']?>)
+        $pixapi->album->elements->delete(<?= $current_element['id'] ?>)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($result); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

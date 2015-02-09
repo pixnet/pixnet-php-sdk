@@ -49,9 +49,9 @@ if (isset($_GET['set_id'])) {
             <?php } ?>
             <?php foreach ($sets as $set) { ?>
                 <?php if ($set['id'] == $_GET['set_id']) { ?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
                 <?php } else { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
             <?php } ?>
             </select>
@@ -60,9 +60,9 @@ if (isset($_GET['set_id'])) {
             <?php if (isset($elements)) { ?>
                 <?php foreach ($elements as $element) { ?>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="query"><?= $element['title']?></label>
+        <label class="col-sm-2 control-label" for="query"><?= $element['title'] ?></label>
         <div class="col-sm-5">
-            <input name="element_id[]" type="hidden" value="<?= $element['id']?>">
+            <input name="element_id[]" type="hidden" value="<?= $element['id'] ?>">
             <input name="series[]" class="form-control" type="text" value="">
         </div>
       </div>
@@ -70,14 +70,14 @@ if (isset($_GET['set_id'])) {
             <?php } ?>
       <button type="submit" class="btn btn-primary">修改相片（影音）順序</button>
     </form>
-    <?php if (isset($result)) {?>
+    <?php if (isset($result)) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->position(<?= $_GET['set_id']?>, '<?= $order?>')
+        $pixapi->album->elements->position(<?= $_GET['set_id'] ?>, '<?= $order ?>')
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($result); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

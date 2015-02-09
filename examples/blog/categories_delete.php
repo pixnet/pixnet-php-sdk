@@ -51,7 +51,7 @@ if ('' != $query) {
           } else {
           ?>
               <option disabled>無分類可供測試</option>
-          <?php }?>
+          <?php } ?>
           </select>
       </div>
       <button type="submit" class="btn btn-danger">刪除</button>

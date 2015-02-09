@@ -44,21 +44,21 @@ if (count($sets) == 0) {
         <div class="col-sm-5">
             <select class="form-control" name="set_id">
             <?php foreach ($sets as $set) { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
             <?php } ?>
             </select>
         </div>
       </div>
       <button type="submit" class="btn btn-primary">取得相片（影音）</button>
     </form>
-    <?php if (!empty($_POST['set_id']) and !$file['error']) {?>
+    <?php if (!empty($_POST['set_id']) and !$file['error']) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->search('<?= $pixapi->getUserName()?>', ['set_id' => <?= htmlspecialchars($_POST['set_id'])?>])
+        $pixapi->album->elements->search('<?= $pixapi->getUserName() ?>', ['set_id' => <?= htmlspecialchars($_POST['set_id']) ?>])
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->elements->search($pixapi->getUserName(), ['set_id' => $_POST['set_id']])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

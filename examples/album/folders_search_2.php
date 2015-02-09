@@ -25,29 +25,29 @@ $folders = $pixapi->album->folders->search($pixapi->getUserName());
     <form action="#execute" class="form-inline" role="form" method="POST">
       <div class="form-group">
         <label class="sr-only" for="query">使用者名稱(必填)</label>
-        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']?$_POST['name']:$pixapi->getUserName()?>">
+        <input type="text" class="form-control" id="query" name="name" placeholder="請輸入使用者名稱" value="<?= $_POST['name']?$_POST['name']:$pixapi->getUserName() ?>">
         <select name="folder_id" class="form-control">
-    <?php if ($folders['total'] > 0) {?>
+    <?php if ($folders['total'] > 0) { ?>
         <?php foreach ($folders['data'] as $folder) { ?>
             <?php if ($folder['id'] == $_POST['folder_id']) { ?>
-            <option selected value="<?= $folder['id']?>"><?= $folder['title']?></option>
+            <option selected value="<?= $folder['id'] ?>"><?= $folder['title'] ?></option>
             <?php } else { ?>
-            <option value="<?= $folder['id']?>"><?= $folder['title']?></option>
+            <option value="<?= $folder['id'] ?>"><?= $folder['title'] ?></option>
             <?php } ?>
         <?php } ?>
-    <?php } else {?>
+    <?php } else { ?>
             <option disabled>無資料夾可供測試</option>
-    <?php }?>
+    <?php } ?>
         </select>
       </div>
       <button type="submit" class="btn btn-primary">取得個人單一相簿</button>
     </form>
-    <?php if (!empty($_POST['name']) and !empty($_POST['folder_id'])) {?>
+    <?php if (!empty($_POST['name']) and !empty($_POST['folder_id'])) { ?>
     <h3>實際執行</h3>
-    <pre>$pixapi->album->folders->search(<?= htmlspecialchars($_POST['name'])?>, array('folder_id' => <?= htmlspecialchars($_POST['folder_id']) ?>))</pre>
+    <pre>$pixapi->album->folders->search(<?= htmlspecialchars($_POST['name']) ?>, array('folder_id' => <?= htmlspecialchars($_POST['folder_id']) ?>))</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->folders->search($_POST['name'], array('folder_id' => $_POST['folder_id']))); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

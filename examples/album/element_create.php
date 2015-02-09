@@ -36,7 +36,7 @@ if (isset($_FILES['file']) and !$_FILES['file']['error']) {
         <div class="col-sm-5">
             <select class="form-control" name="set_id">
             <?php foreach ($sets as $set) { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
             <?php } ?>
             </select>
         </div>
@@ -49,14 +49,14 @@ if (isset($_FILES['file']) and !$_FILES['file']['error']) {
       </div>
       <button type="submit" class="btn btn-primary">新增相片</button>
     </form>
-    <?php if (!empty($_POST['set_id']) and !$file['error']) {?>
+    <?php if (!empty($_POST['set_id']) and !$file['error']) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->create(<?= htmlspecialchars($_POST['set_id'])?>, '<?= $tmp_name ?>')
+        $pixapi->album->elements->create(<?= htmlspecialchars($_POST['set_id']) ?>, '<?= $tmp_name ?>')
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->elements->create($_POST['set_id'], $tmp_name)); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

@@ -55,10 +55,10 @@ if ($sets['total'] > 0) {
             <select class="form-control" id="query" name="set_id" onchange="updateElement(this.options[this.selectedIndex].value)">
         <?php if ($sets['total'] > 0) { ?>
                 <?php foreach ($sets['data'] as $set) { ?>
-                    <?php if ($set['id'] == $current_set['id']) {?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
-                    <?php } else {?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                    <?php if ($set['id'] == $current_set['id']) { ?>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
+                    <?php } else { ?>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                     <?php } ?>
                 <?php } ?>
         <?php } else { ?>
@@ -73,7 +73,7 @@ if ($sets['total'] > 0) {
             <select class="form-control" id="query" name="element_id">
                 <?php if ($elements) { ?>
                     <?php foreach ($elements as $e) { ?>
-                <option value="<?= $e['id']?>"><?= $e['title']?></option>
+                <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
                     <?php } ?>
                 <?php } else { ?>
                 <option disabled>無照片</option>
@@ -97,12 +97,12 @@ if ($sets['total'] > 0) {
         location = (uri + search + '?set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['set_id'])) {?>
+    <?php if (!empty($_POST['set_id'])) { ?>
     <h3>實際執行</h3>
     <pre>$pixapi->album->elements->comments->search(<?= $name ?>, ['element_id' => <?= $_POST['element_id'] ?>], $options)</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->elements->comments->search($name, ['element_id' => $_POST['element_id']])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

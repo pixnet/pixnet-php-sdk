@@ -36,14 +36,14 @@ require_once(__DIR__ . '/../include/checkAuth.php');
       </div>
       <button type="submit" class="btn btn-primary">建立相簿資料夾</button>
     </form>
-    <?php if (!empty($_POST['title']) and !empty($_POST['desc'])) {?>
+    <?php if (!empty($_POST['title']) and !empty($_POST['desc'])) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->folders->create(<?= htmlspecialchars($_POST['title'])?>, <?= $_POST['desc'] ?>)
+        $pixapi->album->folders->create(<?= htmlspecialchars($_POST['title']) ?>, <?= $_POST['desc'] ?>)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->folders->create($_POST['title'], $_POST['desc'])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

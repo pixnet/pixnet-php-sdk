@@ -47,10 +47,10 @@ if (!$comments) {
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id" onchange="updateComment(this.options[this.selectedIndex].value)">
                 <?php foreach ($sets as $set) { ?>
-                    <?php if ($set['id'] == $current_set['id']) {?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
-                    <?php } else {?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                    <?php if ($set['id'] == $current_set['id']) { ?>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
+                    <?php } else { ?>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                     <?php } ?>
                 <?php } ?>
             </select>
@@ -61,7 +61,7 @@ if (!$comments) {
         <div class="col-sm-5">
             <select class="form-control" id="query" name="comment_id">
                 <?php foreach ($comments as $c) { ?>
-                <option value="<?= $c['id']?>"><?= $c['body']?></option>
+                <option value="<?= $c['id'] ?>"><?= $c['body'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -79,14 +79,14 @@ if (!$comments) {
         location = (uri + search + '&set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['comment_id'])) {?>
+    <?php if (!empty($_POST['comment_id'])) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->search('<?= $name?>', ['comment_id' => <?= $_POST['comment_id'] ?>], $options)
+        $pixapi->album->comments->search('<?= $name ?>', ['comment_id' => <?= $_POST['comment_id'] ?>], $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->comments->search($name, ['comment_id' => $_POST['comment_id']])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

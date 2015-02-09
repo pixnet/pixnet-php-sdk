@@ -32,15 +32,15 @@ $data = $pixapi->blog->categories->search();
     </div>
     <h3><a href="#execute" name="execute">實際測試</a></h3>
     <?php if ($data['total'] > 2) { ?>
-    <?php $i = 0;?>
+    <?php $i = 0; ?>
     <form action="#execute" class="form-horizontal" role="form" method="POST">
         <?php foreach ($data['data'] as $cat) { ?>
-            <?php if ($cat['id'] > 0) { // [未分類] 不能排序?>
+            <?php if ($cat['id'] > 0) { // [未分類] 不能排序 ?>
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="query"><?= $cat['name']?></label>
+            <label class="col-sm-2 control-label" for="query"><?= $cat['name'] ?></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="series[]" placeholder="(<?= $i++?>) 請輸入新順序" value="">
-                <input type="hidden" name="category_id[]" value="<?= $cat['id']?>">
+                <input type="text" class="form-control" name="series[]" placeholder="(<?= $i++ ?>) 請輸入新順序" value="">
+                <input type="hidden" name="category_id[]" value="<?= $cat['id'] ?>">
             </div>
        </div>
            <?php } ?>
@@ -52,7 +52,7 @@ $data = $pixapi->blog->categories->search();
     <?php } ?>
     <?php if (!empty($_POST['series']) and isset($_POST['category_id'])) { ?>
     <h3>實際執行</h3>
-    <pre>$pixapi->blog->categories->position('<?= $order?>')</pre>
+    <pre>$pixapi->blog->categories->position('<?= $order ?>')</pre>
     <h3>執行結果</h3>
     <pre><?php var_dump($result) ?></pre>
     <?php } ?>

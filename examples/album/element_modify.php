@@ -53,9 +53,9 @@ if (count($sets) == 0) {
             <?php } ?>
             <?php foreach ($sets as $set) { ?>
                 <?php if ($set['id'] == $_GET['set_id']) { ?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
                 <?php } else { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
             <?php } ?>
             </select>
@@ -67,7 +67,7 @@ if (count($sets) == 0) {
             <select class="form-control" name="element_id">
             <?php if (isset($elements)) { ?>
                 <?php foreach ($elements as $element) { ?>
-                <option value="<?= $element['id']?>"><?= $element['title']?></option>
+                <option value="<?= $element['id'] ?>"><?= $element['title'] ?></option>
                 <?php } ?>
             <?php } else { ?>
                 <option disabled>請選擇相簿</option>
@@ -79,20 +79,20 @@ if (count($sets) == 0) {
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">修改標題</label>
         <div class="col-sm-5">
-            <input class="form-control" name="title" value="<?= $current_element['title']?>">
+            <input class="form-control" name="title" value="<?= $current_element['title'] ?>">
         </div>
       </div>
-      <?php }?>
+      <?php } ?>
       <button type="submit" class="btn btn-primary">修改相片（影音）資訊</button>
     </form>
-    <?php if (isset($result)) {?>
+    <?php if (isset($result)) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->update('<?= $current_element['id']?>', ['title' => '<?= htmlspecialchars($_POST['title'])?>'])
+        $pixapi->album->elements->update('<?= $current_element['id'] ?>', ['title' => '<?= htmlspecialchars($_POST['title']) ?>'])
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($result); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

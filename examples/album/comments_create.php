@@ -34,7 +34,7 @@ $sets = $pixapi->album->sets->search($name)['data'];
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id">
                 <?php foreach ($sets as $set) { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -47,14 +47,14 @@ $sets = $pixapi->album->sets->search($name)['data'];
       </div>
       <button type="submit" class="btn btn-primary">新增留言</button>
     </form>
-    <?php if (!empty($_POST['set_id']) and !empty($_POST['comment'])) {?>
+    <?php if (!empty($_POST['set_id']) and !empty($_POST['comment'])) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->create('<?= $name?>', <?= htmlspecialchars($_POST['set_id'])?>, '<?= $_POST['comment'] ?>', $options)
+        $pixapi->album->comments->create('<?= $name ?>', <?= htmlspecialchars($_POST['set_id']) ?>, '<?= $_POST['comment'] ?>', $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->comments->create($name, $_POST['set_id'], $_POST['comment'])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

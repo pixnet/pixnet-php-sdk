@@ -52,10 +52,10 @@ if ($element_data['total']) {
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id" onchange="updateElement(this.options[this.selectedIndex].value)">
                 <?php foreach ($sets as $set) { ?>
-                    <?php if ($set['id'] == $current_set['id']) {?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
-                    <?php } else {?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                    <?php if ($set['id'] == $current_set['id']) { ?>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
+                    <?php } else { ?>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                     <?php } ?>
                 <?php } ?>
             </select>
@@ -67,7 +67,7 @@ if ($element_data['total']) {
             <select class="form-control" id="query" name="element_id">
                 <?php if ($elements) { ?>
                     <?php foreach ($elements as $e) { ?>
-                <option value="<?= $e['id']?>"><?= $e['title']?></option>
+                <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
                     <?php } ?>
                 <?php } else { ?>
                 <option disabled>無照片</option>
@@ -94,14 +94,14 @@ if ($element_data['total']) {
         location = (uri + search + '&set_id=' + set_id + hash);
     }
     </script>
-    <?php if (!empty($_POST['element_id']) and !empty($_POST['comment'])) {?>
+    <?php if (!empty($_POST['element_id']) and !empty($_POST['comment'])) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->comments->create('<?= $name?>', <?= htmlspecialchars($_POST['element_id'])?>, '<?= $_POST['comment'] ?>', $options)
+        $pixapi->album->elements->comments->create('<?= $name ?>', <?= htmlspecialchars($_POST['element_id']) ?>, '<?= $_POST['comment'] ?>', $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->elements->comments->create($name, $_POST['element_id'], $_POST['comment'])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

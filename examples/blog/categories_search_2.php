@@ -45,7 +45,7 @@ if ('' != $query) {
         if ('' != $query) {
     ?>
     <h3>執行</h3>
-    <pre>$pixapi->blog->categories->search(<?= $query; ?>, <? var_export($isFolder)?>);</pre>
+    <pre>$pixapi->blog->categories->search(<?= $query; ?>, <? var_export($isFolder) ?>);</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->blog->categories->search($pixapi->getUserName(), $query, $isFolder)); ?></pre>
     <?php

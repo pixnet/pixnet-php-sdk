@@ -49,9 +49,9 @@ if (isset($_GET['set_id'])) {
             <?php } ?>
             <?php foreach ($sets as $set) { ?>
                 <?php if ($set['id'] == $_GET['set_id']) { ?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
                 <?php } else { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
             <?php } ?>
             </select>
@@ -63,7 +63,7 @@ if (isset($_GET['set_id'])) {
             <select class="form-control" name="element_id">
             <?php if (isset($elements)) { ?>
                 <?php foreach ($elements as $element) { ?>
-                <option value="<?= $element['id']?>"><?= $element['title']?></option>
+                <option value="<?= $element['id'] ?>"><?= $element['title'] ?></option>
                 <?php } ?>
             <?php } else { ?>
                 <option disabled>請選擇相簿</option>
@@ -73,14 +73,14 @@ if (isset($_GET['set_id'])) {
       </div>
       <button type="submit" class="btn btn-primary">取得相片（影音）</button>
     </form>
-    <?php if (!empty($_POST['set_id']) and !$file['error']) {?>
+    <?php if (!empty($_POST['set_id']) and !$file['error']) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->search('<?= $pixapi->getUserName()?>', ['element_id' => <?= htmlspecialchars($_POST['element_id'])?>])
+        $pixapi->album->elements->search('<?= $pixapi->getUserName() ?>', ['element_id' => <?= htmlspecialchars($_POST['element_id']) ?>])
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->album->elements->search($pixapi->getUserName(), ['element_id' => $_POST['element_id']])); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

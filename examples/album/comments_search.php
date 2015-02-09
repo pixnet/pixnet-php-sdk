@@ -45,10 +45,10 @@ if (!isset($_GET['set_id'])) {
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id">
                 <?php foreach ($sets as $set) { ?>
-                    <?php if ($set['id'] == $current_set['id']) {?>
-                <option value="<?= $set['id']?>" selected><?= $set['title']?></option>
-                    <?php } else {?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                    <?php if ($set['id'] == $current_set['id']) { ?>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
+                    <?php } else { ?>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                     <?php } ?>
                 <?php } ?>
             </select>
@@ -56,14 +56,14 @@ if (!isset($_GET['set_id'])) {
       </div>
       <button type="submit" class="btn btn-primary">取得留言</button>
     </form>
-    <?php if (isset($result)) {?>
+    <?php if (isset($result)) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->comments->search('<?= $name?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
+        $pixapi->album->comments->search('<?= $name ?>', ['set_id' => <?= $_POST['set_id'] ?>], $options)
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($result); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

@@ -57,14 +57,14 @@ if (isset($_POST['username']) and isset($_POST['lon']) and isset($_POST['lat']))
       </div>
       <button type="submit" class="btn btn-primary">搜尋附近的相片（影音）</button>
     </form>
-    <?php if (isset($result)) {?>
+    <?php if (isset($result)) { ?>
     <h3>實際執行</h3>
     <pre>
-        $pixapi->album->elements->nearby('<?= $_POST['username']?>', <?= $_POST['lat']?>, <?= $_POST['lon']?>, ['distance_max' => 50000])
+        $pixapi->album->elements->nearby('<?= $_POST['username'] ?>', <?= $_POST['lat'] ?>, <?= $_POST['lon'] ?>, ['distance_max' => 50000])
     </pre>
     <h3>執行結果</h3>
     <pre><?php print_r($result); ?></pre>
-    <?php }?>
+    <?php } ?>
 </div>
 </body>
 </html>

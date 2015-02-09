@@ -71,7 +71,7 @@ require_once(__DIR__ . '/../include/checkAuth.php');
         if ('' != $query and '' != $query2) {
     ?>
     <h3>執行</h3>
-    <pre>$pixapi->blog->comments->create('<?=$pixapi->getUserName();?>', '<?= $query; ?>', '<?= $query2; ?>');</pre>
+    <pre>$pixapi->blog->comments->create('<?=$pixapi->getUserName(); ?>', '<?= $query; ?>', '<?= $query2; ?>');</pre>
     <h3>執行結果</h3>
     <pre><?php print_r($pixapi->blog->comments->create($pixapi->getUserName(), $query, $query2)); ?></pre>
     <?php
