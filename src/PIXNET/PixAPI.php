@@ -6,7 +6,6 @@
 
 class PixAPI
 {
-    const PIXNET_API = 'https://emma.pixnet.cc/';
     const SESSION_NAME = 'PixAPI';
 
     private $consumer_key;

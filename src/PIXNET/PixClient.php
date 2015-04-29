@@ -6,6 +6,7 @@
 
 class PixClient
 {
+    const PIXNET_API = 'https://emma.pixnet.cc/';
     const ACCESS_TOKEN_URL = 'https://emma.pixnet.cc/oauth2/authorize';
     const AUTHORIZATION_URL = 'https://emma.pixnet.cc/oauth2/grant';
     protected $client_id = null;
