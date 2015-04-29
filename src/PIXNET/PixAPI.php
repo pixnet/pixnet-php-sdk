@@ -281,7 +281,7 @@ class PixAPI
         if (!$this->checkAPIMethod($api)) {
             throw new PixAPIException('API [' . $api . '] NOT FOUND', PixAPIException::API_NOT_FOUND);
         }
-        $url = self::PIXNET_API . $api;
+        $url = $api;
         $response = $this->client->query($url, $parameters, $method, $http_headers, true);
         if (!$response['result'] or 200 != $response['code'] or (isset($response['result']['error']) and 0 < $response['result']['error'])) {
             if (!isset($response['result']['message'])) {

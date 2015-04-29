@@ -128,6 +128,8 @@ class PixClient
      */
     public function query($api_url, $parameters = array(), $method = 'GET', array $http_headers = array(), $form_multipart = true)
     {
+        $api_url = self::PIXNET_API . $api_url;
+
         if (is_array($parameters)) {
             if ('URI' == $method) {
                 $api_url .= '/' . implode($parameters, '/');
