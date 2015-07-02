@@ -115,7 +115,6 @@ class Pix_Friend_GroupsTest extends PHPUnit_Framework_TestCase
      */
     public function testDelete()
     {
-        $test_group = self::$pixapi->friend->groups->create('unit test ' . __METHOD__);
         $actual = self::$pixapi->friend->groups->delete(self::$group['id']);
         $this->assertEquals(0, $actual['error']);
     }
