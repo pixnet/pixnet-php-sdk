@@ -202,7 +202,7 @@ class PixClient
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
         if ($curl_error = curl_error($ch)) {
-            throw new PixAPIException($curl_error, PixAPIException::CURL_ERROR);
+            throw new PixAPIException('curl error : ' . $curl_error, PixAPIException::CURL_ERROR);
         } else {
             $json_decode = json_decode($result, true);
         }
