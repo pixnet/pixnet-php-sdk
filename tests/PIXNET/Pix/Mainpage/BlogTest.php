@@ -42,7 +42,7 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
 
     public function testHot()
     {
-        $actual = self::$pixapi->mainpage->blog->hot(0)['data'];
+        $actual = self::$pixapi->mainpage->blog->hot(1)['data'];
         $this->assertLessThanOrEqual(11, count($actual));
     }
 
@@ -57,7 +57,7 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
 
     public function testLatest()
     {
-        $actual = self::$pixapi->mainpage->blog->latest(0)['data'];
+        $actual = self::$pixapi->mainpage->blog->latest(1)['data'];
         $this->assertLessThanOrEqual(11, count($actual));
     }
 
@@ -72,7 +72,7 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
 
     public function testHotWeekly()
     {
-        $actual = self::$pixapi->mainpage->blog->hotWeekly(0)['data'];
+        $actual = self::$pixapi->mainpage->blog->hotWeekly(1)['data'];
         $this->assertLessThanOrEqual(11, count($actual));
     }
 
