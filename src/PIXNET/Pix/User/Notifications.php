@@ -18,5 +18,14 @@ class Pix_User_Notifications extends PixAPI
 
     public function search($options = array())
     {
+        $parameters = $this->mergeParameters(
+            array(),
+            $options,
+            array('skip_set_read', 'limit'),
+            array('type')
+        );
+
+        $response = $this->query('account/notifications', $parameters, 'GET');
+        return $this->getResult($response, 'notifications');
     }
 }
