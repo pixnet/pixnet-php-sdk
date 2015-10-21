@@ -13,6 +13,13 @@ class Pix_User extends PixAPI
 
     public function __get($class_name)
     {
+        $class_list = array(
+                'notifications' => 'Pix_User_Notifications',
+            );
+        $class = $class_list[$class_name];
+        if ('' != $class) {
+            return new $class($this->client);
+        }
         throw new PixAPIException('CLASS [' . $class_name . '] NOT FOUND', PixAPIException::CLASS_NOT_FOUND);
     }
 
