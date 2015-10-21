@@ -529,6 +529,7 @@ class PixAPI
             'guestbook',
             'mainpage/blog',
             'mainpage/album',
+            'account/notifications',
         );
     }
 
