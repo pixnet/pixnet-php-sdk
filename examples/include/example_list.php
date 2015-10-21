@@ -239,6 +239,13 @@ $examples_list = array(
                 '查詢其他使用者公開資訊' => 'user/other_info.php',
                 '檢查使用者手機驗證狀態' => 'user/cellphone_verification.php'
             )
+        ),
+        array(
+            'name' => '通知',
+            'examples' => array(
+                '取得通知內容' => 'user/notification_list.php',
+                '設定通知為已讀' => 'user/mark_notification_as_read.php',
+            )
         )
     ),
     '索引' => array(
