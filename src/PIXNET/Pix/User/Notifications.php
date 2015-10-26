@@ -28,4 +28,13 @@ class Pix_User_Notifications extends PixAPI
         $response = $this->query('account/notifications', $parameters, 'GET');
         return $this->getResult($response, 'notifications');
     }
+
+    public function markRead($id = '')
+    {
+        if (!is_int($id)) {
+            throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
+        }
+        $response = $this->query('account/notifications/' . $id . '/read', array(), 'POST');
+        return $this->getResult($response, 'notifications');
+    }
 }
