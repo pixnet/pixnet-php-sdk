@@ -108,7 +108,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), ['set_id' => self::$test_set['id']])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), null, ['set_id' => self::$test_set['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
@@ -147,7 +147,7 @@ class Pix_Album_Element_CommentsTest extends PHPUnit_Framework_TestCase
             $expected['body'][] = $comment['body'];
             $expected['id'][] = $comment['id'];
         }
-        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), ['element_id' => self::$test_element['id']])['data'];
+        $current = self::$pixapi->album->elements->comments->search(self::$pixapi->getUserName(), null, ['element_id' => self::$test_element['id']])['data'];
 
         foreach ($current as $comment) {
             $actual['id'][] = $comment['id'];
