@@ -144,15 +144,10 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $actual_create_1 = self::$pixapi->friend->subscriptionGroups->create('friend');
-        $actual_create_2 = self::$pixapi->friend->subscriptionGroups->create('test');
-        $actual = self::$pixapi->friend->subscriptionGroups->search();
-        $this->assertEquals(2, $actual['total']);
+        $actual = self::$pixapi->friend->subscriptionGroups->create('friend');
+        $ret = self::$pixapi->friend->subscriptionGroups->delete($actual['data']['id']);
 
-        self::$pixapi->friend->subscriptionGroups->delete($actual_create_1['data']['id']);
-        self::$pixapi->friend->subscriptionGroups->delete($actual_create_2['data']['id']);
-        $actual = self::$pixapi->friend->subscriptionGroups->search();
-        $this->assertEquals(0, $actual['total']);
+        $this->assertEquals(0, $ret['error']);
     }
 
     /**
