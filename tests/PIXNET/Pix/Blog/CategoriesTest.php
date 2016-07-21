@@ -105,14 +105,13 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
             $order[$id] = $i++;
         }
         $new_position = implode(',', $ids);
-        $tmp = self::$pixapi->blog->categories->position($new_position);
-        $categories = self::$pixapi->blog->categories->search(self::$pixapi->getUserName())['data'];
+        $categories = self::$pixapi->blog->categories->position($new_position)['data'];
         foreach ($tmp_categories as $cat) {
             self::$pixapi->blog->categories->delete($cat['id']);
         }
         foreach ($categories as $cat) {
             if ($cat['id'] > 0) {
-                $new_order[$cat['id']] = $cat['order'];
+                $new_order[$cat['id']] = $cat['position'];
             }
         }
         $this->assertEquals($order, $new_order);
