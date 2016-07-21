@@ -41,22 +41,18 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
         $actual = array(
             array(
                 'name'     => $actual_create_1['data']['name'],
-                'position' => $actual_create_1['data']['position']
             ),
             array(
                 'name'     => $actual_create_2['data']['name'],
-                'position' => $actual_create_2['data']['position']
             )
         );
 
         $expected = array(
             array(
                 'name'     => 'friend',
-                'position' => '1'
             ),
             array(
                 'name'     => 'test',
-                'position' => '2'
             )
         );
 
