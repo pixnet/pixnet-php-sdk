@@ -72,17 +72,8 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
         $actual_create_1 = self::$pixapi->friend->subscriptionGroups->create('friend');
         $actual = self::$pixapi->friend->subscriptionGroups->update($actual_create_1['data']['id'], 'update');
         self::$pixapi->friend->subscriptionGroups->delete($actual_create_1['data']['id']);
-        $actual = array(
-            $actual['data']['name'],
-            $actual['data']['position']
-        );
 
-        $expected = array(
-            'update',
-            1
-        );
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals('update', $actual['data']['name']);
     }
 
     /**
