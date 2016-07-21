@@ -24,57 +24,11 @@ class Pix_Friend_SubscriptionGroupsTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
-        $actual_create_1 = self::$pixapi->friend->subscriptionGroups->create('friend');
-        $actual_create_2 = self::$pixapi->friend->subscriptionGroups->create('test');
-        $actual_all = self::$pixapi->friend->subscriptionGroups->search();
-        self::$pixapi->friend->subscriptionGroups->delete($actual_create_1['data']['id']);
-        self::$pixapi->friend->subscriptionGroups->delete($actual_create_2['data']['id']);
+        $expected = self::$pixapi->friend->subscriptionGroups->create('friend');
+        $actual = self::$pixapi->friend->subscriptionGroups->search($expected['data']['id']);
+        self::$pixapi->friend->subscriptionGroups->delete($expected['data']['id']);
 
-        foreach ($actual_all['data'] as $group) {
-            $actual[] = array(
-                'name'     => $group['name'],
-                'position' => $group['position']
-            );
-        }
-
-        $expected = array(
-            array(
-                'name'     => 'friend',
-                'position' => 1
-            ),
-            array(
-                'name'     => 'test',
-                'position' => 2
-            )
-        );
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function testSearchSpecifiedId()
-    {
-        $actual_create_1 = self::$pixapi->friend->subscriptionGroups->create('friend');
-        $groups = self::$pixapi->friend->subscriptionGroups->search();
-        $group_id = intval($groups['data'][0]['id']);
-        $group_name = $groups['data'][0]['name'];
-        $group_position = intval($groups['data'][0]['position']);
-
-        $actual_all = self::$pixapi->friend->subscriptionGroups->search($group_id);
-        self::$pixapi->friend->subscriptionGroups->delete($actual_create_1['data']['id']);
-
-        $actual = array(
-            'id'       => $actual_all['data']['id'],
-            'name'     => $actual_all['data']['name'],
-            'position' => $actual_all['data']['position'],
-        );
-
-        $expected = array(
-            'id'       => $group_id,
-            'name'     => $group_name,
-            'position' => $group_position
-        );
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected['data'], $actual['data']);
     }
 
     public function testCreate()
