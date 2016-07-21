@@ -58,11 +58,10 @@ class Pix_Blog_CategoriesTest extends PHPUnit_Framework_TestCase
     {
         $expected = __METHOD__ . " test";
         $ret = self::$pixapi->blog->categories->create($expected);
+        self::$pixapi->blog->categories->delete($ret['data']['id']);
 
         $this->assertEquals(0, $ret['error']);
         $this->assertEquals($expected, $ret['data']['name']);
-
-        self::$pixapi->blog->categories->delete($ret['data']['id']);
     }
 
     /**
