@@ -177,10 +177,8 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
     public function testDelete()
     {
         self::$pixapi->friend->friendships->create('emmatest4');
-        self::$pixapi->friend->friendships->delete('emmatest4');
-        self::$pixapi->friend->subscriptions->delete('emmatest4');
-        $actual = self::$pixapi->friend->friendships->search();
-        $this->assertEquals(0, $actual['total']);
+        $actual = self::$pixapi->friend->friendships->delete('emmatest4');
+        $this->assertEquals(0, $actual['error']);
     }
 
     /**
