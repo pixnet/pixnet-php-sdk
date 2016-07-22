@@ -178,6 +178,8 @@ class Pix_Friend_FriendshipsTest extends PHPUnit_Framework_TestCase
     {
         self::$pixapi->friend->friendships->create('emmatest4');
         $actual = self::$pixapi->friend->friendships->delete('emmatest4');
+        self::$pixapi->friend->subscriptions->delete('emmatest4');
+
         $this->assertEquals(0, $actual['error']);
     }
 
