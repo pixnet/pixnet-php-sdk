@@ -13,3 +13,16 @@ var getGetParam = function(search) {
 
     return obj;
 };
+
+var getQueryString = function(array) {
+    var querystring = '';
+    for (var key in array) {
+        if ('' === querystring) {
+            querystring = key + '=' + array[key];
+            continue;
+        }
+        querystring = querystring + '&' + key + '=' + array[key];
+    }
+
+    return '?' + querystring;
+};
