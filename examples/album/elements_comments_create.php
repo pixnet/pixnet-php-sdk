@@ -88,10 +88,10 @@ if ($element_data['total']) {
         var uri = location.pathname;
         var search = location.search;
         var hash = location.hash;
-        if (search.indexOf('set_id') > 0) {
-            search = search.split('&')[0];
-        }
-        location = (uri + search + '&set_id=' + set_id + hash);
+        var parameters = getGetParam(search);
+        parameters.set_id = set_id + hash;
+        var querystring = getQueryString(parameters);
+        location = uri + querystring;
     }
     </script>
     <?php if (!empty($_POST['element_id']) and !empty($_POST['comment'])) { ?>
