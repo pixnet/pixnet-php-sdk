@@ -21,6 +21,12 @@ if ($sets['total'] > 0) {
             $elements[$k]['title'] .= " ( $count )";
         }
     }
+
+    if (!isset($_POST['element_id'])) {
+        $current_element = $element_data['data'][0];
+    } else {
+        $current_element = $pixapi->album->elements->comments->search($name, ['element_id' => $_POST['element_id']], $options)['element'];
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -73,7 +79,11 @@ if ($sets['total'] > 0) {
             <select class="form-control" id="query" name="element_id">
                 <?php if ($elements) { ?>
                     <?php foreach ($elements as $e) { ?>
-                <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
+                        <?php if ($e['id'] == $current_element['id']) { ?>
+                            <option value="<?= $e['id'] ?>" selected><?= $e['title'] ?></option>
+                        <?php } else { ?>
+                            <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
+                        <?php } ?>
                     <?php } ?>
                 <?php } else { ?>
                 <option disabled>無照片</option>
