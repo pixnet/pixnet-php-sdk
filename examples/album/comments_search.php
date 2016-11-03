@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
 foreach ($sets as $k => $set) {
-    $count = $pixapi->album->elements->comments->search($name, ['set_id' => $set['id']])['total'];
+    $count = $pixapi->album->comments->search($name, ['set_id' => $set['id']])['total'];
     $sets[$k]['title'] .= " ( $count 則留言)";
 }
 if ("" != $_POST['set_id']) {
