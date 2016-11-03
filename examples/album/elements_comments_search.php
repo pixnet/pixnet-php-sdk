@@ -111,11 +111,10 @@ $comments = $pixapi->album->elements->comments->search($name, ['element_id' => $
         var uri = location.pathname;
         var search = location.search;
         var hash = location.hash;
-        var set_id = $('#set').val();
-        if (search.indexOf('set_id') > 0 || search.indexOf('element_id') > 0) {
-            search = search.split('&')[0];
-        }
-        location = (uri + search + '&set_id=' + set_id + '&element_id=' + element_id + hash);
+        var parameters = getGetParam(search);
+        parameters.element_id = element_id;
+        var querystring = getQueryString(parameters);
+        location = uri + querystring;
     }
     </script>
     <?php if (!empty($_POST['comment_id'])) { ?>
