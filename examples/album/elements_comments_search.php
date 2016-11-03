@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
 foreach ($sets as $k => $set) {
-    $count = $pixapi->album->sets->elements($name, $set['id']) ? count($pixapi->album->sets->elements($name, $set['id'])) : 0;
+    $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
     $sets[$k]['title'] .= " ( $count )";
 }
 if (!isset($_GET['set_id'])) {
