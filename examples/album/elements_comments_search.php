@@ -10,7 +10,7 @@ foreach ($sets as $k => $set) {
 if (!isset($_GET['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']]);
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
 }
 $elements = $pixapi->album->sets->search($name)['data'];
 foreach ($elements as $k => $e) {
