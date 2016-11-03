@@ -24,7 +24,7 @@ if (!isset($_GET['element_id'])) {
     $current_element = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']])['element'];
 }
 
-$comments = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']])['data'];
+$comments = $pixapi->album->elements->comments->search($name, ['element_id' => $current_element['id']])['data'];
 ?>
 <!DOCTYPE html>
 <html>
