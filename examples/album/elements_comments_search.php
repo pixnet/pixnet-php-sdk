@@ -103,6 +103,7 @@ $comments = $pixapi->album->elements->comments->search($name, ['element_id' => $
         var hash = location.hash;
         var parameters = getGetParam(search);
         parameters.set_id = set_id + hash;
+        delete parameters.element_id;
         var querystring = getQueryString(parameters);
         location = uri + querystring;
     }
