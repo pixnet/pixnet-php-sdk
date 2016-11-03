@@ -6,6 +6,11 @@ $sets = $pixapi->album->sets->search($name)['data'];
 if (count($sets) == 0) {
     $sets[] = ['id' => '" disabled="disabled', 'title' => '無相簿可供測試'];
 }
+if (!isset($_POST['set_id'])) {
+    $current_set = $sets[0];
+} else {
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_POST['set_id']])['data'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +43,11 @@ if (count($sets) == 0) {
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id">
                 <?php foreach ($sets as $set) { ?>
-                <option value="<?= $set['id']?>"><?= $set['title']?></option>
+                    <?php if ($set['id'] == $current_set['id']) { ?>
+                <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
+                    <?php } else { ?>
+                <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
+                    <?php } ?>
                 <?php } ?>
             </select>
         </div>
