@@ -10,10 +10,10 @@ foreach ($sets as $k => $set) {
 if ("" != $_POST['set_id']) {
     $result = $pixapi->album->comments->search($name, ['set_id' => $_POST['set_id']]);
 }
-if (!isset($_GET['set_id'])) {
+if (!isset($_POST['set_id'])) {
     $current_set = $sets[0];
 } else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_POST['set_id']])['data'];
 }
 ?>
 <!DOCTYPE html>
