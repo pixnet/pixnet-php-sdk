@@ -83,17 +83,6 @@ if ($element_data['total']) {
       </div>
       <button type="submit" class="btn btn-primary">新增留言</button>
     </form>
-    <script>
-    var updateElement = function(set_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        var parameters = getGetParam(search);
-        parameters.set_id = set_id + hash;
-        var querystring = getQueryString(parameters);
-        location = uri + querystring;
-    }
-    </script>
     <?php if (!empty($_POST['element_id']) and !empty($_POST['comment'])) { ?>
     <h3>實際執行</h3>
     <pre>

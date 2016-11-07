@@ -96,27 +96,6 @@ $comments = $pixapi->album->elements->comments->search($name, ['element_id' => $
       </div>
       <button type="submit" class="btn btn-primary">取得照片留言</button>
     </form>
-    <script>
-    var updateElement = function(set_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        var parameters = getGetParam(search);
-        parameters.set_id = set_id + hash;
-        delete parameters.element_id;
-        var querystring = getQueryString(parameters);
-        location = uri + querystring;
-    }
-    var updateComment = function(element_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        var parameters = getGetParam(search);
-        parameters.element_id = element_id;
-        var querystring = getQueryString(parameters);
-        location = uri + querystring;
-    }
-    </script>
     <?php if (!empty($_POST['comment_id'])) { ?>
     <h3>實際執行</h3>
     <pre>$pixapi->album->elements->comments->search(<?= $name ?>, ['comment_id' => <?= $_POST['comment_id'] ?>], $options)</pre>

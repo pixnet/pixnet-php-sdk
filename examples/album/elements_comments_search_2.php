@@ -93,17 +93,6 @@ if ($sets['total'] > 0) {
       </div>
       <button type="submit" class="btn btn-primary">取得照片留言</button>
     </form>
-    <script>
-    var updateElement = function(set_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        var parameters = getGetParam(search);
-        parameters.set_id = set_id + hash;
-        var querystring = getQueryString(parameters);
-        location = uri + querystring;
-    }
-    </script>
     <?php if (!empty($_POST['set_id'])) { ?>
     <h3>實際執行</h3>
     <pre>$pixapi->album->elements->comments->search(<?= $name ?>, ['element_id' => <?= $_POST['element_id'] ?>], $options)</pre>

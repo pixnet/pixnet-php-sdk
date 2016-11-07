@@ -68,17 +68,6 @@ if (!$comments) {
       </div>
       <button type="submit" class="btn btn-primary">取得留言</button>
     </form>
-    <script>
-    var updateComment = function(set_id) {
-        var uri = location.pathname;
-        var search = location.search;
-        var hash = location.hash;
-        if (search.indexOf('set_id') > 0) {
-            search = search.split('&')[0];
-        }
-        location = (uri + search + '&set_id=' + set_id + hash);
-    }
-    </script>
     <?php if (!empty($_POST['comment_id'])) { ?>
     <h3>實際執行</h3>
     <pre>
