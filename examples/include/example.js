@@ -26,3 +26,24 @@ var getQueryString = function(array) {
 
     return '?' + querystring;
 };
+
+var updateUrl = function(t, delete_params_array) {
+    var uri = location.pathname;
+    var search = location.search;
+    var hash = location.hash;
+    var parameters = getGetParam(search);
+    parameter = t.name;
+    parameters[parameter] = t.options[t.selectedIndex].value;
+    if (parameter === "set_id") {
+        parameters[parameter] += hash;
+    }
+
+    if (typeof(delete_params_array) === "object") {
+        $.each(delete_params_array, function(index, value) {
+            delete parameters[value];
+        });
+    }
+
+    var querystring = getQueryString(parameters);
+    location = uri + querystring;
+};
