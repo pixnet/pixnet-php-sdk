@@ -50,7 +50,7 @@ if ($element_data['total']) {
       <div class="form-group">
         <label class="col-sm-2 control-label" for="query">請選擇相簿</label>
         <div class="col-sm-5">
-            <select class="form-control" id="query" name="set_id" onchange="updateElement(this.options[this.selectedIndex].value)">
+            <select class="form-control" id="query" name="set_id" onchange="updateUrl(this)">
                 <?php foreach ($sets as $set) { ?>
                     <?php if ($set['id'] == $current_set['id']) { ?>
                 <option value="<?= $set['id'] ?>" selected><?= $set['title'] ?></option>
