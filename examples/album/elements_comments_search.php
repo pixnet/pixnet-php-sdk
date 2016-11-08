@@ -76,6 +76,7 @@ if ($sets) {
         <label class="col-sm-2 control-label" for="query">請選擇照片</label>
         <div class="col-sm-5">
             <select class="form-control" id="element" name="element_id" onchange="updateUrl(this)">
+            <?php if ($elements) { ?>
                 <?php foreach ($elements as $e) { ?>
                     <?php if ($e['id'] == $current_element['id']) { ?>
                 <option value="<?= $e['id'] ?>" selected><?= $e['title'] ?></option>
@@ -83,6 +84,9 @@ if ($sets) {
                 <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
                     <?php } ?>
                 <?php } ?>
+            <?php } else { ?>
+                <option disabled selected>無照片</option>
+            <?php } ?>
             </select>
         </div>
       </div>
