@@ -15,10 +15,10 @@ if ($sets) {
     }
 
     $elements = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
-        foreach ($elements as $k => $e) {
-            $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
-            $elements[$k]['title'] .= " ( $count )";
-        }
+    foreach ($elements as $k => $e) {
+        $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
+        $elements[$k]['title'] .= " ( $count )";
+    }
 }
 ?>
 <!DOCTYPE html>
