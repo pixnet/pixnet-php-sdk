@@ -17,8 +17,7 @@ if ($sets) {
         $result = $pixapi->album->comments->markSpam($_POST['comment_id']);
     }
 
-    $comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
-    $comments = $comment_data['total'] ? $comment_data['data'] : 0;
+    $comments = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']])['data'];
     if ($comments) {
         foreach ($comments as $c) {
             if ($c['is_spam']) {

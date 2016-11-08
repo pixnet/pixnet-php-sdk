@@ -13,8 +13,7 @@ if ($sets) {
     } else {
         $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
     }
-    $comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
-    $comments = $comment_data['total'] ? $comment_data['data'] : 0;
+    $comments = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']])['data'];
     if (!$comments) {
         $comments = [['id' => '0" disabled="disabled" selected="selectd', 'body' => '無留言']];
     }
