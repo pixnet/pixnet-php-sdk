@@ -14,8 +14,7 @@ if ($sets) {
         $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
     }
 
-    $element_data = $pixapi->album->sets->elements($name, $current_set['id']);
-        $elements = $element_data['data'];
+    $elements = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
         foreach ($elements as $k => $e) {
             $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
             $elements[$k]['title'] .= " ( $count )";
