@@ -33,9 +33,13 @@ $sets = $pixapi->album->sets->search($name)['data'];
         <label class="col-sm-2 control-label" for="query">請選擇相簿</label>
         <div class="col-sm-5">
             <select class="form-control" id="query" name="set_id">
+            <?php if ($sets) { ?>
                 <?php foreach ($sets as $set) { ?>
                 <option value="<?= $set['id'] ?>"><?= $set['title'] ?></option>
                 <?php } ?>
+            <?php } else { ?>
+                <option disabled selected>無相簿可供測試</option>
+            <?php } ?>
             </select>
         </div>
       </div>
