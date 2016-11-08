@@ -14,9 +14,6 @@ if ($sets) {
         $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
     }
     $comments = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']])['data'];
-    if (!$comments) {
-        $comments = [['id' => '0" disabled="disabled" selected="selectd', 'body' => '無留言']];
-    }
 }
 ?>
 <!DOCTYPE html>

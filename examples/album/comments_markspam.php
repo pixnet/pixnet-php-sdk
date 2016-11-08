@@ -25,8 +25,6 @@ if ($sets) {
             }
             $modify_comments[] = $c;
         }
-    } else {
-        $comments = [['id' => '0" disabled="disabled" selected="selectd', 'body' => '無留言']];
     }
 }
 ?>
