@@ -3,22 +3,24 @@ require_once(__DIR__ . '/../bootstrap.php');
 require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
-foreach ($sets as $k => $set) {
-    $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
-    $sets[$k]['title'] .= " ( $count )";
-}
-if (!isset($_GET['set_id'])) {
-    $current_set = $sets[0];
-} else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
-}
+if ($sets) {
+    foreach ($sets as $k => $set) {
+        $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
+        $sets[$k]['title'] .= " ( $count )";
+    }
+    if (!isset($_GET['set_id'])) {
+        $current_set = $sets[0];
+    } else {
+        $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+    }
 
-$element_data = $pixapi->album->sets->elements($name, $current_set['id']);
-if ($element_data['total']) {
-    $elements = $element_data['data'];
-    foreach ($elements as $k => $e) {
-        $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
-        $elements[$k]['title'] .= " ( $count )";
+    $element_data = $pixapi->album->sets->elements($name, $current_set['id']);
+    if ($element_data['total']) {
+        $elements = $element_data['data'];
+        foreach ($elements as $k => $e) {
+            $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
+            $elements[$k]['title'] .= " ( $count )";
+        }
     }
 }
 ?>

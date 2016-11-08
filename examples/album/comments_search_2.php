@@ -3,19 +3,21 @@ require_once(__DIR__ . '/../bootstrap.php');
 require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
-foreach ($sets as $k => $set) {
-    $count = $pixapi->album->comments->search($name, ['set_id' => $set['id']])['total'];
-    $sets[$k]['title'] .= " ( $count 則留言)";
-}
-if (!isset($_GET['set_id'])) {
-    $current_set = $sets[0];
-} else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
-}
-$comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
-$comments = $comment_data['total'] ? $comment_data['data'] : 0;
-if (!$comments) {
-    $comments = [['id' => '0" disabled="disabled', 'body' => '無留言']];
+if ($sets) {
+    foreach ($sets as $k => $set) {
+        $count = $pixapi->album->comments->search($name, ['set_id' => $set['id']])['total'];
+        $sets[$k]['title'] .= " ( $count 則留言)";
+    }
+    if (!isset($_GET['set_id'])) {
+        $current_set = $sets[0];
+    } else {
+        $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+    }
+    $comment_data = $pixapi->album->comments->search($name, ['set_id' => $current_set['id']]);
+    $comments = $comment_data['total'] ? $comment_data['data'] : 0;
+    if (!$comments) {
+        $comments = [['id' => '0" disabled="disabled', 'body' => '無留言']];
+    }
 }
 ?>
 <!DOCTYPE html>

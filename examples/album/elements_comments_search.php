@@ -3,28 +3,30 @@ require_once(__DIR__ . '/../bootstrap.php');
 require_once(__DIR__ . '/../include/checkAuth.php');
 $name = $pixapi->getUserName();
 $sets = $pixapi->album->sets->search($name)['data'];
-foreach ($sets as $k => $set) {
-    $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
-    $sets[$k]['title'] .= " ( $count )";
-}
-if (!isset($_GET['set_id'])) {
-    $current_set = $sets[0];
-} else {
-    $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
-}
-$elements = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
-foreach ($elements as $k => $e) {
-    $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
-    $elements[$k]['title'] .= " ( $count )";
-}
+if ($sets) {
+    foreach ($sets as $k => $set) {
+        $count = $pixapi->album->sets->elements($name, $set['id'])['total'];
+        $sets[$k]['title'] .= " ( $count )";
+    }
+    if (!isset($_GET['set_id'])) {
+        $current_set = $sets[0];
+    } else {
+        $current_set = $pixapi->album->sets->search($name, ['set_id' => $_GET['set_id']])['data'];
+    }
+    $elements = $pixapi->album->sets->elements($name, $current_set['id'])['data'];
+    foreach ($elements as $k => $e) {
+        $count = $pixapi->album->elements->comments->search($name, ['element_id' => $e['id']], $options = [])['total'];
+        $elements[$k]['title'] .= " ( $count )";
+    }
 
-if (!isset($_GET['element_id'])) {
-    $current_element = $elements[0];
-} else {
-    $current_element = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']])['element'];
-}
+    if (!isset($_GET['element_id'])) {
+        $current_element = $elements[0];
+    } else {
+        $current_element = $pixapi->album->elements->comments->search($name, ['element_id' => $_GET['element_id']])['element'];
+    }
 
-$comments = $pixapi->album->elements->comments->search($name, ['element_id' => $current_element['id']])['data'];
+    $comments = $pixapi->album->elements->comments->search($name, ['element_id' => $current_element['id']])['data'];
+}
 ?>
 <!DOCTYPE html>
 <html>
