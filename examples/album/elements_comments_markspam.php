@@ -25,7 +25,7 @@ if ($comments) {
         }
     }
 } else {
-    $comments = [['id' => '0" disabled="disabled', 'body' => '無留言']];
+    $comments = [['id' => '0" disabled="disabled" selected="selectd', 'body' => '無留言']];
 }
 ?>
 <!DOCTYPE html>

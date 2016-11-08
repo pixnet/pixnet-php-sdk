@@ -68,7 +68,7 @@ if ($sets['total'] > 0) {
                     <?php } ?>
                 <?php } ?>
         <?php } else { ?>
-                <option disabled>無相簿可供測試</option>
+                <option disabled selected>無相簿可供測試</option>
         <?php } ?>
             </select>
         </div>
@@ -86,7 +86,7 @@ if ($sets['total'] > 0) {
                         <?php } ?>
                     <?php } ?>
                 <?php } else { ?>
-                <option disabled>無照片</option>
+                <option disabled selected>無照片</option>
                 <?php } ?>
             </select>
         </div>

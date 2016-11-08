@@ -72,7 +72,7 @@ if ($sets) {
                 <option value="<?= $e['id'] ?>"><?= $e['title'] ?></option>
                     <?php } ?>
                 <?php } else { ?>
-                <option disabled>無照片</option>
+                <option disabled selected>無照片</option>
                 <?php } ?>
             </select>
         </div>
