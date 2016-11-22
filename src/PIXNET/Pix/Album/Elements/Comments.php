@@ -37,8 +37,9 @@ class Pix_Album_Elements_Comments extends Pix_Comments
         if (empty($name)) {
             throw new PixAPIException('Required parameters missing', PixAPIException::REQUIRE_PARAMETERS_MISSING);
         }
+        $data['user'] = $name;
         $parameters = $this->mergeParameters(
-            ['user' => $name] + $data,
+            $data,
             $options,
             array('element_id', 'set_id'),
             array('password')
