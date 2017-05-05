@@ -17,7 +17,7 @@ class Pix_Mainpage_BlogTest extends PHPUnit_Framework_TestCase
     public function testColumns()
     {
         $actual = self::$pixapi->mainpage->blog->columns();
-        $this->assertCount(7, $actual);
+        $this->assertCount(8, $actual);
     }
 
     public function testColumnsHasColumnId()
