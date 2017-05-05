@@ -402,6 +402,12 @@ class PixAPI
             $response['data'] = $response[$key];
             unset($response[$key]);
         }
+
+        if ([] == $response['data'] and array_key_exists($key .= 's', $response)) {
+            $response['data'] = current($response[$key]);
+            unset($response[$key]);
+        }
+
         return $response;
     }
 
