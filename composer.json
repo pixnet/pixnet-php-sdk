@@ -4,7 +4,7 @@
     "keywords": ["PIXNET", "sdk"],
     "type": "library",
     "homepage": "http://developer.pixnet.pro/",
-    "license": "BSD",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "PIXNET Digital Media Corporation",
