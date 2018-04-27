@@ -7,13 +7,13 @@ PIXNET SDK for PHP
 This open-source library allows you to integrate PIXNET into your PHP applications.
 Learn More detail at [http://developer.pixnet.pro/](http://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi)
 
-##安裝 - Installation#
+## 安裝 - Installation#
 ### 使用 Composer ###
 - 增加`"pixnet/php-sdk": "@stable"`到您的`composer.json`的`require`部分.
 - 執行`composer install`.
 
-##使用 - Usage#
-###在使用之前，請先至 PIXNET Developer 註冊新的 APP。
+## 使用 - Usage#
+### 在使用之前，請先至 PIXNET Developer 註冊新的 APP。
 [http://developer.pixnet.pro/#!/apps](http://developer.pixnet.pro/#!/apps)
 
 申請完成會拿到以下兩把鑰匙
@@ -46,7 +46,7 @@ $pixapi = new PixAPI(array(
 ));
 ```
 
-##更多範例
+## 更多範例
 更多完整的範例在examples資料夾，請執行examples/index.php，依據步驟設定
 
 ## 聯絡我們
@@ -54,16 +54,16 @@ $pixapi = new PixAPI(array(
 Email: pixnetapi@pixnet.tw
 Twitter: @pixnetapi
 
-##快速查詢用法
+## 快速查詢用法
 
-###部落格
+### 部落格
 ```php
 - 列出部落格資訊 $pixapi->blog->info();
 - 查詢其他部落格公開資訊 $pixapi->blog->info($username);
 - 取得部落格全站分類 $pixapi->blog->siteCategories();
 - 取得建議標籤 $pixapi->blog->suggestedTags($username = '');
 ```
-####部落格分類
+#### 部落格分類
 ```php
 - 取得部落格所有分類 $pixapi->blog->categories->search();
 - 取得部落格單一分類 $pixapi->blog->categories->search($id, $is_folder = false);
@@ -72,7 +72,7 @@ Twitter: @pixnetapi
 - 刪除部落格分類 $pixapi->blog->categories->delete($id, $is_folder = false);
 - 修改部落格分類排序 $pixapi->blog->categories->position($ids);
 ```
-####部落格文章
+#### 部落格文章
 ```php
 - 取得部落格個人所有文章 $pixapi->blog->articles->search($options);
 - 取得部落格個人單一文章 $pixapi->blog->articles->search($id);
@@ -84,7 +84,7 @@ Twitter: @pixnetapi
 - 列出部落格最新文章 $pixapi->blog->articles->latest($options = array());
 - 列出部落格熱門文章 $pixapi->blog->articles->hot($options = array());
 ```
-####部落格文章留言
+#### 部落格文章留言
 ```php
 - 列出文章留言 $pixapi->blog->comments->search($options = array());
 - 讀取單一留言 $pixapi->blog->comments->search($id);
@@ -98,18 +98,18 @@ Twitter: @pixnetapi
 - 列出文章最新留言 $pixapi->blog->comments->latest($options = array());
 ```
 
-###好友互動
+### 好友互動
 ```php
 - 好友動態 $pixapi->friend->news($option = array());
 ```
-####群組
+#### 群組
 ```php
 - 列出好友群組 $pixapi->friend->groups->search($option = array());
 - 新增好友群組 $pixapi->friend->groups->create($name);
 - 修改好友群組 $pixapi->friend->groups->update($id, $name);
 - 刪除好友群組 $pixapi->friend->groups->delete($id);
 ```
-####好友名單
+#### 好友名單
 ```php
 - 列出好友名單 $pixapi->friend->friendships->search($option = array());
 - 新增好友 $pixapi->friend->friendships->create($name);
@@ -117,7 +117,7 @@ Twitter: @pixnetapi
 - 移除群組 $pixapi->friend->friendships->removeGroup($name, $id);
 - 刪除好友 $pixapi->friend->friendships->delete($name);
 ```
-####訂閱
+#### 訂閱
 ```php
 - 列出訂閱名單 $pixapi->friend->subscriptions->search($option = array());
 - 新增訂閱 $pixapi->friend->subscriptions->create($name, $options = array());
@@ -125,7 +125,7 @@ Twitter: @pixnetapi
 - 離開訂閱群組 $pixapi->friend->subscriptions->leaveSubscriptionGroup($name, $group_ids = array());
 - 刪除訂閱 $pixapi->friend->subscriptions->delete($name);
 ```
-####訂閱群組
+#### 訂閱群組
 ```php
 - 列出訂閱群組 $pixapi->friend->subscriptionGroups->search();
 - 新增訂閱群組 $pixapi->friend->subscriptionGroups->create($name);
@@ -134,14 +134,14 @@ Twitter: @pixnetapi
 - 修改訂閱群組排序 $pixapi->friend->subscriptionGroups->position($ids);
 ```
 
-###黑名單
+### 黑名單
 ```php
 - 列出黑名單 $pixapi->block->search();
 - 新增黑名單 $pixapi->block->create($user);
 - 刪除黑名單 $pixapi->block->delete($user);
 ```
 
-###留言板
+### 留言板
 ```php
 - 列出留言版留言 $pixapi->guestbook->search($option = array());
 - 讀取單一留言 $pixapi->guestbook->search($id);
@@ -154,33 +154,33 @@ Twitter: @pixnetapi
 - 刪除留言版留言 $pixapi->guestbook->delete($id);
 ```
 
-###首頁
-####文章
+### 首頁
+#### 文章
 ```php
 - 列出文章專欄 $pixapi->mainpage->blog->columns();
 - 列出全站熱門 $pixapi->mainpage->blog->hot($options);
 - 列出全站最新 $pixapi->mainpage->blog->latest($options);
 - 列出全站近期影片 $pixapi->mainpage->blog->hotWeekly($options);
 ```
-####相簿
+#### 相簿
 ```php
 - 列出相簿專欄 $pixapi->mainpage->album->columns();
 - 列出全站熱門 $pixapi->mainpage->album->hot($options);
 - 列出全站最新 $pixapi->mainpage->album->latest($options);
 - 列出全站近期影片 $pixapi->mainpage->album->hotWeekly($options);
 ```
-####影片
+#### 影片
 ```php
 - 列出全站熱門 $pixapi->mainpage->video->hot($options);
 - 列出全站最新 $pixapi->mainpage->video->latest($options);
 - 列出全站近期影片 $pixapi->mainpage->video->hotWeekly($options);
 ```
-###使用者
+### 使用者
 ```php
 - 取得使用者資訊 $pixapi->user->info();
 - 查詢其他使用者公開資訊 $pixapi->user->info(UserName);
 ```
-###索引
+### 索引
 ```php
 - 取得API使用次數資訊 $pixapi->index->rate();
 - 取得API Server時間資訊 $pixapi->index->now();
