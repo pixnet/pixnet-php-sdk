@@ -27,6 +27,7 @@ class PixAPI
      */
     public function __construct($config)
     {
+        $ignore_session_check = (isset($config['ignore_session_check']) and $config['ignore_session_check']);
         if (!function_exists('curl_init')) {
             throw new PixAPIException('PIXNET SDK needs the CURL PHP extension.', PixAPIException::CURL_NOT_FOUND);
         }
@@ -34,7 +35,9 @@ class PixAPI
             throw new PixAPIException('PIXNET SDK needs the JSON PHP extension.', PixAPIException::JSON_NOT_FOUND);
         }
         if ((function_exists('session_status') && PHP_SESSION_ACTIVE !== session_status()) || '' == strval(session_id())) {
-            throw new PixAPIException('run session_start() first', PixAPIException::SESSION_MISSING);
+            if (!$ignore_session_check) {
+                throw new PixAPIException('run session_start() first', PixAPIException::SESSION_MISSING);
+            }
         }
         if ('' == $config['key'] || '' == $config['secret'] || '' == $config['callback']) {
             throw new PixAPIException('key, secret and callback is need', PixAPIException::CONFIG_MISSING);
